@@ -1,4 +1,4 @@
-declare interface Tier {
+declare interface TierModel {
     tier : number;
     upgradeGoldCost : number;
     upgradeShardCost ?: number;
@@ -6,7 +6,7 @@ declare interface Tier {
     description : string;
 }
 
-declare interface Town {
+declare interface TownModel {
     currentGold : number;
     currentShards : number;
     size : number;

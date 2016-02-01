@@ -1,0 +1,14 @@
+// ----------------------------------------------------------- Responsive break-points
+@breakpoint-mobile: 760px;
+@breakpoint-tablet: 980px;
+@breakpoint-large-desktop: 1280px;
+@scrollbar-width: 20px;
+
+// ----------------------------------------------------------- Media queries
+@device-mobile: ~"only screen and (max-width:" (@breakpoint-mobile - 1) ~")";
+@device-tablet: ~"only screen and (min-width:" (@breakpoint-mobile) ~") and (max-width:" (@breakpoint-tablet - 1) ~")";
+@device-desktop: ~"only screen and (min-width:" (@breakpoint-tablet) ~") and (max-width:" (@breakpoint-large-desktop - 1) ~")";
+@device-large-desktop: ~"only screen and (min-width:" (@breakpoint-large-desktop) ~")";
+
+@device-tablet-and-smaller: ~"only screen and (max-width:" (@breakpoint-tablet - 1) ~")";
+@device-tablet-and-bigger: ~"only screen and (min-width:" (@breakpoint-mobile) ~")";

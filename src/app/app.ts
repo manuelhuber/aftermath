@@ -1,10 +1,10 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, View} from 'angular2/core';
-import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Login} from './login/login';
-import {Town} from './town/town';
+import { Component, View } from 'angular2/core';
+import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
+import { Login } from './login/login';
+import { TownOverview} from  './town/town-overview';
 import './app.less';
 
 @Component({
@@ -12,7 +12,7 @@ import './app.less';
 })
 @RouteConfig([
     {path: '/', component: Login, name: 'Login'},
-    {path: '/town', component: Town, name: 'Town'},
+    {path: '/town', component: TownOverview, name: 'Town'},
     {path: '/**', redirectTo: ['/Login']}
 ])
 @View({
