@@ -10,7 +10,7 @@ var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
 var metadata = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
+  title: 'Gnarf Test',
   baseUrl: '/',
   host: 'localhost',
   port: 3000,
@@ -61,7 +61,7 @@ module.exports = {
       { test: /\.json$/,  loader: 'json-loader' },
 
       // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw-loader' },
+      { test: /\.less$/,   loader: 'style!css!less' },
 
       // support for .html as raw text
       { test: /\.html$/,  loader: 'raw-loader' }

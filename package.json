@@ -51,7 +51,7 @@
   "devDependencies": {
     "compression-webpack-plugin": "^0.3.0",
     "copy-webpack-plugin": "^1.0.0",
-    "css-loader": "^0.23.0",
+    "css-loader": "^0.23.1",
     "es6-promise-loader": "^1.0.1",
     "exports-loader": "^0.6.2",
     "expose-loader": "^0.7.1",
@@ -68,6 +68,8 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-sourcemap-loader": "^0.3.6",
     "karma-webpack": "1.7.0",
+    "less": "^2.6.0",
+    "less-loader": "^2.2.2",
     "ncp": "^2.0.0",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
