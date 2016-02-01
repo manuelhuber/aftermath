@@ -11,8 +11,14 @@
 //declare const WARLOCK : string = 'WARLOCK';
 //declare const WIZARD : string = 'WIZARD';
 
-declare interface Character {
+declare interface CharacterModel {
+    id : number;
     name : string;
+    experience : number;
+    gold : number;
+    shards : number;
+    achievements : number[];
+    items : number[];
     description : string;
     level : {[clazz : string] : number};
 }

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "mock item name 1",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 1",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+  {
+    "id": 2,
+    "name": "mock item name 2",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 2",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+  {
+    "id": 3,
+    "name": "mock item name 3",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 3",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+  {
+    "id": 4,
+    "name": "mock item name 4",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 4",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+  {
+    "id": 5,
+    "name": "mock item name 5",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 5",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+  {
+    "id": 6,
+    "name": "mock item name 6",
+    "type": "itemtype",
+    "rarity": "common",
+    "description": "mock item description for item with ID 6",
+    "acquisitionDate": "/Date(1224043200000)/"
+  },
+]
