@@ -3,6 +3,7 @@ import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import { TownConnector } from './connector/town-connector';
+import { CharacterConnector } from './connector/character-connector';
 import {App} from './app/app';
 
 if (process.env.ENV === 'production') {
@@ -15,5 +16,6 @@ if (process.env.ENV === 'production') {
 bootstrap(App, [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, {useClass: PathLocationStrategy}),
-    TownConnector
+    TownConnector,
+    CharacterConnector
 ]);

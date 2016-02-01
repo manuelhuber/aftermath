@@ -1,19 +1,17 @@
-/*
- * Angular 2 decorators and services
- */
-import {Component, View} from 'angular2/core';
+// Serivces
+import { Component, View, Inject } from 'angular2/core';
 import { TownService } from '../../service/town-service';
-import {Inject} from 'angular2/core';
 
-/*
- * App Component
- * Top Level Component
- */
+// Subcomponents
+import { CharacterList } from './character-list/character-list';
+
+// Style
+import './town-overview.less';
+
 @Component({
-    selector: 'TownOverview',
-    providers: [TownService]
-})
-@View({
+    selector: 'town-overview',
+    providers: [TownService],
+    directives: [CharacterList],
     templateUrl: 'app/town/town-overview.html'
 })
 export class TownOverview {

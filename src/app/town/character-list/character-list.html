@@ -1,0 +1,7 @@
+<div class="character-list-close" (click)="toggleList()"></div>
+<div class="character-list" *ngIf="showList">
+    <div class="character-list-buttons">    </div>
+    <div class="character-list-entry-wrapper" *ngFor="#character of characters">
+    <character-list-entry ></character-list-entry>
+    </div>
+</div>
