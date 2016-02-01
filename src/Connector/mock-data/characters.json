@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  },
+  {
+    "id": 2,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  },
+  {
+    "id": 3,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  },
+  {
+    "id": 4,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  },
+  {
+    "id": 5,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  },
+  {
+    "id": 6,
+    "name": "JaRule",
+    "experience": 1,
+    "gold": 1000,
+    "shards": 1,
+    "achievements": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      1,
+      2,
+      3
+    ],
+    "description": "This character is a murdering hobo. Like the everybody.",
+    "level": {
+      "warlock": 1,
+      "bard": 2
+    }
+  }
+]
