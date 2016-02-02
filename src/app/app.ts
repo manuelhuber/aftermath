@@ -1,4 +1,4 @@
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { Login } from './login/login';
@@ -9,7 +9,7 @@ import './app.less';
 @Component({
     selector: 'app',
     directives: [ROUTER_DIRECTIVES],
-    templateUrl : 'app/app.html'
+    template : require('./app.html')
 })
 @RouteConfig([
 {path: '/', component: Login, name: 'Login'},

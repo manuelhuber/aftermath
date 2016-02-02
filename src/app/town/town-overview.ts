@@ -1,5 +1,5 @@
 // Serivces
-import { Component, View, Inject } from 'angular2/core';
+import { Component, Inject } from 'angular2/core';
 import { TownService } from '../../service/town-service';
 
 // Subcomponents
@@ -12,7 +12,7 @@ import './town-overview.less';
     selector: 'town-overview',
     providers: [TownService],
     directives: [CharacterList],
-    templateUrl: 'app/town/town-overview.html'
+    template: require('./town-overview.html')
 })
 export class TownOverview {
 

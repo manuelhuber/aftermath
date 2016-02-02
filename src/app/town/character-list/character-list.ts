@@ -1,5 +1,5 @@
 // Services
-import { Component, View, Inject } from 'angular2/core';
+import { Component, Inject } from 'angular2/core';
 import { NgFor, NgIf } from 'angular2/common';
 import { CharacterService } from '../../../service/character-service';
 
@@ -13,7 +13,7 @@ import './character-list.less';
     selector: 'character-list',
     providers: [CharacterService],
     directives: [CharacterListEntry, NgFor],
-    templateUrl: 'app/town/character-list/character-list.html'
+    template: require('./character-list.html')
 })
 export class CharacterList {
 
