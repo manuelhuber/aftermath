@@ -1,13 +1,37 @@
+// Default Style ------------------------------------------------------------------------------------------------------
 .character-list {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.character-list-close {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    z-index: 2;
+    height: 20px;
+    width: 20px;
+    background-image: url('/assets/icons/navigate2.svg');
+    background-size: contain;
+    background-color: bisque;
+    border: 1px solid saddlebrown;
+}
+
+.character-list-background {
     width: 300px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.character-list-entry-wrapper{
+.character-list-entry-wrapper {
     box-sizing: border-box;
     width: 100%;
     padding: 0 5px 5px 5px;
+}
+
+.character-list-entry-wrapper:first-child {
+    background-color: red;
 }
 
 .character-list-buttons {
@@ -15,9 +39,76 @@
     width: 100%;
 }
 
-.character-list-close {
-    float: right;
-    height: 15px;
-    width: 15px;
-    background-color: red;
+// List Specifics  -----------------------------------------------------------------------------------------------------
+@character-list-entry-animation-duration: 250ms;
+@character-list-entry-animation-delay-duration: 100ms;
+@character-list-background-animation-duration: 500ms;
+@character-list-close-button-duration: 400ms;
+
+// Generates css-classes for 1 to n
+.generate-number-of-entry-classes(20);
+.generate-number-of-entry-classes(@n, @i: 1) when (@i =< @n) {
+    .total-entry-number-@{i} {
+        @max-entries: @i;
+        .makeAnimationStuff(@i+1);
+    }
+    .generate-number-of-entry-classes(@n, (@i + 1));
+}
+.makeAnimationStuff(@entryNumbers) {
+    @character-list-entry-animation-total-duration: @character-list-entry-animation-delay-duration * @entryNumbers + (@character-list-entry-animation-duration - @character-list-entry-animation-delay-duration);
+
+    // Animations that make everything appear
+    &.list-is-visible {
+
+        .character-list-close {
+            transition: all @character-list-close-button-duration ease-out;
+            transition-delay: (@character-list-entry-animation-total-duration + @character-list-background-animation-duration);
+            transform: rotate(180deg);
+        }
+        .character-list-background {
+            transition: all @character-list-background-animation-duration ease-out;
+            transform: translate(0, 0);
+        }
+        .character-list-entry-wrapper {
+            .delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, @character-list-background-animation-duration);
+            transition: all @character-list-entry-animation-duration ease-out;
+            transform: translate(0, 0);
+        }
+    }
+
+    // Animations that make everything disappear
+    &.list-is-not-visible {
+
+        .character-list-close {
+            transition: all @character-list-close-button-duration ease-out;
+            transition-delay: (@character-list-entry-animation-total-duration + @character-list-background-animation-duration);
+            transform: rotate(0deg);
+        }
+        .character-list-background {
+            transition: all @character-list-background-animation-duration ease-out @character-list-entry-animation-total-duration;
+            transform: translate(0, -100%);
+        }
+        .character-list-entry-wrapper {
+            .delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, 0);
+            transition: all @character-list-entry-animation-duration ease-out;
+            transform: translate(100%, 0);
+        }
+    }
+}
+
+// Helper Mxins --------------------------------------------------------------------------------------------------------
+
+.delay-transition(@items, @delay, @baseDelay) {
+
+    // Define function
+    .character-list-entry-wrapper(@index) when (@index <= @items) {
+        &:nth-child(@{index}) {
+            // For some reason my elements start with 2nd child, so we have to add the -2
+            transition-delay: ((-2+@index) * @delay)+@baseDelay;
+        }
+        .character-list-entry-wrapper(@index + 1); // Increment loop
+    }
+
+    // Call function
+    .character-list-entry-wrapper(0); // Start loop
 }

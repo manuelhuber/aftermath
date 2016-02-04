@@ -18,11 +18,15 @@ import './character-list.less';
 export class CharacterList {
 
     characters : CharacterModel[];
-    showList : boolean;
+    showList : boolean = true;
+    entries : number;
 
     constructor (@Inject(CharacterService) characterService : CharacterService) {
         characterService.getCharacters()
-            .then((chars : CharacterModel[]) => { this.characters = chars; });
+            .then((chars : CharacterModel[]) => {
+                this.characters = chars;
+                this.entries = chars.length;
+            });
     }
 
     toggleList () : void {
