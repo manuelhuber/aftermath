@@ -24,14 +24,13 @@
     background-color: rgba(0, 0, 0, 0.75);
 }
 
+.character-list-entries{
+
+}
 .character-list-entry-wrapper {
     box-sizing: border-box;
     width: 100%;
     padding: 0 5px 5px 5px;
-}
-
-.character-list-entry-wrapper:first-child {
-    background-color: red;
 }
 
 .character-list-buttons {
@@ -40,29 +39,28 @@
 }
 
 // List Specifics  -----------------------------------------------------------------------------------------------------
-@character-list-entry-animation-duration: 250ms;
-@character-list-entry-animation-delay-duration: 100ms;
-@character-list-background-animation-duration: 500ms;
-@character-list-close-button-duration: 400ms;
+@character-list-entry-animation-duration: 150ms;
+@character-list-entry-animation-delay-duration: 050ms;
+@character-list-background-animation-duration: 250ms;
+@character-list-close-button-duration: 250ms;
 
-// Generates css-classes for 1 to n
+// Generates css-classes for 1 to n entries (since they need different delays
 .generate-number-of-entry-classes(20);
 .generate-number-of-entry-classes(@n, @i: 1) when (@i =< @n) {
     .total-entry-number-@{i} {
         @max-entries: @i;
-        .makeAnimationStuff(@i+1);
+        .makeAnimationStuff(@i);
     }
     .generate-number-of-entry-classes(@n, (@i + 1));
 }
 .makeAnimationStuff(@entryNumbers) {
-    @character-list-entry-animation-total-duration: @character-list-entry-animation-delay-duration * @entryNumbers + (@character-list-entry-animation-duration - @character-list-entry-animation-delay-duration);
+    @character-list-entry-animation-total-duration: @character-list-entry-animation-delay-duration * @entryNumbers + @character-list-entry-animation-duration;
 
     // Animations that make everything appear
     &.list-is-visible {
 
         .character-list-close {
             transition: all @character-list-close-button-duration ease-out;
-            transition-delay: (@character-list-entry-animation-total-duration + @character-list-background-animation-duration);
             transform: rotate(180deg);
         }
         .character-list-background {
@@ -81,7 +79,7 @@
 
         .character-list-close {
             transition: all @character-list-close-button-duration ease-out;
-            transition-delay: (@character-list-entry-animation-total-duration + @character-list-background-animation-duration);
+            transition-delay: @character-list-entry-animation-total-duration;
             transform: rotate(0deg);
         }
         .character-list-background {
@@ -103,8 +101,7 @@
     // Define function
     .character-list-entry-wrapper(@index) when (@index <= @items) {
         &:nth-child(@{index}) {
-            // For some reason my elements start with 2nd child, so we have to add the -2
-            transition-delay: ((-2+@index) * @delay)+@baseDelay;
+            transition-delay: ((@index) * @delay)+@baseDelay;
         }
         .character-list-entry-wrapper(@index + 1); // Increment loop
     }

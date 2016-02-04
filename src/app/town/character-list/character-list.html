@@ -1,10 +1,14 @@
-<div class="character-list total-entry-number-{{entries}}" [class.list-is-visible]="showList" [class.list-is-not-visible]="!showList">
+<div class="character-list total-entry-number-{{entries}}" [class.list-is-visible]="showList"
+     [class.list-is-not-visible]="!showList">
     <div class="character-list-close" (click)="toggleList()"></div>
     <div class="character-list-background">
         <div class="character-list-buttons"> buttons will be here</div>
         {{color}}
-        <div class="character-list-entry-wrapper {{styleclass}}" *ngFor="#character of characters">
-            <character-list-entry [character]="character"></character-list-entry>
+        <div class="character-list-entries">
+            <div class="character-list-entry-wrapper {{styleclass}}" *ngFor="#character of characters">
+                <character-list-entry [character]="character"></character-list-entry>
+            </div>
         </div>
+        <div>there will be a scroll button</div>
     </div>
 </div>
