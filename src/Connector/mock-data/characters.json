@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "JaRule",
+    "name": "Roland",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
@@ -23,7 +23,7 @@
   },
   {
     "id": 2,
-    "name": "JaRule",
+    "name": "Shamash",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
@@ -45,7 +45,7 @@
   },
   {
     "id": 3,
-    "name": "JaRule",
+    "name": "Enya",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
@@ -67,7 +67,7 @@
   },
   {
     "id": 4,
-    "name": "JaRule",
+    "name": "Alatiar",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
@@ -89,7 +89,7 @@
   },
   {
     "id": 5,
-    "name": "JaRule",
+    "name": "Reccard",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
@@ -111,7 +111,7 @@
   },
   {
     "id": 6,
-    "name": "JaRule",
+    "name": "Ciley",
     "experience": 1,
     "gold": 1000,
     "shards": 1,
