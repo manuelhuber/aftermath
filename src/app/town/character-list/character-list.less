@@ -19,14 +19,25 @@
 }
 
 .character-list-background {
+    position: relative;
     width: 300px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.character-list-entries{
+.character-list-entries {
+    overflow: hidden;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 0;
+    bottom: 0;
 
+    &.showScroll {
+        bottom: 50px;
+    }
 }
+
 .character-list-entry-wrapper {
     box-sizing: border-box;
     width: 100%;
@@ -36,6 +47,20 @@
 .character-list-buttons {
     height: 25px;
     width: 100%;
+}
+
+.character-list-scroll-down{
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+}
+
+.character-list-entries-scrollable{
+    transition: all 100ms linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 // List Specifics  -----------------------------------------------------------------------------------------------------
@@ -53,6 +78,7 @@
     }
     .generate-number-of-entry-classes(@n, (@i + 1));
 }
+
 .makeAnimationStuff(@entryNumbers) {
     @character-list-entry-animation-total-duration: @character-list-entry-animation-delay-duration * @entryNumbers + @character-list-entry-animation-duration;
 
