@@ -85,9 +85,11 @@ export class CharacterList implements AfterViewInit {
 
     sortXP () : void {
         this.sortHtmlEntries((a : HTMLElement, b : HTMLElement) => {
-            if (a.getAttribute('data-experience') < b.getAttribute('data-experience')) {
+            let experienceA : number = parseInt(a.getAttribute('data-experience'), 10);
+            let experienceB : number = parseInt(b.getAttribute('data-experience'), 10);
+            if (experienceA < experienceB) {
                 return -1;
-            } else if (a.getAttribute('data-experience') > b.getAttribute('data-experience')) {
+            } else if (experienceA > experienceB) {
                 return 1;
             } else {
                 return 0;
