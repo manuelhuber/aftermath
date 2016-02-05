@@ -36,6 +36,7 @@ export class CharacterList implements AfterViewInit {
         // It' angular magic and I don't really get it.
         setTimeout(() => {this.showScroll = this.areChildrenOverflown('character-list-entries') }, 1);
         this.entryHeight = document.getElementById('character-list-entry-wrapper').scrollHeight;
+        this.checkScrolling();
     }
 
     toggleList () : void {
@@ -43,25 +44,44 @@ export class CharacterList implements AfterViewInit {
     }
 
     scrollDown () : void {
-        let element : HTMLElement = document.getElementById('character-list-entries-scrollable');
-        let potentialNewTopValue : number = parseInt(window.getComputedStyle(element).top.replace(/px/, ''), 10) - this.entryHeight;
-        let minimumTopValue : number = document.getElementById('character-list-entries').offsetHeight - element.scrollHeight;
-        element.style.top =
+        let htmlElement : HTMLElement = document.getElementById('character-list-entries-scrollable');
+        let potentialNewTopValue : number =
+            parseInt(window.getComputedStyle(htmlElement).top.replace(/px/, ''), 10) - this.entryHeight;
+        let minimumTopValue : number =
+            document.getElementById('character-list-entries').offsetHeight - htmlElement.scrollHeight;
+        htmlElement.style.top =
             potentialNewTopValue < minimumTopValue
                 ? minimumTopValue + 'px' : potentialNewTopValue + 'px';
+
+    }
+
+    scrollUp () : void {
+        let htmlElement : HTMLElement = document.getElementById('character-list-entries-scrollable');
+        let potentialNewTopValue : number =
+            parseInt(window.getComputedStyle(htmlElement).top.replace(/px/, ''), 10) + this.entryHeight;
+        htmlElement.style.top = potentialNewTopValue > 0 ? '0' : potentialNewTopValue + 'px';
     }
 
     private areChildrenOverflown (elemenId : string) : boolean {
-        let element : HTMLElement = document.getElementById(elemenId);
-        for (let i : number = 0; i < element.childElementCount; i++) {
-            let child : HTMLElement = <HTMLElement>element.children[i];
+        let htmlElement : HTMLElement = document.getElementById(elemenId);
+        for (let i : number = 0; i < htmlElement.childElementCount; i++) {
+            let child : HTMLElement = <HTMLElement>htmlElement.children[i];
             if (child.offsetTop + child.offsetHeight >
-                element.offsetTop + element.offsetHeight ||
+                htmlElement.offsetTop + htmlElement.offsetHeight ||
                 child.offsetLeft + child.offsetWidth >
-                element.offsetLeft + element.offsetWidth) {
+                htmlElement.offsetLeft + htmlElement.offsetWidth) {
                 return true;
             }
         }
         return false;
+    }
+
+    private checkScrolling () : void {
+        let htmlElement : HTMLElement = document.getElementById('character-list-entries-scrollable');
+        let minimumTopValue : number =
+            document.getElementById('character-list-entries').offsetHeight - htmlElement.scrollHeight;
+        htmlElement.style.top =
+            htmlElement.style.top < minimumTopValue
+                ? minimumTopValue + 'px' : htmlElement.style.top;
     }
 }
