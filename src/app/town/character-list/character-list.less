@@ -25,6 +25,19 @@
     background-color: rgba(0, 0, 0, 0.75);
 }
 
+.character-list-buttons {
+    height: 25px;
+    width: 100%;
+}
+
+.character-list-buttons-sort{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-color: beige;
+    margin: 2px;
+}
+
 .character-list-entries {
     overflow: hidden;
     position: absolute;
@@ -39,24 +52,22 @@
 }
 
 .character-list-entry-wrapper {
+    transition: all 2s ease;
+    position: absolute;
     box-sizing: border-box;
     width: 100%;
     padding: 0 5px 5px 5px;
 }
 
-.character-list-buttons {
-    height: 25px;
-    width: 100%;
-}
 
-.character-list-scroll-down{
+.character-list-scroll-down {
     position: absolute;
     height: 50px;
     bottom: 0;
 }
 
 // This transition time is also hardcoded in the character-list.ts !
-.character-list-entries-scrollable{
+.character-list-entries-scrollable {
     transition: all 150ms linear;
     position: absolute;
     top: 0;
@@ -66,73 +77,42 @@
 
 // List Specifics  -----------------------------------------------------------------------------------------------------
 @character-list-entry-animation-duration: 150ms;
-@character-list-entry-animation-delay-duration: 050ms;
 @character-list-background-animation-duration: 250ms;
 @character-list-close-button-duration: 250ms;
 
-// Generates css-classes for 1 to n entries (since they need different delays
-.generate-number-of-entry-classes(20);
-.generate-number-of-entry-classes(@n, @i: 1) when (@i =< @n) {
-    .total-entry-number-@{i} {
-        @max-entries: @i;
-        .makeAnimationStuff(@i);
+// Animations that make everything appear
+&.list-is-visible {
+
+    .character-list-close {
+        transition: all @character-list-close-button-duration ease-out;
+        transform: rotate(180deg);
     }
-    .generate-number-of-entry-classes(@n, (@i + 1));
-}
-
-.makeAnimationStuff(@entryNumbers) {
-    @character-list-entry-animation-total-duration: @character-list-entry-animation-delay-duration * @entryNumbers + @character-list-entry-animation-duration;
-
-    // Animations that make everything appear
-    &.list-is-visible {
-
-        .character-list-close {
-            transition: all @character-list-close-button-duration ease-out;
-            transform: rotate(180deg);
-        }
-        .character-list-background {
-            transition: all @character-list-background-animation-duration ease-out;
-            transform: translate(0, 0);
-        }
-        .character-list-entry-wrapper {
-            .delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, @character-list-background-animation-duration);
-            transition: all @character-list-entry-animation-duration ease-out;
-            transform: translate(0, 0);
-        }
+    .character-list-background {
+        transition: all @character-list-background-animation-duration ease-out;
+        transform: translate(0, 0);
     }
-
-    // Animations that make everything disappear
-    &.list-is-not-visible {
-
-        .character-list-close {
-            transition: all @character-list-close-button-duration ease-out;
-            transition-delay: @character-list-entry-animation-total-duration;
-            transform: rotate(0deg);
-        }
-        .character-list-background {
-            transition: all @character-list-background-animation-duration ease-out @character-list-entry-animation-total-duration;
-            transform: translate(0, -100%);
-        }
-        .character-list-entry-wrapper {
-            .delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, 0);
-            transition: all @character-list-entry-animation-duration ease-out;
-            transform: translate(100%, 0);
-        }
+    .character-list-entry-wrapper {
+        //.delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, @character-list-background-animation-duration);
+        transition: transform @character-list-entry-animation-duration ease-out @character-list-background-animation-duration, top 400ms linear;
+        transform: translate(0, 0);
     }
 }
 
-// Helper Mxins --------------------------------------------------------------------------------------------------------
+// Animations that make everything disappear
+&.list-is-not-visible {
 
-.delay-transition(@items, @delay, @baseDelay) {
-
-    // Define function
-    .character-list-entry-wrapper(@index) when (@index <= @items) {
-        &:nth-child(@{index}) {
-            transition-delay: ((@index) * @delay)+@baseDelay;
-        }
-        .character-list-entry-wrapper(@index + 1); // Increment loop
+    .character-list-close {
+        transition: all @character-list-close-button-duration ease-out;
+        transition-delay: @character-list-entry-animation-duration;
+        transform: rotate(0deg);
     }
-
-    // Call function
-    .character-list-entry-wrapper(0); // Start loop
+    .character-list-background {
+        transition: all @character-list-background-animation-duration ease-out @character-list-entry-animation-duration;
+        transform: translate(0, -100%);
+    }
+    .character-list-entry-wrapper {
+        //.delay-transition(@entryNumbers, @character-list-entry-animation-delay-duration, 0);
+        transition: transform @character-list-entry-animation-duration ease-out;
+        transform: translate(100%, 0);
+    }
 }

@@ -1,13 +1,19 @@
-<div class="character-list total-entry-number-{{entries}}" [class.list-is-visible]="showList"
-     [class.list-is-not-visible]="!showList">
+<div class="character-list" [class.list-is-visible]="showList" [class.list-is-not-visible]="!showList">
     <div class="character-list-close" (click)="toggleList()"></div>
     <div class="character-list-background">
-        <div class="character-list-buttons"> buttons will be here</div>
+        <div class="character-list-buttons" >
+            <div class="character-list-buttons-sort" (click)="sortAlphabetically()">A</div>
+            <div class="character-list-buttons-sort" (click)="sortXP()">XP</div>
+        </div>
         {{color}}
         <div *ngIf="showScroll" (click)="scrollUp()">scroll up</div>
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
-                <div id="character-list-entry-wrapper" class="character-list-entry-wrapper {{styleclass}}" *ngFor="#character of characters">
+                <div id="character-list-entry-wrapper" class="character-list-entry-wrapper {{styleclass}}"
+                     *ngFor="#character of characters; #i = index"
+                     [attr.data-name]="character.name"
+                     [attr.data-experience]="character.experience"
+                     [ngStyle]="{'top': i*85+'px'}">
                     <character-list-entry [character]="character"></character-list-entry>
                 </div>
             </div>
