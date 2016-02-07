@@ -6,18 +6,19 @@
             <div class="character-list-buttons-sort" (click)="sortXP()">XP</div>
         </div>
         {{color}}
-        <div *ngIf="showScroll" (click)="scrollUp()">scroll up</div>
+        <div id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll" (click)="scrollUp()">scroll up</div>
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
                 <div id="character-list-entry-wrapper" class="character-list-entry-wrapper {{styleclass}}"
                      *ngFor="#character of characters; #i = index"
                      [attr.data-name]="character.name"
                      [attr.data-experience]="character.experience"
+                     [attr.data-id]="character.id"
                      [ngStyle]="{'top': i*85+'px'}">
                     <character-list-entry [character]="character"></character-list-entry>
                 </div>
             </div>
         </div>
-        <div class="character-list-scroll-down" *ngIf="showScroll" (click)="scrollDown()">scroll down</div>
+        <div id="character-list-scroll-down" class="character-list-scroll-down" *ngIf="showScroll" (click)="scrollDown()">scroll down</div>
     </div>
 </div>

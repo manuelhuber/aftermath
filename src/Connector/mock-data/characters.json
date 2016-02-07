@@ -220,27 +220,6 @@
       "warlock": 1,
       "bard": 2
     }
-  },
-  {
-    "id": 11,
-    "name": "Jamaha",
-    "experience": 555,
-    "gold": 1000,
-    "shards": 1,
-    "achievements": [
-      1,
-      2,
-      3
-    ],
-    "items": [
-      1,
-      2,
-      3
-    ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   }
+
 ]
