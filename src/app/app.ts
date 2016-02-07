@@ -4,8 +4,6 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { Login } from './login/login';
 import { TownOverview} from  './town/town-overview';
 
-import './app.less';
-
 @Component({
     selector: 'app',
     directives: [ROUTER_DIRECTIVES],

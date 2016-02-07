@@ -3,6 +3,7 @@
     position: relative;
     height: 100%;
     overflow: hidden;
+    width: 286px;
 }
 
 .character-list-close {
@@ -19,7 +20,6 @@
 
 .character-list-background {
     position: relative;
-    width: 300px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
 }
@@ -40,12 +40,13 @@
 .character-list-entries {
     overflow: hidden;
     position: absolute;
-    top: 50px;
+    top: 25px;
     right: 0;
     left: 0;
     bottom: 0;
 
     &.showScroll {
+        top: 50px;
         bottom: 50px;
     }
 }

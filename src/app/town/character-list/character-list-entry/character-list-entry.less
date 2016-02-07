@@ -1,19 +1,25 @@
 .character-list-entry {
-    box-sizing: border-box;
     height: 80px;
     width: 100%;
 }
 
 .character-list-entry-image {
-    width: 70px;
-    height: 70px;
-    padding-bottom: 100%;
-    background-image: url('http://i.imgur.com/Keo3Kaf.jpg');
-    background-size: contain;
+    float: left;
+    box-sizing: border-box;
+    border: 1px black solid;
+    width: 80px;
+    height: 80px;
+    background: url('http://i.imgur.com/Keo3Kaf.jpg') no-repeat center;
+    background-size: cover;
 }
 
 .character-list-entry-data{
     height: 100%;
-    background-image: url('/assets/icons/parchment-background.svg');
-    background-size: cover;
+    background: url('/assets/icons/parchment-background.svg') no-repeat center;
+    background-size: contain;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 12px 0 0 20px;
+}
+.character-list-entry-data:hover{
 }
