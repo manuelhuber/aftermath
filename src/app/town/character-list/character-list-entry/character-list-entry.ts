@@ -6,12 +6,12 @@ import {Inject} from 'angular2/core';
 import './character-list-entry.less';
 
 @Component({
-    inputs: ['character'],
-    selector: 'character-list-entry',
-    template: require('./character-list-entry.html')
+inputs: ['character'],
+selector: 'character-list-entry',
+template: require('./character-list-entry.html')
 })
 export class CharacterListEntry {
 
-    character : CharacterModel;
+character : CharacterModel;
 
 }

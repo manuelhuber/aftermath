@@ -5,6 +5,7 @@ import { CharacterService } from '../../../service/character-service';
 
 // Subcomponents
 import { CharacterListEntry } from './character-list-entry/character-list-entry';
+import { CharacterDetails } from './character-details/character-details';
 
 // Style
 import './character-list.less';
@@ -17,7 +18,7 @@ enum SORT {
 @Component({
     selector: 'character-list',
     providers: [CharacterService],
-    directives: [CharacterListEntry, NgFor, NgIf, NgStyle],
+    directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle],
     template: require('./character-list.html')
 })
 export class CharacterList implements AfterViewInit {
@@ -36,6 +37,10 @@ export class CharacterList implements AfterViewInit {
     showScroll : boolean;
     // Lot's of calculations depend on the size of a single entry, so we get it from the HTML instead of hardcode it
     entryHeight : number;
+
+    sortedIds : number[];
+    selectedCharacterId : number;
+    showCharacterDetails : boolean = false;
 
     reverseSort : number = 1;
     lastSort : number;
@@ -83,11 +88,11 @@ export class CharacterList implements AfterViewInit {
     scrollDown () : void {
         let potentialNewTopValue : number =
             parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) - this.entryHeight;
-        let minimumTopValue : number =
+        let minimumValue : number =
             document.getElementById('character-list-entries').offsetHeight - this.scrollableDiv.scrollHeight;
         this.scrollableDiv.style.top =
-            potentialNewTopValue < minimumTopValue
-                ? minimumTopValue + 'px' : potentialNewTopValue + 'px';
+            potentialNewTopValue < minimumValue
+                ? minimumValue + 'px' : potentialNewTopValue + 'px';
 
     }
 
@@ -101,7 +106,7 @@ export class CharacterList implements AfterViewInit {
     }
 
     /**
-     * Sort the characters by XP
+     * Sort the characters by Name
      */
     sortAlphabetically () : void {
         this.reverseSort = (this.lastSort === SORT.ALPHABETICALLY) ? -this.reverseSort : 1;
@@ -136,13 +141,25 @@ export class CharacterList implements AfterViewInit {
         });
     }
 
+    showDetails (event : Event) : void {
+        let htmlTarget : HTMLElement = <HTMLElement>event.currentTarget;
+        this.selectedCharacterId = parseInt(htmlTarget.getAttribute('data-id'), 10);
+        this.showCharacterDetails = true;
+    }
+
+    eventHandling (event : Event) : void {
+        this.showCharacterDetails = event.returnValue;
+    }
+
     /**
      * Sorts the HTML Entries with the given function and sets the Top style attribute to visually sort them
      * @param sortFunction a standard sort function that returns -1, 0 or 1
      */
     private sortHtmlEntries (sortFunction : (a : Element, b : Element) => number) : void {
+        this.sortedIds = [];
         this.htmlEntries.sort(sortFunction);
         this.htmlEntries.forEach((entry : HTMLElement, index : number) => {
+            this.sortedIds.push(parseInt(entry.getAttribute('data-id'), 10));
             entry.style.top = index * this.entryHeight + 'px';
         });
     }
