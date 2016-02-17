@@ -19,8 +19,9 @@ export class CharacterDetails {
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
 
     close (event : Event) : void {
-        this.active = false;
-        this.activeChange.emit(false);
+        if (event.srcElement.classList.contains('character-details-background')) {
+            this.activeChange.emit(false);
+        }
     }
 
 }

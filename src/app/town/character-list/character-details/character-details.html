@@ -1,3 +1,15 @@
-<div class="character-details" *ngIf="active" (click)="close($event)">
-    <div></div>
+<div class="character-details-background" *ngIf="active" (click)="close($event)">
+    <div class="character-details">
+        <div class="character-details-top">
+            <div class="character-details-image"></div>
+            <div class="character-details-stats"></div>
+        </div>
+        <div class="character-details-bottom">
+            <div class="character-details-flags">
+                <div class="character-details-flag">Items</div>
+                <div class="character-details-flag">Achievements</div>
+            </div>
+            <div class="character-details-cards"></div>
+        </div>
+    </div>
 </div>
