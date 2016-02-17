@@ -4,14 +4,17 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { Login } from './login/login';
 import { TownOverview} from  './town/town-overview';
 
+import '../style/common.less';
+
 @Component({
     selector: 'app',
     directives: [ROUTER_DIRECTIVES],
-    template : require('./app.html')
+    template: require('./app.html')
 })
 @RouteConfig([
-{path: '/', component: Login, name: 'Login'},
-{path: '/town', component: TownOverview, name: 'Town'},
-{path: '/**', redirectTo: ['/Login']}
+    {path: '/', component: Login, name: 'Login'},
+    {path: '/town', component: TownOverview, name: 'Town'},
+    {path: '/**', redirectTo: ['/Login']}
 ])
-export class App {}
+export class App {
+}
