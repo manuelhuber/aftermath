@@ -10,6 +10,10 @@ export class CharacterService {
         return this.connector.getCharacters();
     }
 
+    getCharacterByID (id : number) : Promise<CharacterModel> {
+        return this.connector.getCharacterById(id);
+    }
+
     getAchievements () : Promise<ItemModel[]> {
         return this.connector.getAchievements();
     }

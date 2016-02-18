@@ -23,6 +23,14 @@ export class CharacterConnector {
         });
     }
 
+    getCharacterById (id : number) : Promise<CharacterModel> {
+        return new Promise((resolve : any) => {
+            return this.characters.reduce((prev : CharacterModel, curr : CharacterModel) => {
+                return prev ? prev : curr.id === id ? curr : undefined;
+            }, undefined);
+        });
+    }
+
     getAchievements () : Promise<ItemModel[]> {
         return new Promise((resolve : any) => {
             resolve(this.achievements);
