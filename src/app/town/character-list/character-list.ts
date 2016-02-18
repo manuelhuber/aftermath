@@ -50,6 +50,7 @@ export class CharacterList implements AfterViewInit {
         characterService.getCharacters()
             .then((chars : CharacterModel[]) => {
                 this.characters = chars;
+                this.selectedCharacterId = this.characters[0].id;
             });
 
         window.onresize = (ev : UIEvent) => {

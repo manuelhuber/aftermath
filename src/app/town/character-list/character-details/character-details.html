@@ -1,15 +1,20 @@
 <div class="character-details-background" *ngIf="active" (click)="close($event)">
     <div class="character-details">
         <div class="character-details-top">
-            <div class="character-details-image" style="background-image:url({{character ? character.image : ''}});"></div>
-            <div class="character-details-stats"></div>
+            <div class="character-details-image" style="background-image:url({{character.image}});"></div>
+            <div class="character-details-stats">
+                <div class="character-details-stats">{{character.name}}</div>
+            </div>
         </div>
         <div class="character-details-bottom">
             <div class="character-details-flags">
-                <div class="character-details-flag">Items</div>
-                <div class="character-details-flag">Achievements</div>
+                <div class="character-details-flag" [class.is-active]="tab === 'items'" (click)="tab = 'items'" >Items</div>
+                <div class="character-details-flag" [class.is-active]="tab === 'achievements'" (click)="tab = 'achievements'">Achievements</div>
             </div>
-            <div class="character-details-cards"></div>
+            <div class="character-details-cards">
+                <div *ngIf="tab === 'items'">items</div>
+                <div *ngIf="tab === 'achievements'">achievements</div>
+            </div>
         </div>
     </div>
 </div>
