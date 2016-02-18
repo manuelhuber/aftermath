@@ -1,3 +1,5 @@
+@import "../../../../style/common";
+
 .character-list-entry {
     height: 80px;
     width: 100%;
@@ -9,15 +11,20 @@
     border: 1px black solid;
     width: 80px;
     height: 80px;
-    background: url('http://i.imgur.com/Keo3Kaf.jpg') no-repeat top;
+    background: no-repeat top;
     background-size: cover;
+    margin-right: 5px;
 }
 
 .character-list-entry-data {
+    color: @color-grey-3;
+    font-size: 19px;
     height: 100%;
-    background-color: rgba(7, 18, 0, 1);
+    background-color: @color-grey-0;
     overflow: hidden;
     box-sizing: border-box;
-    padding: 12px 10px 0 20px;
+    padding: 5px 0 0 5px;
     margin-right: -10px;
+    border-width: 0 0 2px 0;
+    border-image: linear-gradient(to right, @color-green-1, rgba(255, 255, 255, 0)) 100% 1;
 }
