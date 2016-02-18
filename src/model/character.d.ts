@@ -14,11 +14,9 @@
 declare interface CharacterModel {
     id : number;
     name : string;
+    image : string;
     experience : number;
-    gold : number;
-    shards : number;
+    description : string;
     achievements : number[];
     items : number[];
-    description : string;
-    level : {[clazz : string] : number};
 }

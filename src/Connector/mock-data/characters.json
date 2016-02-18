@@ -2,9 +2,9 @@
   {
     "id": 1,
     "name": "First",
+    "image": "http://i.imgur.com/Keo3Kaf.jpg",
     "experience": 6324,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -15,18 +15,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 2,
     "name": "Shamash",
+    "image": "http://i.imgur.com/LZx4H2t.jpg",
     "experience": 66433,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -37,18 +32,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 3,
     "name": "Enya",
+    "image": "http://i.imgur.com/zlDzYadb.jpg",
     "experience": 233,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -59,18 +49,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 4,
     "name": "Alatair",
+    "image": "http://i.imgur.com/C29wdpnb.jpg",
     "experience": 352,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -81,18 +66,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 5,
     "name": "Reccard",
+    "image": "http://i.imgur.com/gM5yeySb.jpg",
     "experience": 121,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -103,18 +83,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 6,
     "name": "JaRule",
+    "image": "http://i.imgur.com/2Gg4JDkb.jpg",
     "experience": 5761,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -125,19 +100,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
-  }
-,
+  },
   {
     "id": 7,
     "name": "David",
+    "image": "http://i.imgur.com/wQypXf8b.jpg",
     "experience": 5161,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -148,19 +117,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
-  }
-,
+  },
   {
     "id": 8,
     "name": "Testy",
+    "image": "http://i.imgur.com/Keo3Kaf.jpg",
     "experience": 1234,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -171,18 +134,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 9,
     "name": "Jamal",
+    "image": "http://i.imgur.com/Y1PKdrkb.jpg",
     "experience": 99,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -193,18 +151,13 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   },
   {
     "id": 10,
     "name": "jennifer",
+    "image": "http://i.imgur.com/tl91hI5b.jpg",
     "experience": 7841,
-    "gold": 1000,
-    "shards": 1,
+    "description": "This character is a murdering hobo. Like the everybody.",
     "achievements": [
       1,
       2,
@@ -215,11 +168,5 @@
       2,
       3
     ],
-    "description": "This character is a murdering hobo. Like the everybody.",
-    "level": {
-      "warlock": 1,
-      "bard": 2
-    }
   }
-
 ]
