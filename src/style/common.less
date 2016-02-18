@@ -13,7 +13,49 @@
 @device-tablet-and-smaller: ~"only screen and (max-width:" (@breakpoint-tablet - 1) ~")";
 @device-tablet-and-bigger: ~"only screen and (min-width:" (@breakpoint-mobile) ~")";
 
+// ----------------------------------------------------------- Colors
+/* As hex codes */
+@color-brown-0: #996;
+
+@color-grey-0: #999;
+@color-grey-1: #808080;
+@color-grey-2: #202020;
+@color-grey-3: #1a1a1a;
+
+@color-green-0: #0C7A07;	/* Main Primary color */
+@color-green-1: #0BBE01;
+@color-green-2: #109709;
+@color-green-3: #045500;
+@color-green-4: #033200;
+
+@color-red-0: #95080C;	/* Main Complement color */
+@color-red-1: #E80207;
+@color-red-2: #B80B10;
+@color-red-3: #680003;
+@color-red-4: #3E0002;
+
+/* As RGBa codes */
+@rgba-brown-0: rgba(153, 153, 102, 1);
+
+@rgba-grey-0: rgba(153, 153, 153, 1);
+@rgba-grey-1: rgba(128, 128, 128, 1);
+@rgba-grey-2: rgba(32, 32, 32, 1);
+@rgba-grey-3: rgba(26, 26, 26, 1);
+
+@rgba-green-0: rgba( 12,122,  7,1);	/* Main Primary color */
+@rgba-green-1: rgba( 11,190,  1,1);
+@rgba-green-2: rgba( 16,151,  9,1);
+@rgba-green-3: rgba(  4, 85,  0,1);
+@rgba-green-4: rgba(  3, 50,  0,1);
+
+@rgba-red-0: rgba(149,  8, 12,1);	/* Main Complement color */
+@rgba-red-1: rgba(232,  2,  7,1);
+@rgba-red-2: rgba(184, 11, 16,1);
+@rgba-red-3: rgba(104,  0,  3,1);
+@rgba-red-4: rgba( 62,  0,  2,1);
+
+// ----------------------------------------------------------- Stuff
 html {
-    background-color: rgba(24, 24, 24, 1);
-    color: rgb(255, 251, 238);
+    background-color: @color-grey-3;
+    color: @color-grey-0;
 }
