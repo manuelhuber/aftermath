@@ -28,4 +28,3 @@
  * see https://github.com/typings/registry
  *
  */
-/// <reference path="model/town.d.ts"/>
