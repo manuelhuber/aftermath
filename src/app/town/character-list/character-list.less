@@ -1,3 +1,5 @@
+@import "../../../style/common";
+
 // Default Style ------------------------------------------------------------------------------------------------------
 .character-list {
     position: relative;
@@ -13,15 +15,14 @@
     height: 20px;
     width: 20px;
     background-image: url('/assets/icons/navigate2.svg');
+    fill: white;
     background-size: contain;
-    background-color: bisque;
-    border: 1px solid saddlebrown;
 }
 
 .character-list-background {
     position: relative;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.51);
+    background-color: fade(@color-grey-4, 75%);
 }
 
 .character-list-buttons {
@@ -33,7 +34,6 @@
     display: inline-block;
     height: 20px;
     width: 20px;
-    background-color: beige;
     margin: 2px;
 }
 
