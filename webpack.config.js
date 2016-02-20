@@ -71,8 +71,9 @@ module.exports = {
             // support for .html as raw text
             {test: /\.html$/, loader: 'raw-loader'},
 
-            {test: /\.jpg$/, loader: 'file-loader'},
-            {test: /\.png$/, loader: 'file-loader'}
+            {test: /\.(jpg|png)$/, loader: 'file-loader'},
+
+            {test: /\.ttf$/, loader: 'url-loader'}
 
             // if you add a loader include the resolve file extension above
         ]
