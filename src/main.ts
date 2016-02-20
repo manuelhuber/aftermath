@@ -4,16 +4,16 @@ import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2
 import {HTTP_PROVIDERS} from 'angular2/http';
 import { TownConnector } from './connector/town-connector';
 import { CharacterConnector } from './connector/character-connector';
-import {App} from './app/app';
+import { Aftermath } from './aftermath/aftermath';
 
 if (process.env.ENV === 'production') {
     enableProdMode();
 }
 /*
- * Bootstrap our Angular app with a top level component `App` and inject
+ * Bootstrap our Angular app with a top level component `Aftermath` and inject
  * our Services and Providers into Angular's dependency injection
  */
-bootstrap(App, [
+bootstrap(Aftermath, [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, {useClass: PathLocationStrategy}),
     TownConnector,

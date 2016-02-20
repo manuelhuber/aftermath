@@ -30,7 +30,7 @@ testing.setBaseTestProviders(
   require that webpack created in order to tell webpack
   what files we actually want to require or import.
   Below, context will be an function/object with file names as keys.
-  using that regex we are saying look in ./src/app and ./test then find
+  using that regex we are saying look in ./src/aftermath and ./test then find
   any file that ends with spec.js and get its path. By passing in true
   we say do this recursively
 */
