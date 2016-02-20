@@ -25,7 +25,13 @@
              (click)="scrollDown()">scroll down
         </div>
     </div>
-    <div class="character-list-close" (click)="toggleList()"></div>
+    <inline-icon class="character-list-close"
+                 [iconName]="'#navigate2'"
+                 [iconWidth]=20
+                 [iconHeight]=20
+                 [iconFill]="'red'"
+                 [iconClass]=""
+                 (click)="toggleList()"></inline-icon>
 </div>
 <character-details [active]="showCharacterDetails" [characterIds]="sortedIds"
                    [selectedCharacterId]="selectedCharacterId"

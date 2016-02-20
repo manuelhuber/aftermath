@@ -6,6 +6,7 @@ import { CharacterService } from '../../service/character-service';
 // Subcomponents
 import { CharacterListEntry } from './character-list-entry/character-list-entry';
 import { CharacterDetails } from './character-details/character-details';
+import { InlineIcon } from '../../components/inline-icon/inline-icon';
 
 // Style
 import './character-list.less';
@@ -18,7 +19,7 @@ enum SORT {
 @Component({
     selector: 'character-list',
     providers: [CharacterService],
-    directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle],
+    directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle, InlineIcon],
     template: require('./character-list.html')
 })
 export class CharacterList implements AfterViewInit {
