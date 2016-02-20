@@ -1,9 +1,9 @@
 {
-  "name": "GNARF",
+  "name": "Aftermath",
   "version": "0.0.1",
   "description": "Angular 2 for things and stuff",
   "author": "Manuel Huber <nelo112@web.com>",
-  "homepage": "https://github.com/nelo112/gnarf",
+  "homepage": "https://github.com/nelo112/aftermath",
   "license": "MIT",
   "scripts": {
     "clean": "npm cache clean && rimraf node_modules doc typings coverage dist",
