@@ -44,7 +44,7 @@ module.exports = {
 
     resolve: {
         // ensure loader extensions match
-        extensions: prepend(['.ts', '.js', '.json', '.css', '.html'], '.async') // ensure .async.ts etc also works
+        extensions: prepend(['.ts', '.js', '.json', '.css', '.html', '.jpg', '.png'], '.async') // ensure .async.ts etc also works
     },
 
     module: {
@@ -69,7 +69,10 @@ module.exports = {
             {test: /\.less$/, loader: 'style!css!less'},
 
             // support for .html as raw text
-            {test: /\.html$/, loader: 'raw-loader'}
+            {test: /\.html$/, loader: 'raw-loader'},
+
+            {test: /\.jpg$/, loader: 'file-loader'},
+            {test: /\.png$/, loader: 'file-loader'}
 
             // if you add a loader include the resolve file extension above
         ]
