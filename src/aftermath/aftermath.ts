@@ -4,13 +4,14 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 import { Login } from './login/login';
 import { TownOverview } from  './town/town-overview';
 import { CharacterList } from  './character-list/character-list';
+import { Header } from './header/header';
 
 import '../style/common.less';
 import './aftermath.less';
 
 @Component({
     selector: 'aftermath',
-    directives: [ROUTER_DIRECTIVES, CharacterList],
+    directives: [ROUTER_DIRECTIVES, CharacterList, Header],
     template: require('./aftermath.html')
 })
 @RouteConfig([
