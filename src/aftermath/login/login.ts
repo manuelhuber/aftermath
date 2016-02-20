@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component, View} from 'angular2/core';
+import { Component } from 'angular2/core';
 
 /*
  * App Component
@@ -9,9 +9,7 @@ import {Component, View} from 'angular2/core';
  */
 @Component({
     selector: 'login',
-})
-@View({
-    templateUrl : 'app/login/login.html'
+    template: require('./login.html')
 })
 export class Login {
 
