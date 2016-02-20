@@ -1,7 +1,7 @@
 // Services
 import { Component, Inject, AfterViewInit, NgZone } from 'angular2/core';
 import { NgFor, NgIf, NgStyle } from 'angular2/common';
-import { CharacterService } from '../../../service/character-service';
+import { CharacterService } from '../../service/character-service';
 
 // Subcomponents
 import { CharacterListEntry } from './character-list-entry/character-list-entry';

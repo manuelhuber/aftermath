@@ -4,7 +4,7 @@ import { NgIf } from 'angular2/common';
 
 // Style
 import './character-details.less';
-import {CharacterService} from '../../../../service/character-service';
+import {CharacterService} from '../../../service/character-service';
 
 @Component({
     selector: 'character-details',
