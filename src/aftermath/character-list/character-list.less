@@ -5,7 +5,7 @@
     position: relative;
     height: 100%;
     overflow: hidden;
-    width: 286px;
+    width: 250px;
 }
 
 .character-list-close {
@@ -14,13 +14,20 @@
     right: 1px;
     height: 20px;
     width: 20px;
-    fill: @color-red-0;
+    fill: black;
 }
+
 &.list-is-not-visible {
-    .character-list-close{
-        fill: blue;
+    .character-list-close {
+        fill: @color-yellow-0;
+    }
+
+    .character-list-close-icon {
+        stroke: black;
+        stroke-width: 25px;
     }
 }
+
 
 .character-list-background {
     position: relative;
@@ -31,13 +38,12 @@
 .character-list-buttons {
     height: 25px;
     width: 100%;
+    padding: 3px 0 0 50px;
 }
 
 .character-list-buttons-sort {
-    display: inline-block;
     height: 20px;
     width: 20px;
-    margin: 2px;
 }
 
 .character-list-entries {
@@ -49,8 +55,7 @@
     bottom: 0;
 
     &.showScroll {
-        top: 50px;
-        bottom: 50px;
+        bottom: 25px;
     }
 }
 
@@ -61,11 +66,22 @@
     height: 85px;
 }
 
+.character-list-scroll-up {
+    position: absolute;
+    top: 3px;
+    left: 10px;
+}
 
 .character-list-scroll-down {
     position: absolute;
-    height: 50px;
+    height: 25px;
     bottom: 0;
+    padding: 3px 0 0 10px;
+    box-sizing: border-box;
+}
+
+.character-list-scroll-down-icon {
+    transform: rotate(180deg);
 }
 
 // This transition time is also hardcoded in the character-list.ts !

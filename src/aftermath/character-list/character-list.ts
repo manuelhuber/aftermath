@@ -172,12 +172,11 @@ export class CharacterList implements AfterViewInit {
      */
     private shouldWeScroll () : boolean {
         let entries : HTMLElement = document.getElementById('character-list-entries');
-        let up : HTMLElement = document.getElementById('character-list-scroll-up');
         let down : HTMLElement = document.getElementById('character-list-scroll-down');
 
         // If we are already scrolling and the div doesn't fit into the area of the entries + scroll elements
         if (this.showScroll &&
-            this.scrollableDiv.scrollHeight > entries.offsetHeight + down.offsetHeight + up.offsetHeight) {
+            this.scrollableDiv.scrollHeight > entries.offsetHeight + down.offsetHeight) {
             return true;
         } else if (!this.showScroll && this.scrollableDiv.scrollHeight > entries.offsetHeight) {
             return true;

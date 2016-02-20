@@ -1,12 +1,16 @@
 <div class="character-list" [class.list-is-visible]="showList" [class.list-is-not-visible]="!showList">
     <div class="character-list-background">
         <div class="character-list-buttons">
-            <div class="character-list-buttons-sort" (click)="sortAlphabetically()">A</div>
-            <div class="character-list-buttons-sort" (click)="sortXP()">XP</div>
-        </div>
-        {{color}}
-        <div id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll" (click)="scrollUp()">
-            scroll up
+            <span id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll" (click)="scrollUp()">
+                <inline-icon
+                        [iconName]="'#single-arrow-up'"
+                        [iconWidth]="20"
+                        [iconHeight]="20"
+                        [iconFill]="black"></inline-icon>
+            </span>
+            <span class="character-list-buttons-sort" (click)="sortAlphabetically()">A</span>
+            <span class="character-list-buttons-sort" (click)="sortXP()">XP</span>
+
         </div>
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
@@ -22,10 +26,15 @@
             </div>
         </div>
         <div id="character-list-scroll-down" class="character-list-scroll-down" *ngIf="showScroll"
-             (click)="scrollDown()">scroll down
+             (click)="scrollDown()">
+            <inline-icon [iconClass]="'character-list-scroll-down-icon'"
+                         [iconName]="'#single-arrow-up'"
+                         [iconWidth]="20"
+                         [iconHeight]="20"></inline-icon>
         </div>
     </div>
     <inline-icon class="character-list-close"
+                 [iconClass]="'character-list-close-icon'"
                  [iconName]="'#navigate2'"
                  [iconWidth]=20
                  [iconHeight]=20
