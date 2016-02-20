@@ -2,19 +2,19 @@
     <div class="character-list-background">
         <div class="character-list-buttons">
             <span id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll" (click)="scrollUp()">
-                <inline-icon
+                <inline-icon class="clickable"
                         [iconName]="'#single-arrow-up'"
                         [iconWidth]="20"
                         [iconHeight]="20"
                         [iconFill]="black"></inline-icon>
             </span>
-            <span class="character-list-buttons-sort" (click)="sortAlphabetically()">A</span>
-            <span class="character-list-buttons-sort" (click)="sortXP()">XP</span>
+            <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">A</span>
+            <span class="character-list-buttons-sort clickable" (click)="sortXP()">XP</span>
 
         </div>
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
-                <div id="character-list-entry-wrapper" class="character-list-entry-wrapper {{styleclass}}"
+                <div id="character-list-entry-wrapper" class="character-list-entry-wrapper clickable {{styleclass}}"
                      *ngFor="#character of characters; #i = index"
                      [attr.data-name]="character.name"
                      [attr.data-experience]="character.experience"
@@ -33,7 +33,7 @@
                          [iconHeight]="20"></inline-icon>
         </div>
     </div>
-    <inline-icon class="character-list-close"
+    <inline-icon class="character-list-close clickable"
                  [iconClass]="'character-list-close-icon'"
                  [iconName]="'#navigate2'"
                  [iconWidth]=20

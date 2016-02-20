@@ -24,7 +24,7 @@
 @color-grey-4: #202020;
 @color-grey-5: #1a1a1a;
 
-@color-green-0: #0C7A07;	/* Main Primary color */
+@color-green-0: #0C7A07; /* Main Primary color */
 @color-green-1: #0BBE01;
 @color-green-2: #109709;
 @color-green-3: #045500;
@@ -36,7 +36,7 @@
 @color-yellow-3: #D9D200;
 @color-yellow-4: #A7A200;
 
-@color-red-0: #95080C;	/* Main Complement color */
+@color-red-0: #95080C; /* Main Complement color */
 @color-red-1: #E80207;
 @color-red-2: #B80B10;
 @color-red-3: #680003;
@@ -51,23 +51,23 @@
 @rgba-grey-3: rgba(32, 32, 32, 1);
 @rgba-grey-4: rgba(26, 26, 26, 1);
 
-@rgba-green-0: rgba( 12,122,  7,1);	/* Main Primary color */
-@rgba-green-1: rgba( 11,190,  1,1);
-@rgba-green-2: rgba( 16,151,  9,1);
-@rgba-green-3: rgba(  4, 85,  0,1);
-@rgba-green-4: rgba(  3, 50,  0,1);
+@rgba-green-0: rgba(12, 122, 7, 1); /* Main Primary color */
+@rgba-green-1: rgba(11, 190, 1, 1);
+@rgba-green-2: rgba(16, 151, 9, 1);
+@rgba-green-3: rgba(4, 85, 0, 1);
+@rgba-green-4: rgba(3, 50, 0, 1);
 
-@rgba-yellow-0: rgba(255,247,  0,1);
-@rgba-yellow-1: rgba(255,252,164,1);
-@rgba-yellow-2: rgba(255,250,112,1);
-@rgba-yellow-3: rgba(217,210,  0,1);
-@rgba-yellow-4: rgba(167,162,  0,1);
+@rgba-yellow-0: rgba(255, 247, 0, 1);
+@rgba-yellow-1: rgba(255, 252, 164, 1);
+@rgba-yellow-2: rgba(255, 250, 112, 1);
+@rgba-yellow-3: rgba(217, 210, 0, 1);
+@rgba-yellow-4: rgba(167, 162, 0, 1);
 
-@rgba-red-0: rgba(149,  8, 12,1);	/* Main Complement color */
-@rgba-red-1: rgba(232,  2,  7,1);
-@rgba-red-2: rgba(184, 11, 16,1);
-@rgba-red-3: rgba(104,  0,  3,1);
-@rgba-red-4: rgba( 62,  0,  2,1);
+@rgba-red-0: rgba(149, 8, 12, 1); /* Main Complement color */
+@rgba-red-1: rgba(232, 2, 7, 1);
+@rgba-red-2: rgba(184, 11, 16, 1);
+@rgba-red-3: rgba(104, 0, 3, 1);
+@rgba-red-4: rgba(62, 0, 2, 1);
 
 // ----------------------------------------------------------- Font
 
@@ -84,8 +84,28 @@ html {
     background: @color-grey-3 url("../../assets/images/main-background.png") repeat;
 }
 
-html,body {
-    height:100%;
-    margin:0;
-    padding:0;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+a {
+    color: @color-red-0;
+}
+
+a:hover {
+    color: @color-red-1;
+}
+
+a:visited {
+    color: @color-red-2;
+}
+
+a:active {
+    color: @color-red-3;
 }
