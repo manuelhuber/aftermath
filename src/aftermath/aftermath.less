@@ -1,3 +1,5 @@
+@import "../style/common";
+
 .aftermath {
     height: 100%;
 }
@@ -7,11 +9,34 @@
     top: 0;
     right: 0;
     bottom: 0;
+    @media @device-mobile {
+        left: 0;
+    }
 }
 
 .aftermath-content {
     position: absolute;
     top: 150px;
+    border: 2px solid red;
+    width: 75%;
+    max-width: 1200px;
+    @media @device-large-desktop {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @media @device-desktop {
+        border: 2px solid plum;
+        left: 30px;
+        transform: translate();
+    }
+    @media @device-tablet {
+        border: 2px solid blue;
+        margin-left: 0;
+    }
+    @media @device-mobile {
+        top: 100px;
+        width: 100%;
+    }
 }
 
 .aftermath-header {
@@ -20,4 +45,7 @@
     top: 0;
     right: 0;
     height: 150px;
+    @media @device-mobile {
+        height: 100px;
+    }
 }
