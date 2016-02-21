@@ -22,62 +22,50 @@ export class TownConnector {
     }
 
     upgradeGnarfHQ (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeTaverne (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeFarm (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeTownGuard (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeHospital (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeTradingPost (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeShrine (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeLibrary (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeStables (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeBarracks (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeAlchemist (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
     upgradeBlacksmith (characterId : number) : Promise<any> {
-        console.log('removed gold from character, update Town');
         return new Promise((resolve : any) => { resolve(); });
     }
 
