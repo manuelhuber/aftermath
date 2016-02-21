@@ -4,6 +4,20 @@
     height: 100%;
 }
 
+.aftermath-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 125px;
+    @media @device-tablet {
+        height: 100px;
+    }
+    @media @device-mobile {
+        height: 80px;
+    }
+}
+
 .aftermath-character-list {
     position: fixed;
     top: 0;
@@ -17,44 +31,38 @@
 }
 
 .aftermath-content {
-    position: absolute;
-    top: 150px;
-    border: 2px solid red;
-    right: 250px;
+    min-height: 100%;
+    box-sizing: border-box;
+    padding-top: 150px;
+    padding-right: 250px;
+    margin-bottom: -30px;
     @media @device-large-desktop {
         width: 65%;
-        left: 50%;
-        transform: translateX(-50%);
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 0;
         max-width: 1000px;
     }
     @media @device-desktop {
-        border: 2px solid plum;
-        left: 30px;
-        transform: translate();
+        padding-left: 30px;
     }
     @media @device-tablet {
-        border: 2px solid blue;
-        top: 120px;
-        left: 20px;
-        right: 20px;
+        padding-top: 120px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     @media @device-mobile {
-        top: 100px;
-        right: 10px;
-        left: 10px;
+        padding-top: 100px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 }
 
-.aftermath-header {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    height: 125px;
-    @media @device-tablet {
-        height: 100px;
-    }
-    @media @device-mobile {
-        height: 80px;
-    }
+.aftermath-content:after {
+    content: " ";
+    display: block;
+}
+
+.aftermath-footer, .aftermath-content:after {
+    height: 30px;
 }
