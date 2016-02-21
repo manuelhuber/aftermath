@@ -1,4 +1,4 @@
-@import "../../style/common";
+@import (reference) "../../style/common";
 
 // Default Style ------------------------------------------------------------------------------------------------------
 .character-list {
@@ -7,27 +7,6 @@
     overflow: hidden;
     width: 100%;
 }
-
-.character-list-close {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    height: 20px;
-    width: 20px;
-    fill: black;
-}
-
-&.list-is-not-visible {
-    .character-list-close {
-        fill: @color-yellow-0;
-    }
-
-    .character-list-close-icon {
-        stroke: black;
-        stroke-width: 25px;
-    }
-}
-
 
 .character-list-background {
     position: relative;
@@ -84,7 +63,6 @@
     transform: rotate(180deg);
 }
 
-// This transition time is also hardcoded in the character-list.ts !
 .character-list-entries-scrollable {
     transition: all 150ms linear;
     position: absolute;
@@ -93,19 +71,45 @@
     right: 0;
 }
 
+.character-list-close {
+    position: fixed;
+    top: 1px;
+    right: 1px;
+    height: 20px;
+    width: 20px;
+    fill: black;
+    pointer-events: all;
+}
+
+.list-is-not-visible {
+    .character-list-close {
+        fill: @color-yellow-0;
+    }
+
+    .character-list-close-icon {
+        stroke: black;
+        stroke-width: 25px;
+    }
+}
+
+.character-list-details{
+    pointer-events: all;
+}
+
 // List Specifics  -----------------------------------------------------------------------------------------------------
 @character-list-entry-animation-duration: 150ms;
 @character-list-background-animation-duration: 250ms;
 @character-list-close-button-duration: 250ms;
 
 // Animations that make everything appear
-&.list-is-visible {
+.list-is-visible {
 
     .character-list-close {
         transition: all @character-list-close-button-duration ease-out;
         transform: rotate(180deg);
     }
     .character-list-background {
+        pointer-events: all;
         transition: all @character-list-background-animation-duration ease-out;
         transform: translate(0, 0);
     }
@@ -117,7 +121,7 @@
 }
 
 // Animations that make everything disappear
-&.list-is-not-visible {
+.list-is-not-visible {
 
     .character-list-close {
         transition: all @character-list-close-button-duration ease-out;
@@ -125,6 +129,7 @@
         transform: rotate(0deg);
     }
     .character-list-background {
+        pointer-events: none;
         transition: all @character-list-background-animation-duration ease-out @character-list-entry-animation-duration;
         transform: translate(0, -100%);
     }
