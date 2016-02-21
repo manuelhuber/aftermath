@@ -2,7 +2,7 @@
 
 // This file is required once in the aftermath.ts
 .content-page {
-    padding: 30px;
+    padding: 0 30px;
 }
 
 .content-page-shadow {
@@ -16,6 +16,10 @@
     width: 200px;
     margin: 5px;
     box-sizing: border-box;
+    @media @device-mobile {
+        float: none;
+        width: 100%;
+    }
 }
 
 .content-page-content {
@@ -24,7 +28,11 @@
     overflow: hidden;
 }
 
-.content-page-content-box{
+.content-page-content-heading {
+    font-family: "All Ages", serif;
+}
+
+.content-page-content-box {
     .content-page-shadow;
     background-color: fade(@color-grey-0, 75);
     color: @color-grey-4;

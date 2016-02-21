@@ -29,9 +29,14 @@
 .header-links {
     position: absolute;
     bottom: 0;
+    left: 75px;
     padding-bottom: 1px;
-    font-size: 20px;
+    font-size: 22px;
     text-shadow: 0 0 4px black;
+    @media @device-large-desktop, @device-mobile {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .header-link:hover {
