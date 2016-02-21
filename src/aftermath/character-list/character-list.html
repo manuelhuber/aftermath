@@ -4,10 +4,10 @@
             <span id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll"
                   (click)="scrollUp()">
                 <inline-icon class="clickable"
-                             [iconName]="'#single-arrow-up'"
-                             [iconWidth]="20"
-                             [iconHeight]="20"
-                             [iconFill]="black"></inline-icon>
+                             iconName="#single-arrow-up"
+                             iconWidth="20"
+                             iconHeight="20"
+                             iconFill="black"></inline-icon>
             </span>
             <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">A</span>
             <span class="character-list-buttons-sort clickable" (click)="sortXP()">XP</span>
@@ -28,17 +28,17 @@
         </div>
         <div id="character-list-scroll-down" class="character-list-scroll-down" *ngIf="showScroll"
              (click)="scrollDown()">
-            <inline-icon [iconClass]="'character-list-scroll-down-icon'"
-                         [iconName]="'#single-arrow-up'"
-                         [iconWidth]="20"
-                         [iconHeight]="20"></inline-icon>
+            <inline-icon iconClass="character-list-scroll-down-icon"
+                         iconName="#single-arrow-up"
+                         iconWidth="20"
+                         iconHeight="20"></inline-icon>
         </div>
     </div>
     <inline-icon class="character-list-close clickable"
-                 [iconClass]="'character-list-close-icon'"
-                 [iconName]="'#navigate2'"
-                 [iconWidth]=20
-                 [iconHeight]=20
+                 iconClass="character-list-close-icon"
+                 iconName="#navigate2"
+                 iconWidth=20
+                 iconHeight=20
                  (click)="toggleList()"></inline-icon>
     <character-details class="character-list-details" [active]="showCharacterDetails" [characterIds]="sortedIds"
                        [selectedCharacterId]="selectedCharacterId"
