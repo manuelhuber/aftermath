@@ -25,6 +25,10 @@ export class HorizontalMenu {
                 // "horizontal-menu-sticky" class we need to set the width explicitly.
                 menu.style.width = menu.scrollWidth + 'px';
                 this.stickToTop = window.pageYOffset > anchor.offsetTop - 10;
+                // Remove the hardcoded width to no longer override CSS
+                if (!this.stickToTop){
+                    menu.style.width = '';
+                }
             });
         });
     }
