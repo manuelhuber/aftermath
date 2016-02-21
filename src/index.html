@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <base href="/">
-    <title>{%= o.webpackConfig.metadata.title %}</title>
+    <title><%= webpackConfig.metadata.title %></title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="{%= o.webpackConfig.metadata.title %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<%= webpackConfig.metadata.title %>">
     <svg xmlns="http://www.w3.org/2000/svg" style="height: 0; width: 0; position: absolute; visibility: hidden">
         <symbol viewBox="0 0 436.7 436.7" id="navigate2">
             <path d="M427.8 194.3c11.9 11.9 11.9 31.3 0 43.2L240 425.4c-6 6-13.8 8.9-21.6 8.9s-15.7-3-21.6-8.9L9 237.6c-11.9-11.9-11.9-31.3 0-43.2 11.9-11.9 31.3-11.9 43.2 0l166.2 166.2 166.2-166.2C396.4 182.4 415.8 182.4 427.8 194.3zM196.7 242.4c6 6 13.8 8.9 21.6 8.9s15.7-3 21.6-8.9L427.8 54.6c11.9-11.9 11.9-31.3 0-43.3 -11.9-11.9-31.3-11.9-43.2 0L218.4 177.5 52.2 11.4c-11.9-11.9-31.3-11.9-43.2 0 -11.9 11.9-11.9 31.3 0 43.3L196.7 242.4z"/>
@@ -17,6 +17,8 @@
 
     </svg>
 
+    <base href="<%= webpackConfig.metadata.baseUrl %>">
+
 </head>
 
 <body>
@@ -25,15 +27,15 @@
     Loading...
 </aftermath>
 
-{% if (o.webpackConfig.metadata.ENV === 'development') { %}
+<% if (webpackConfig.metadata.ENV === 'development') { %>
 <!-- Webpack Dev Server reload -->
-<script src="http://{%= o.webpackConfig.metadata.host %}:{%= o.webpackConfig.metadata.port %}/webpack-dev-server.js"></script>
-{% } %}
+<script src="http://<%= webpackConfig.metadata.host %>:<%= webpackConfig.metadata.port %>/webpack-dev-server.js"></script>
+<% } %>
 
 <!-- Webpack HtmlWebpackPlugin manually inject scripts -->
-{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-<script src="{%= o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-{% } %}
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>
 
 </body>
 </html>

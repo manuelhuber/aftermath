@@ -69,7 +69,7 @@ module.exports = {
             {test: /\.less$/, loader: 'style!css!less'},
 
             // support for .html as raw text
-            {test: /\.html$/, loader: 'raw-loader'},
+            {test: /\.html$/, loader: 'raw-loader', exclude: [ root('src/index.html') ] },
 
             {test: /\.(jpg|png)$/, loader: 'file-loader'},
 
