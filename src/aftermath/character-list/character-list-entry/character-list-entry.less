@@ -24,10 +24,12 @@
 }
 
 .character-list-entry-data {
-    color: @color-grey-4;
+    color: @color-grey-5;
+    text-shadow: 0 0 4px @color-grey-1;
+    font-family: "All Ages";
     font-size: 19px;
     height: 100%;
-    background-color: @color-grey-0;
+    background-color: @color-grey-2;
     overflow: hidden;
     box-sizing: border-box;
     padding: 5px 0 0 5px;
@@ -38,8 +40,8 @@
 
 &.character-list-entry:hover {
     .character-list-entry-data {
-        color: @color-grey-0;
-        font-weight: bold;
-        background: @color-grey-4 url("../../../../assets/images/blood-splatter-small-bottom-right.png") no-repeat bottom right;
+        color: @color-grey-1;
+        text-shadow: none;
+        background: @color-grey-5 url("../../../../assets/images/blood-splatter-small-bottom-right.png") no-repeat bottom right;
     }
 }
