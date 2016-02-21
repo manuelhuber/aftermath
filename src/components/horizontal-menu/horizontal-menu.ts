@@ -1,9 +1,5 @@
 // Serivces
-import { Component, Input } from 'angular2/core';
-import { NgIf } from 'angular2/common';
-
-// Subcomponents
-import './../../../assets/inline-icons.svg';
+import { Component, Inject, NgZone } from 'angular2/core';
 
 // Style
 import './horizontal-menu.less';
@@ -12,22 +8,24 @@ import './horizontal-menu.less';
     selector: 'horizontal-menu',
     template: require('./horizontal-menu.html')
 })
+/**
+ * A horizontal menu, to be filled with horizontal menu entries
+ * Subentries are possible, but so far only 1 sublevel is actually styled.
+ * Sticks to the top of the screen when scrolling down
+ */
 export class HorizontalMenu {
-    @Input() title : string;
-}
+    stickToTop : boolean;
 
-@Component({
-    selector: 'horizontal-menu-entry',
-    template: require('./horizontal-menu-entry')
-})
-export class HorizontalMenuEntry {
-
-    @Input() text : string;
-    showSub : boolean;
-
-    constructor(private menu : HorizontalMenu){}
-
-    toggleSub () : void {
-        this.showSub = !this.showSub;
+    constructor (@Inject(NgZone) zone : NgZone) {
+        window.onscroll = ( (event : Event) => {
+            zone.run(() => {
+                let anchor : HTMLElement = document.getElementById('horizontal-menu-sticky-anchor');
+                let menu : HTMLElement = document.getElementById('horizontal-menu');
+                // Since the width is given to the menu by the parent (and we would lose it once the menu gets the
+                // "horizontal-menu-sticky" class we need to set the width explicitly.
+                menu.style.width = menu.scrollWidth + 'px';
+                this.stickToTop = window.pageYOffset > anchor.offsetTop + 10;
+            });
+        });
     }
 }

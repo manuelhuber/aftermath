@@ -1,2 +1,5 @@
-<div>Heading MAAAN</div>
-<ng-content></ng-content>
+<!-- This is needed to "remember" where the menu should no longer be sticky-->
+<div id="horizontal-menu-sticky-anchor"></div>
+<div class="horizontal-menu" [class.horizontal-menu-sticky]="stickToTop" id="horizontal-menu">
+    <ng-content></ng-content>
+</div>

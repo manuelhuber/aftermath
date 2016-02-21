@@ -1,7 +1,8 @@
 // Serivces
 import { Component, Inject } from 'angular2/core';
 
-import { HorizontalMenu, HorizontalMenuEntry } from '../../../components/horizontal-menu/horizontal-menu';
+import { HorizontalMenu } from '../../../components/horizontal-menu/horizontal-menu';
+import { HorizontalMenuEntry } from '../../../components/horizontal-menu/horizontal-menu-entry/horizontal-menu-entry';
 
 // Style
 import './system.less';
@@ -12,8 +13,4 @@ import './system.less';
     template: require('./system.html')
 })
 export class System {
-
-    print (s : string) : void {
-        console.log(s);
-    }
 }

@@ -1,15 +1,14 @@
-.menu-entry {
-    padding: 5px;
-    background: green;
+@import (reference) "../../style/common";
+
+.horizontal-menu {
+    padding: 1px;
+    background: black;
+    box-shadow: 0 0 6px black;
+    box-sizing: border-box;
 }
 
-.menu-entry-sub {
-    .menu-entry {
-        background: red;
-    }
-    .menu-entry-sub {
-        .menu-entry {
-            background: blue;
-        }
-    }
+// Stick to the top of the screen
+.horizontal-menu-sticky {
+    position: fixed;
+    top: 10px;
 }
