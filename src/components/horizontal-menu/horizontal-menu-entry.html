@@ -1,0 +1,6 @@
+<div class="menu-entry">
+    <div (click)="toggleSub()">{{text}}</div>
+    <div *ngIf="showSub" class="menu-entry-sub">
+        <ng-content></ng-content>
+    </div>
+</div>
