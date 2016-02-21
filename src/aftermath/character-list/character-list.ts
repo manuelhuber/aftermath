@@ -34,7 +34,7 @@ export class CharacterList implements AfterViewInit {
     htmlEntries : HTMLElement[] = [];
     // Contains all of the entries and we move it up and down to simulate scrolling
     scrollableDiv : HTMLElement;
-    showList : boolean = true;
+    showList : boolean = false;
     showScroll : boolean;
     // Lot's of calculations depend on the size of a single entry, so we get it from the HTML instead of hardcode it
     entryHeight : number;
