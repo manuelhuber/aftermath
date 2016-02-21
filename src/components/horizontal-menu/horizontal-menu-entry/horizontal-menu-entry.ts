@@ -15,7 +15,7 @@ export class HorizontalMenuEntry {
     @Input() text : string;
     showSub : boolean;
 
-    constructor (private menu : HorizontalMenu){}
+    constructor (private menu : HorizontalMenu) {}
 
     toggleSub () : void {
         this.showSub = !this.showSub;
