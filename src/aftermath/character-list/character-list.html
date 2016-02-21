@@ -4,10 +4,10 @@
             <span id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll"
                   (click)="scrollUp()">
                 <inline-icon class="clickable"
+                             iconClass="character-list-scroll-up-icon"
                              iconName="#single-arrow-up"
                              iconWidth="20"
-                             iconHeight="20"
-                             iconFill="black"></inline-icon>
+                             iconHeight="20"></inline-icon>
             </span>
             <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">A</span>
             <span class="character-list-buttons-sort clickable" (click)="sortXP()">XP</span>
