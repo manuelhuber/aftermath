@@ -24,7 +24,7 @@ export class HorizontalMenu {
                 // Since the width is given to the menu by the parent (and we would lose it once the menu gets the
                 // "horizontal-menu-sticky" class we need to set the width explicitly.
                 menu.style.width = menu.scrollWidth + 'px';
-                this.stickToTop = window.pageYOffset > anchor.offsetTop + 10;
+                this.stickToTop = window.pageYOffset > anchor.offsetTop - 10;
             });
         });
     }
