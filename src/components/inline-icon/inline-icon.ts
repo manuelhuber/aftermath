@@ -1,7 +1,7 @@
 // Serivces
 import { Component, Inject, Input, Directive } from 'angular2/core';
 
-import './../../../assets/inline-icons.svg';
+import './../../assets/inline-icons.svg';
 
 @Component({
     selector: 'inline-icon',
