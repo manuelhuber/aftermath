@@ -1,5 +1,20 @@
-<!-- This is needed to "remember" where the menu should no longer be sticky-->
-<div id="horizontal-menu-sticky-anchor"></div>
-<div class="horizontal-menu clickable" [class.horizontal-menu-sticky]="stickToTop" id="horizontal-menu">
-    <ng-content></ng-content>
+<div class="horizontal-menu" [class.is-closed]="menuClosed">
+    <!-- This is needed to "remember" where the menu should no longer be sticky-->
+    <div id="horizontal-menu-sticky-anchor"></div>
+
+    <div id="horizontal-menu-sticky" class="horizontal-menu-sticky" [class.is-sticky]="stickToTop">
+        <div class="horizontal-menu-wrapper-overflow">
+            <div class="horizontal-menu-wrapper clickable">
+                <ng-content></ng-content>
+            </div>
+        </div>
+        <div class="horizontal-menu-close-button clickable" (click)="toggleMenu()">
+            <inline-icon class="horizontal-menu-close-button-icon"
+                         iconName="#horizontal-arrow-left-up"
+                         iconWidth="20"
+                         iconHeight="20">
+            </inline-icon>
+        </div>
+        <div class="horizontal-menu-open-button" (click)="toggleMenu()"></div>
+    </div>
 </div>
