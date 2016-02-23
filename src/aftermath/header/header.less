@@ -5,7 +5,7 @@
 
     background: url('/assets/images/stripes-glare-yellow-black.png') no-repeat,
     url('/assets/images/main-background.png'),
-    linear-gradient(to bottom,  @color-grey-3 0, black 150px) no-repeat,
+    linear-gradient(to bottom, @color-grey-3 0, black 150px) no-repeat,
     @color-grey-3;
     padding-left: 40px;
 }
@@ -14,9 +14,11 @@
     font-family: "All Ages", serif;
     font-size: 110px;
     font-variant: small-caps;
+
     @media @device-tablet {
         font-size: 80px;
     }
+
     @media @device-mobile {
         font-size: 60px;
     }
@@ -33,9 +35,16 @@
     padding-bottom: 1px;
     font-size: 22px;
     text-shadow: 0 0 4px black;
-    @media @device-large-desktop, @device-mobile {
+
+    @media @device-large-desktop {
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    @media @device-mobile {
+        width: 100%;
+        left: 0;
+        text-align: center;
     }
 }
 
