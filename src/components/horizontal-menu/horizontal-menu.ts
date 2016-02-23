@@ -18,7 +18,7 @@ import './horizontal-menu.less';
  */
 export class HorizontalMenu {
     stickToTop : boolean;
-    menuClosed : boolean;
+    menuClosed : boolean = true;
 
     constructor (@Inject(NgZone) zone : NgZone) {
         window.onscroll = ( (event : Event) => {
@@ -30,7 +30,7 @@ export class HorizontalMenu {
         });
     }
 
-    toggleMenu(value ?: boolean) : void {
+    toggleMenu (value ? : boolean) : void {
         console.log('geb');
         this.menuClosed = value === undefined ? !this.menuClosed : value;
     }
