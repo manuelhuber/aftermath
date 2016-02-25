@@ -9,12 +9,12 @@
             </div>
         </div>
         <div class="horizontal-menu-open-button" (click)="toggleMenu()"></div>
-        <div class="horizontal-menu-close-button clickable" (click)="toggleMenu()">
-            <inline-icon iconClass="horizontal-menu-close-button-icon"
-                         iconName="#horizontal-arrow-left-up"
-                         iconWidth="20"
-                         iconHeight="20">
-            </inline-icon>
-        </div>
+        <inline-icon class="horizontal-menu-close-button clickable"
+                     (click)="toggleMenu()"
+                     iconClass="horizontal-menu-close-button-icon"
+                     iconName="#horizontal-arrow-left-up"
+                     iconWidth="20"
+                     iconHeight="20">
+        </inline-icon>
     </div>
 </div>

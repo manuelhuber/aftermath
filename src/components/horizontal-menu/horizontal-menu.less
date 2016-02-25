@@ -1,6 +1,5 @@
 // The open & close buttons and animations are pretty wonky and the code is a mess
 // They should be redone in the future.
-
 @import (reference) "../../style/common";
 
 @horizontal-menu-width-open: 200px;
@@ -10,76 +9,76 @@
 @horizontal-menu-animation: all @horizontal-menu-animation-duration ease-out;
 @horizontal-menu-margin: 5px;
 
-.horizontal-menu {
-    transition: @horizontal-menu-animation;
+.horizontal-menu, .horizontal-menu-sticky {
     width: @horizontal-menu-width-open;
-    // So the container still has a height once the content is position:fixed;
     min-height: 1px;
+
+    // Open animation
+    transition: width @horizontal-menu-animation-duration @horizontal-menu-animation-duration;
     @media @device-mobile {
         width: 100%;
     }
 }
 
 .horizontal-menu-sticky {
-    transition: @horizontal-menu-animation;
     position: relative;
-    width: @horizontal-menu-width-open;
+
     &.is-sticky {
         position: fixed;
         top: 10px;
+        @media @device-mobile {
+            width: calc(~'100% - 80px');
+            left: 40px;
+        }
     }
 
     @media @device-mobile {
-        left: 0;
-        width: 100%;
     }
 }
 
 .horizontal-menu-wrapper-overflow {
     overflow: hidden;
-    transition: margin 1ms linear @horizontal-menu-animation-duration;
+    // open animation
+    transition: margin 1ms linear 2*@horizontal-menu-animation-duration;
 }
 
 .horizontal-menu-wrapper {
-    margin: @horizontal-menu-margin @horizontal-menu-margin @horizontal-menu-margin+@horizontal-menu-close-icon-height @horizontal-menu-margin;
+    margin: @horizontal-menu-margin;
     width: @horizontal-menu-width-open - 2*@horizontal-menu-margin;
-    transition: opacity 1ms ease-out @horizontal-menu-animation-duration;
     float: right;
+    // Open animation
+    transition: opacity 1ms ease-out @horizontal-menu-animation-duration;
     .default-shadow;
     @media @device-mobile {
-        width: calc(100% - 2*@horizontal-menu-margin);
+        width: calc(~'100% - '2 * @horizontal-menu-margin);
     }
 }
 
 .horizontal-menu-close-button {
-    margin-right: @horizontal-menu-margin;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: @horizontal-menu-close-icon-height;
-    height: @horizontal-menu-close-icon-height;
-    box-sizing: border-box;
+    top: 100%;
+    right: 3px;
     // Open animation
-    transition: height @horizontal-menu-animation-duration ease-out,
-    width @horizontal-menu-animation-duration ease-out @horizontal-menu-animation-duration,
-    padding-top @horizontal-menu-animation-duration ease-out,
-    padding-left 50ms ease-out @horizontal-menu-animation-duration;
+    transition: top @horizontal-menu-animation-duration,
+    right @horizontal-menu-animation-duration @horizontal-menu-animation-duration;
 }
 
 .horizontal-menu-open-button {
     //margin: @horizontal-menu-margin @horizontal-menu-margin @horizontal-menu-margin 0;
-    margin: @horizontal-menu-margin;
+    //margin: @horizontal-menu-margin;
     pointer-events: none;
     opacity: 0;
     position: absolute;
-    top: 0;
-    height: calc(100% - @horizontal-menu-close-icon-height - @horizontal-menu-margin);
+    top: @horizontal-menu-margin;
+    bottom: @horizontal-menu-margin;
+    left: @horizontal-menu-margin;
+    min-height: @horizontal-menu-width-closed - 2 * @horizontal-menu-margin;
     width: @horizontal-menu-width-closed - 2 * @horizontal-menu-margin;
     background: linear-gradient(to right, @color-grey-5 0, @color-grey-4 25%, @color-grey-4 75%, @color-grey-5 100%) no-repeat;
     .default-shadow;
     // Open animation
     transition: opacity @horizontal-menu-animation-duration ease-out @horizontal-menu-animation-duration,
-    height @horizontal-menu-animation-duration ease-out;
+    bottom @horizontal-menu-animation-duration ease-out;
 }
 
 .horizontal-menu-close-button-icon {
@@ -87,12 +86,13 @@
 }
 
 .is-closed {
-    &.horizontal-menu {
+    &.horizontal-menu, .horizontal-menu-sticky {
         width: @horizontal-menu-width-closed;
-    }
-
-    .horizontal-menu-sticky {
-        width: @horizontal-menu-width-closed;
+        // Closing animation
+        transition: width @horizontal-menu-animation-duration, height @horizontal-menu-animation-duration @horizontal-menu-animation-duration;
+        @media @device-mobile {
+            height: @horizontal-menu-width-closed;
+        }
     }
 
     .horizontal-menu-wrapper {
@@ -100,29 +100,26 @@
     }
 
     .horizontal-menu-wrapper-overflow {
-        transition: none;
         margin-left: 5px;
+        // Closing animation
+        transition: none;
     }
 
     .horizontal-menu-open-button {
-        // Closing animation
-        transition: opacity @horizontal-menu-animation-duration ease-out,
-        height @horizontal-menu-animation-duration ease-out @horizontal-menu-animation-duration;
-        height: @horizontal-menu-width-closed - 2 * @horizontal-menu-margin;
+        bottom: 100%;
         pointer-events: all;
         opacity: 1;
+        // Closing animation
+        transition: opacity @horizontal-menu-animation-duration,
+        bottom @horizontal-menu-animation-duration @horizontal-menu-animation-duration;
     }
 
     .horizontal-menu-close-button {
-        width: 100%;
-        height: 100%;
-        padding-top: 15px;
-        padding-left: 20px;
+        top: @horizontal-menu-margin + @horizontal-menu-close-icon-height/2;
+        right: @horizontal-menu-margin + @horizontal-menu-close-icon-height/2;
         // Closing animation
-        transition: height @horizontal-menu-animation-duration ease-out @horizontal-menu-animation-duration,
-        width 50ms ease-out -50ms+@horizontal-menu-animation-duration,
-        padding-top @horizontal-menu-animation-duration ease-out @horizontal-menu-animation-duration,
-        padding-left 50ms ease-out -50ms+@horizontal-menu-animation-duration;
+        transition: top @horizontal-menu-animation-duration @horizontal-menu-animation-duration,
+        right @horizontal-menu-animation-duration;
     }
 
     .horizontal-menu-close-button-icon {
