@@ -1,0 +1,22 @@
+<div class="roll-simulator">
+    <div class="roll-simulator-pillar-wrapper">
+        <div class="roll-simulator-pillar">
+            <div class="roll-simulator-pillar-marker-right mod-125">125</div>
+            <div class="roll-simulator-pillar-marker-right mod-100">100</div>
+            <div class="roll-simulator-pillar-marker-right mod-50">50</div>
+            <div class="roll-simulator-pillar-marker-left" style="bottom: {{baseNumber}}%;">Base:{{baseNumber}}</div>
+            <div class="roll-simulator-modifier-marker" *ngIf="modifierNumber" [class.mod-red]="modifierNumber < 0"
+                 style="bottom: {{baseNumber + modifierNumber/2}}%; height: {{getModifierHeight()}}%">
+                <span class="roll-simulator-modifier-text">Mod:{{modifierNumber}}</span>
+            </div>
+            <div class="roll-simulator-pillar-marker-left" *ngIf="modifierNumber"
+                 style="bottom: {{baseNumber + modifierNumber}}%;">
+                Total:{{baseNumber + modifierNumber}}
+            </div>
+            <div class="roll-simulator-pillar-green"
+                 style="height: {{baseNumber + modifierNumber}}%;"></div>
+            <div class="roll-simulator-pillar-red"
+                 style="bottom: {{baseNumber + modifierNumber}}%;"></div>
+        </div>
+    </div>
+</div>
