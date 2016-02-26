@@ -1,22 +1,56 @@
 <div class="roll-simulator">
-    <div class="roll-simulator-pillar-wrapper">
-        <div class="roll-simulator-pillar">
-            <div class="roll-simulator-pillar-marker-right mod-125">125</div>
-            <div class="roll-simulator-pillar-marker-right mod-100">100</div>
-            <div class="roll-simulator-pillar-marker-right mod-50">50</div>
-            <div class="roll-simulator-pillar-marker-left" style="bottom: {{baseNumber}}%;">Base:{{baseNumber}}</div>
-            <div class="roll-simulator-modifier-marker" *ngIf="modifierNumber" [class.mod-red]="modifierNumber < 0"
-                 style="bottom: {{baseNumber + modifierNumber/2}}%; height: {{getModifierHeight()}}%">
-                <span class="roll-simulator-modifier-text">Mod:{{modifierNumber}}</span>
+    <div class="roll-simulator-top">
+        <div class="roll-simulator-pillar-wrapper">
+            <div class="roll-simulator-pillar">
+                <div class="roll-simulator-pillar-green"
+                     style="height: {{targetNumber}}%;"></div>
+                <div class="roll-simulator-pillar-red" *ngIf="targetNumber < 100"
+                     style="bottom: {{targetNumber}}%;"></div>
+                <div class="roll-simulator-pillar-marker-right mod-125">125</div>
+                <div class="roll-simulator-pillar-marker-right mod-100">100</div>
+                <div class="roll-simulator-pillar-marker-right mod-75">75</div>
+                <div class="roll-simulator-pillar-marker-right mod-50">50</div>
+                <div class="roll-simulator-pillar-marker-right mod-25">25</div>
+                <div class="roll-simulator-modifier-marker" *ngIf="modifierNumber" [class.mod-red]="modifierNumber < 0"
+                     style="bottom: {{baseNumber + modifierNumber/2}}%; height: {{getModifierHeight()}}%">
+                    <span class="roll-simulator-modifier-text">Mod:{{modifierNumber}}</span>
+                </div>
+                <div class="roll-simulator-pillar-marker-left" *ngIf="modifierNumber"
+                     style="bottom: {{baseNumber}}%;">
+                    Base:{{baseNumber}}
+                </div>
+                <div class="roll-simulator-pillar-marker-left"
+                     style="bottom: {{targetNumber}}%;">
+                    TN:{{targetNumber}}
+                </div>
+                <div class="roll-simulator-pillar-marker-right mod-roll" [class.failed]="checkFailed" *ngIf="rollNumber"
+                     style="bottom: {{rollNumber}}%">
+                    {{rollNumber}}
+                </div>
             </div>
-            <div class="roll-simulator-pillar-marker-left" *ngIf="modifierNumber"
-                 style="bottom: {{baseNumber + modifierNumber}}%;">
-                Total:{{baseNumber + modifierNumber}}
-            </div>
-            <div class="roll-simulator-pillar-green"
-                 style="height: {{baseNumber + modifierNumber}}%;"></div>
-            <div class="roll-simulator-pillar-red"
-                 style="bottom: {{baseNumber + modifierNumber}}%;"></div>
+        </div>
+        <button (click)="rollD100()">
+            Roll 1d100
+        </button>
+        <div class="roll-simulator-number-label">
+            Roll:
+        </div>
+        <input class="roll-simulator-number-input" type="number" [(ngModel)]="rollNumber">
+        <div class="roll-simulator-number-label">
+            Result:
+        </div>
+        <div class="roll-simulator-result" *ngIf="result" [class.failed]="checkFailed">
+            {{result}}
+            <span *ngIf="checkFailed">DoF</span>
+            <span *ngIf="!checkFailed">DoS</span>
         </div>
     </div>
+    <div class="roll-simulator-number-label">
+        Characteristics Value:
+    </div>
+    <input class="roll-simulator-number-input" type="number" [(ngModel)]="baseNumber">
+    <div class="roll-simulator-number-label">
+        Total Modifier:
+    </div>
+    <input class="roll-simulator-number-input" type="number" [(ngModel)]="modifierNumber">
 </div>
