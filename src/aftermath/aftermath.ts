@@ -3,7 +3,6 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { Login } from './login/login';
 import { System } from './content-pages/system/system';
-import { TownOverview } from  './town/town-overview';
 import { CharacterList } from  './character-list/character-list';
 import { Header } from './header/header';
 
@@ -18,7 +17,6 @@ import './aftermath.less';
 })
 @RouteConfig([
     {path: '/', component: Login, name: 'Login'},
-    {path: '/town', component: TownOverview, name: 'Town'},
     {path: '/system', component: System, name: 'System'},
     {path: '/**', redirectTo: ['/Login']}
 ])

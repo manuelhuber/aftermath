@@ -6,7 +6,6 @@ import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
 
 import './header.less';
 import {Login} from '../login/login';
-import {TownOverview} from '../town/town-overview';
 
 /*
  * App Component
