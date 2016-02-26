@@ -3,35 +3,77 @@
     <!-- Menu -->
     <div class="content-page-menu">
         <horizontal-menu>
-            <horizontal-menu-entry (click)="scrollTo($event, 'content-system-overview')"
-                                   text="System Overview"></horizontal-menu-entry>
+
+            <horizontal-menu-entry (click)="scrollTo($event, 'content-system-overview')" text="Basics">
+            </horizontal-menu-entry>
+
             <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation')" text="Character Creation">
+
                 <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation-homeworld')"
                                        text="homeworlds"></horizontal-menu-entry>
+
                 <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation-background')"
                                        text="backgrounds"></horizontal-menu-entry>
+
             </horizontal-menu-entry>
+
             <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="Entry2">
+
                 <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1">
-                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')"
-                                           text="SubEntry2.1.1"></horizontal-menu-entry>
-                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')"
-                                           text="SubEntry2.1.2"></horizontal-menu-entry>
+
+                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1.1">
+                    </horizontal-menu-entry>
+
+                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1.2">
+                    </horizontal-menu-entry>
+
                 </horizontal-menu-entry>
+
                 <horizontal-menu-entry>Test3</horizontal-menu-entry>
+
             </horizontal-menu-entry>
+
         </horizontal-menu>
     </div>
 
     <!-- Content -->
     <div class="content-page-content">
         <div id="content-system-overview" class="content-page-content-box">
+            <div class="h1">Basics</div>
+            Warhammer40k Dark Heresy ist ein d100 basiertes System in einem dunklen SciFi Setting. Das Setting lässt
+            sich sehr gut an ein Post-Apokalyptisches Setting (mit Laserwaffen) anpassen.
+            <div class="h2">NEED TO KNOW!</div>
+            <ul>
+                <li>Ihr seid Menschen: Ihr sterbt schnell & werdet kaum stärker</li>
+                <li>Mehr crunch (= Regeln/System/Mathe/..) als DND5</li>
+                <li>Point-Buy-System (keine Klassen oder Levelups, sondern XP werden für einzelne Upgrades ausgegeben)
+                </li>
+                <li>Niedrig Würfeln = besser</li>
+            </ul>
             <roll-simulator class="content-page-content-example" style="float: right;"></roll-simulator>
-            Chili combines greatly with smashed spinach.Broccoli can be seasoned with canned rhubarb, also try
-            marinateing the ricotta with emeril's essence.After pressing the pumpkin seeds, rinse raspberries,
-            sauerkraut and mint sauce with it in a plastic bag.Niffy steak can be made heated by flavoring with
-            ketchup.Remember: grilled noodles taste best when drained in a bowl covered with radish sprouts.To the aged
-            herring add marshmellow, mackerel, hollandaise sauce and bloody shrimps.Blueberries taste best with ice
+            <div class="h2">Checks</div>
+            (Fast) Alles im System basiert auf <b>Checks</b>. So funktionierts:
+            <ol>
+                <li>Passende <b>Characteristic</b> (Stärke, Intelligenz, etc.) auswählen</li>
+                <li>Modifikatoren draufzählen/abziehen um die <b>Target Number (TN)</b> zu erhalten</li>
+                <li>Unter die Target Number mit einem d100 Würfeln</li>
+            </ol>
+            Je weiter du unterhalb der Target Number bist, desto mehr <b>Degrees of Success (DoS)</b> bzw <b>Degrees
+            of Failure (DoF)</b> hast du. Somit ist bestanden nicht gleich bestanden. Je mehr DoS/DoF desto
+            beser/schlechter ist das Ergebnis. Und ja, die DoS/DoF Berechnung rechts stimmt so.
+            <div class="h2">Stats</div>
+            Characteristics, Skills & Talents können mit XP gekauft/verbessert werden, Aptitudes bekommt man während
+            der Charactererstellung & Traits werden nur durch besondere Ereignise erlangt.<br>
+            <b>Characteristics</b> sind die "Werte" eures Characters, wie "Stärke", "Beweglichkeit" etc.
+            Sie dienen als Grundlage für die meisten Skillchecks. <br>
+            <b>Skills</b> sind gelernte Fähigkeiten, wie z.B. eine Sprache sprechen oder Auto fahren. Die meistens
+            Checks die ihr macht werden Skillchecks sein.<br>
+            <b>Talents</b> sind spezielle Verbesserungen, wie z.B. Schneller Nachladen.<br>
+            <b>Aptitudes</b> sind eure Affinitäten, wie z.B. Tech, und verringern die XP Kosten von entsprechenden
+            Upgrades<br>
+            <b>Traits</b> sind passive/angeborene Eigenschaften, wie z.B. Nachtsicht (Traits sind selten für
+            Spieler).<br>
+            <span></span>
         </div>
         <div id="content-character-creation" class="content-page-content-box">
             RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes.
@@ -50,7 +92,7 @@
             of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of
             the
 
-            <div id="content-character-creation-homeworld" class="content-page-content-heading">Homeworlds</div>
+            <div id="content-character-creation-homeworld" class="h2">Homeworlds</div>
             lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
             calcariaes.
             Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus
