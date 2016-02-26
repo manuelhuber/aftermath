@@ -2,13 +2,8 @@
 
 .roll-simulator {
     width: 200px;
-    background: rgba(0, 0, 0, 0.5);
     position: relative;
     padding: 5px;
-}
-
-.roll-simulator-top {
-    overflow: hidden;
 }
 
 .roll-simulator-number-label {
@@ -68,7 +63,7 @@
     bottom: 0;
     transform: translateY(50%);
     padding-left: 10px;
-    color: @color-grey-4;
+    color: @color-grey-3;
     &.mod-125 {
         bottom: 125%;
     }
@@ -88,12 +83,21 @@
         color: black;
         border-radius: 4px;
         background: @color-green-1;
-        padding: 2px 2px 2px 8px;
+        padding: 0 2px;
+        margin-left: 10px;
         &.failed {
             background: @color-red-1;
+            &:after {
+                background: @color-red-1;
+            }
         }
         &:after {
-            background: black;
+            left: auto;
+            right: 100%;
+            background: @color-green-1;
+            width: 14px;
+            height: 2px;
+            transform: none;
         }
     }
 }
@@ -113,6 +117,7 @@
 .roll-simulator-pillar-marker-left {
     position: absolute;
     right: 50%;
+    padding: 0 2px;
     transform: translateY(50%);
     margin-right: 10px;
     // For some reason the div doesn't grow with the text

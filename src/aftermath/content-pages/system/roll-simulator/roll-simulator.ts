@@ -13,14 +13,10 @@ import './roll-simulator.less';
 export class RollSimulator {
 
     baseNumber : number = 36;
-    modifierNumber : number = 15;
+    modifierNumber : number = 25;
     rollNumber : number;
 
     checkFailed : boolean;
-
-    constructor () {
-        console.log();
-    }
 
     get targetNumber () : number {
         return this.baseNumber + this.modifierNumber;
