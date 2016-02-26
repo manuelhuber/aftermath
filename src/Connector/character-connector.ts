@@ -12,7 +12,7 @@ export class CharacterConnector {
     achievements : AchievementModel[];
 
     constructor () {
-        this.characters = require('./mock-data/characters.json');
+        this.characters = require('../data/characters/characters.json');
         this.achievements = require('./mock-data/achievements.json');
         this.items = require('./mock-data/items.json');
     }
