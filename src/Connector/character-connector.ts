@@ -2,7 +2,6 @@ import {Injectable} from 'angular2/core';
 
 /**
  * Just a mock implementation.
- * Will later do all of the http REST calls for anything Town related
  */
 @Injectable()
 export class CharacterConnector {
