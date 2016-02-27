@@ -1,25 +1,22 @@
-// @AngularClass
-
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
-var path = require('path');
 var webpack = require('webpack');
+var helpers = require('./helpers');
+
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
 var metadata = {
-  title: 'Aftermath Dev',
-  baseUrl: '/',
-  host: 'localhost',
-  port: 3000,
-  ENV: ENV
+    title: 'Aftermath Dev',
+    baseUrl: '/',
+    host: 'localhost',
+    port: 3000,
+    ENV: ENV
 };
 /*
  * Config
  */
-module.exports = {
+module.exports = helpers.validate({
     // static data for index.html
     metadata: metadata,
     // for faster builds use 'eval'
@@ -27,38 +24,30 @@ module.exports = {
     debug: true,
     // cache: false,
 
-    // our angular aftermath
-    entry: {
-        'polyfills': './src/polyfills.ts',
-        'main': './src/main.ts'
-    },
+    // our angular app
+    entry: {'polyfills': './src/polyfills.ts', 'main': './src/main.ts'},
 
     // Config for our build files
     output: {
-        path: root('dist'),
+        path: helpers.root('dist'),
         filename: '[name].bundle.js',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
 
-
     resolve: {
-        // ensure loader extensions match
-        extensions: prepend(['.ts', '.js', '.json', '.css', '.html', '.jpg', '.png'], '.async') // ensure .async.ts etc also works
+        extensions: ['', '.ts', '.async.ts', '.js']
     },
 
     module: {
         preLoaders: [
-            // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ root('node_modules') ] },
-            // TODO(gdi2290): `exclude: [ root('node_modules/rxjs') ]` fixed with rxjs 5 beta.2 release
-            {test: /\.js$/, loader: "source-map-loader", exclude: [root('node_modules/rxjs')]}
+            // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
+            // TODO(gdi2290): `exclude: [ helpers.root('node_modules/rxjs') ]` fixed with rxjs 5 beta.3 release
+            {test: /\.js$/, loader: "source-map-loader", exclude: [helpers.root('node_modules/rxjs')]}
         ],
         loaders: [
-            // Support Angular 2 async routes via .async.ts
-            {test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [/\.(spec|e2e)\.ts$/]},
-
             // Support for .ts files.
-            {test: /\.ts$/, loader: 'ts-loader', exclude: [/\.(spec|e2e|async)\.ts$/]},
+            {test: /\.ts$/, loader: 'ts-loader', exclude: [/\.(spec|e2e)\.ts$/]},
 
             // Support for *.json files.
             {test: /\.json$/, loader: 'json-loader'},
@@ -69,7 +58,7 @@ module.exports = {
             {test: /\.less$/, loader: 'style!css!less'},
 
             // support for .html as raw text
-            {test: /\.html$/, loader: 'raw-loader', exclude: [ root('src/index.html') ] },
+            {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
 
             {test: /\.(jpg|png)$/, loader: 'file-loader'},
 
@@ -89,7 +78,7 @@ module.exports = {
         // static assets
         new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}]),
         // generating html
-        new HtmlWebpackPlugin({template: 'src/index.html', inject: false}),
+        new HtmlWebpackPlugin({template: 'src/index.html'}),
         // replace
         new webpack.DefinePlugin({
             'process.env': {
@@ -103,8 +92,9 @@ module.exports = {
     tslint: {
         emitErrors: false,
         failOnHint: false,
-        resourcePath: 'src'
+        resourcePath: 'src',
     },
+
     // our Webpack Development Server config
     devServer: {
         port: metadata.port,
@@ -122,27 +112,4 @@ module.exports = {
         clearImmediate: false,
         setImmediate: false
     }
-};
-
-// Helper functions
-
-function root(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return path.join.apply(path, [__dirname].concat(args));
-}
-
-function prepend(extensions, args) {
-    args = args || [];
-    if (!Array.isArray(args)) {
-        args = [args]
-    }
-    return extensions.reduce(function (memo, val) {
-        return memo.concat(val, args.map(function (prefix) {
-            return prefix + val
-        }));
-    }, ['']);
-}
-function rootNode(args) {
-    args = Array.prototype.slice.call(arguments, 0);
-    return root.apply(path, ['node_modules'].concat(args));
-}
+});

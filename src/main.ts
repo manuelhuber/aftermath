@@ -1,39 +1,72 @@
 /*
  * Providers provided by Angular
  */
-import {provide, enableProdMode} from 'angular2/core';
-import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
+import * as ngCore from 'angular2/core';
+import * as browser from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import { CharacterConnector } from './connector/character-connector';
-import { ContentConnector } from './connector/content-connector';
-import { Aftermath } from './aftermath/aftermath';
 
-const ENV_PROVIDERS : any[] = [];
+/*
+ * App Environment Providers
+ * providers that only live in certain environment
+ */
+const ENV_PROVIDERS : any = [];
 
 if ('production' === process.env.ENV) {
-    enableProdMode();
+    ngCore.enableProdMode();
+    ENV_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE);
 } else {
-    ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
+    ENV_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
 }
 
 /*
- * Bootstrap our Angular app with a top level component `Aftermath` and inject
+ * App Component
+ * our top level component that holds all of our components
+ */
+import { Aftermath } from './aftermath/aftermath';
+import { CharacterConnector } from './connector/character-connector.ts';
+import { ContentConnector } from './connector/content-connector';
+
+/*
+ * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
-
-document.addEventListener('DOMContentLoaded', function main () : any {
-    bootstrap(Aftermath, [
-        ...ENV_PROVIDERS,
-        ...HTTP_PROVIDERS,
-        ...ROUTER_PROVIDERS,
-        provide(LocationStrategy, {useClass: HashLocationStrategy}),
-        ContentConnector,
-        CharacterConnector
-    ])
+export function main () : any {
+    return browser.bootstrap(Aftermath, [
+            ...ENV_PROVIDERS,
+            ...HTTP_PROVIDERS,
+            ...ROUTER_PROVIDERS,
+            ngCore.provide(LocationStrategy, {useClass: HashLocationStrategy}),
+            CharacterConnector,
+            ContentConnector
+        ])
         .catch(err => console.error(err));
+}
 
-});
+/*
+ * Vendors
+ * For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
+ * Also see custom_typings.d.ts as you also need to do `typings install x` where `x` is your module
+ */
 
-// For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
-// Also see custom_typings.d.ts as you also need to do `typings install x` where `x` is your module
+
+/*
+ * Hot Module Reload
+ * experimental version by @gdi2290
+ */
+if ('development' === process.env.ENV) {
+    // activate hot module reload
+    if ('hot' in module) {
+        if (document.readyState === 'complete') {
+            main();
+        } else {
+            document.addEventListener('DOMContentLoaded', main);
+        }
+        module.hot.accept();
+    }
+
+} else {
+    // bootstrap after document is ready
+    document.addEventListener('DOMContentLoaded', main);
+}
+

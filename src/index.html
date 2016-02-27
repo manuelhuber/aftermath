@@ -33,10 +33,5 @@
 <script src="http://<%= webpackConfig.metadata.host %>:<%= webpackConfig.metadata.port %>/webpack-dev-server.js"></script>
 <% } %>
 
-<!-- Webpack HtmlWebpackPlugin manually inject scripts -->
-<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-<script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-<% } %>
-
 </body>
 </html>
