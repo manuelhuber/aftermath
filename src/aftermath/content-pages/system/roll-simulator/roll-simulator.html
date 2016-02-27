@@ -35,7 +35,7 @@
         <div class="roll-simulator-number-label">
             Roll:
         </div>
-        <input class="roll-simulator-number-input" type="number" [(ngModel)]="rollNumber">
+        <input class="roll-simulator-number-input" type="number" max="100" min="0" [(ngModel)]="rollNumber">
         <div class="roll-simulator-number-label">
             Result:
         </div>
@@ -48,9 +48,9 @@
     <div class="roll-simulator-number-label">
         <b>Char</b>acteristics Value:
     </div>
-    <input class="roll-simulator-number-input" type="number" [(ngModel)]="baseNumber">
+    <input class="roll-simulator-number-input" type="number" max="100" min="1" [(ngModel)]="baseNumber">
     <div class="roll-simulator-number-label">
         Total <b>Mod</b>ifier:
     </div>
-    <input class="roll-simulator-number-input" type="number" [(ngModel)]="modifierNumber">
+    <input class="roll-simulator-number-input" type="number" max="60" min="-60" [(ngModel)]="modifierNumber">
 </div>
