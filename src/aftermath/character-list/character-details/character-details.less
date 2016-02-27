@@ -62,60 +62,42 @@
     padding-top: 30px;
 }
 
-.character-details-flags {
-    height: 15px;
-    width: 100%;
-}
-
-// Tab selector inactive
+// Tab flag inactive
 .character-details-flag {
     display: inline-block;
-    position: relative;
-    margin: 0 10px 0 10px;
-    padding: 0 5px;
-    line-height: 20px;
-    background-color: @color-brown-0;
-    border-top: 1px solid @color-brown-1;
+        position: relative;
+        margin: 0 0 0 5px;
+        padding: 0 10px;
+        line-height: 20px;
+        background-color: @color-brown-1;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        box-shadow: -1px -1px 8px black;
+    }
+.character-details-flag:first-child {
+    margin-left: 5px;
 }
 
-// The
-.character-details-flag:before,
-.character-details-flag:after {
-    border: 1px solid @color-brown-1;
-    background-color: @color-brown-0;
-}
-
+// A horizontal line to cover the shadow at the bottom of the flag
 .character-details-flag:before {
     content: " ";
-    position: absolute;
-    height: 20px;
-    width: 10px;
-    left: -6px;
-    top: 1px;
-    z-index: -1;
-    transform: rotate(27deg);
-}
-
-.character-details-flag:after {
-    content: " ";
-    position: absolute;
-    height: 20px;
-    width: 10px;
-    right: -6px;
-    top: 1px;
-    z-index: -1;
-    transform: rotate(-27deg);
-}
-
-// tab selector is selected or hovered
-.character-details-flag.is-active, .character-details-flag:hover {
-    z-index: 2;
-    border-color: @color-brown-1;
     background-color: @color-brown-1;
-    &.character-details-flag:before, &.character-details-flag:after, &.character-details {
-        background-color: @color-brown-1;
-        border-color: @color-brown-1;
-    }
+    width: 110%;
+    height: 7px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// selected tab flag
+.character-details-flag.is-active {
+    z-index: 2;
+}
+
+// Only apply hover style to not active flags
+.character-details-flag:not(.is-active):hover {
+    background-color: @color-brown-0;
 }
 
 .character-details-cards {
@@ -124,6 +106,7 @@
     left: 0;
     right: 0;
     bottom: 30px;
+    padding: 15px;
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
 }
