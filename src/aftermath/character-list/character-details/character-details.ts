@@ -16,27 +16,45 @@ export class CharacterDetails {
     @Input() selectedCharacterId : number;
     @Input() characterIds : number[];
     character : CharacterModel = {
-    'id': 0,
-    'name': '--',
-    'image': '',
-    'experience': 0,
-    'description': '',
-    'achievements': [],
-    'items': []
-};
+        'id': 0,
+        'name': '--',
+        'image': '',
+        'experience': 0,
+        'description': '',
+        'achievements': [],
+        'items': []
+    };
     tab : string = 'items';
 
     // Needed for two way binding
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
 
     constructor (@Inject(CharacterService) private characterService : CharacterService) {
+
+        // Close on esape keypress
+        document.addEventListener('keyup', (event : KeyboardEvent) => {
+            if (event.keyCode == 27) { // escape key maps to keycode `27`
+                this.close();
+            }
+        });
     }
 
-    close (event : Event) : void {
-        if (event.srcElement.classList.contains('character-details-background')) {
-            this.active = false;
-            this.activeChange.emit(false);
+    /**
+     * Close if the click was on the background
+     */
+    closeOnClick (event : Event) : void {
+        let target : Element = <Element>event.target;
+        if (target.classList.contains('character-details-background')) {
+            this.close();
         }
+    }
+
+    /**
+     * Closes the character details and also emits this change.
+     */
+    close () : void {
+        this.active = false;
+        this.activeChange.emit(false);
     }
 
     ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
