@@ -1,4 +1,6 @@
-import {Injectable} from 'angular2/core';
+import { Injectable } from 'angular2/core';
+import { Http } from 'angular2/http';
+import { Observable } from 'rxjs/Rx';
 
 /**
  * Just a mock implementation.
@@ -7,27 +9,18 @@ import {Injectable} from 'angular2/core';
 export class CharacterConnector {
 
     characters : CharacterModel[];
+    charactersObservable : Observable<CharacterModel[]>;
     items : ItemModel[];
     achievements : AchievementModel[];
 
-    constructor () {
-        this.characters = require('../data/characters/characters.json');
+    constructor (private http : Http) {
         this.achievements = require('./mock-data/achievements.json');
         this.items = require('./mock-data/items.json');
     }
 
-    getCharacters () : Promise<CharacterModel[]> {
-        return new Promise((resolve : any) => {
-            resolve(this.characters);
-        });
-    }
-
-    getCharacterById (id : number) : Promise<CharacterModel> {
-        return new Promise((resolve : any) => {
-            resolve(this.characters.reduce((prev : CharacterModel, curr : CharacterModel) => {
-                return prev ? prev : curr.id === id ? curr : undefined;
-            }, undefined));
-        });
+    getCharacters () : Observable<CharacterModel[]> {
+        return this.http.get('data/characters/characters.json')
+            .map(res => res.json());
     }
 
     getAchievements () : Promise<ItemModel[]> {

@@ -10,7 +10,7 @@ var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackMd5Hash    = require('webpack-md5-hash');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
@@ -35,8 +35,8 @@ module.exports = helpers.validate({
     debug: false,
 
     entry: {
-        'polyfills':'./src/polyfills.ts',
-        'main':'./src/main.ts' // our angular app
+        'polyfills': './src/polyfills.ts',
+        'main': './src/main.ts' // our angular app
     },
 
     // Config for our build files
@@ -50,7 +50,7 @@ module.exports = helpers.validate({
     resolve: {
         cache: false,
         // ensure loader extensions match
-        extensions: ['', '.ts','.js']
+        extensions: ['', '.ts', '.js']
     },
 
     module: {
@@ -133,10 +133,14 @@ module.exports = helpers.validate({
             {
                 from: 'src/assets',
                 to: 'assets'
+            },
+            {
+                from: 'src/data',
+                to: 'data'
             }
         ]),
         // generating html
-        new HtmlWebpackPlugin({ template: 'src/index.html' }),
+        new HtmlWebpackPlugin({template: 'src/index.html'}),
         new DefinePlugin({
             // Environment helpers
             'process.env': {
@@ -168,7 +172,7 @@ module.exports = helpers.validate({
             // TODO(mastertinner): enable mangling as soon as angular2 beta.4 is out
             // mangle: { screw_ie8 : true },//prod
             mangle: false,
-            compress : { screw_ie8 : true },//prod
+            compress: {screw_ie8: true},//prod
             comments: false//prod
 
         }),
@@ -190,8 +194,8 @@ module.exports = helpers.validate({
         minimize: true,
         removeAttributeQuotes: false,
         caseSensitive: true,
-        customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
-        customAttrAssign: [ /\)?\]?=/ ]
+        customAttrSurround: [[/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/]],
+        customAttrAssign: [/\)?\]?=/]
     },
     // don't use devServer for production
 

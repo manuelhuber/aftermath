@@ -1,6 +1,8 @@
 // Services
 import { Component, Inject, AfterViewInit, NgZone } from 'angular2/core';
 import { NgFor, NgIf, NgStyle } from 'angular2/common';
+import { Observable } from 'rxjs/Rx';
+
 import { CharacterService } from '../../service/character-service';
 
 // Subcomponents
@@ -26,7 +28,7 @@ export class CharacterList implements AfterViewInit {
 
     /** Actual Data ------------------------------------------------------------------------------------------------- */
 
-    characters : CharacterModel[];
+    characters : CharacterModel[] = [];
 
     /** Stuff for html manipulation --------------------------------------------------------------------------------- */
 
@@ -48,11 +50,10 @@ export class CharacterList implements AfterViewInit {
 
     constructor (@Inject(CharacterService) characterService : CharacterService,
                  @Inject(NgZone) zone : NgZone) {
-        characterService.getCharacters()
-            .then((chars : CharacterModel[]) => {
-                this.characters = chars;
-                this.selectedCharacterId = this.characters[0].id;
-            });
+        characterService.getCharacters().subscribe((characters) => {
+            this.characters = characters;
+            this.selectedCharacterId = this.characters[0].id;
+        });
 
         window.onresize = (ev : UIEvent) => {
             // Angular won't update the view unless I use zone.run - not sure why
@@ -60,7 +61,10 @@ export class CharacterList implements AfterViewInit {
         };
     }
 
-    ngAfterViewInit () : any {
+    ngAfterViewInit () : void {
+        if (!this.characters || !document.getElementById('character-list-entry-wrapper')) {
+            return;
+        }
 
         let entriesList : NodeListOf<Element> = document.getElementsByClassName('character-list-entry-wrapper');
         for (let i : number = 0; i < entriesList.length; i++) {

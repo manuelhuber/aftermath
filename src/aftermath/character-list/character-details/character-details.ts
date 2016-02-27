@@ -1,6 +1,7 @@
 // Services
 import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange } from 'angular2/core';
 import { NgIf } from 'angular2/common';
+import { Observable } from 'rxjs/Rx';
 
 // Style
 import './character-details.less';
@@ -33,7 +34,7 @@ export class CharacterDetails {
 
         // Close on esape keypress
         document.addEventListener('keyup', (event : KeyboardEvent) => {
-            if (event.keyCode == 27) { // escape key maps to keycode `27`
+            if (event.keyCode === 27) { // escape key maps to keycode `27`
                 this.close();
             }
         });
@@ -59,7 +60,7 @@ export class CharacterDetails {
 
     ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
         if (!!changes['selectedCharacterId']) {
-            this.characterService.getCharacterByID(this.selectedCharacterId).then((character : CharacterModel) => {
+            this.characterService.getCharacterByID(this.selectedCharacterId).subscribe((character : CharacterModel) => {
                 this.character = character;
             });
         }

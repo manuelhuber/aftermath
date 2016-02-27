@@ -1,17 +1,29 @@
 import { Injectable } from 'angular2/core';
 import { CharacterConnector } from '../connector/character-connector';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CharacterService {
 
-    constructor (private connector : CharacterConnector) {}
+    characters : Observable<CharacterModel[]>;
 
-    getCharacters () : Promise<CharacterModel[]> {
-        return this.connector.getCharacters();
+    constructor (private connector : CharacterConnector) {
+        this.characters = connector.getCharacters();
     }
 
-    getCharacterByID (id : number) : Promise<CharacterModel> {
-        return this.connector.getCharacterById(id);
+    getCharacters () : Observable<CharacterModel[]> {
+        return this.characters;
+    }
+
+    getCharacterByID (id : number) : Observable<CharacterModel> {
+        return this.characters.map((characters : CharacterModel[]) => {
+
+            // Filter the array for the character with the ID. If no character is there, we return undefined
+            return characters.reduce((prev : CharacterModel, curr : CharacterModel) => {
+                return prev ? prev : curr.id === id ? curr : undefined;
+            }, undefined);
+
+        });
     }
 
     getAchievements () : Promise<ItemModel[]> {

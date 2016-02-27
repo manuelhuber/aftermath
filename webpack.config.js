@@ -76,7 +76,9 @@ module.exports = helpers.validate({
             minChunks: Infinity
         }),
         // static assets
-        new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}]),
+        new CopyWebpackPlugin([
+            {from: 'src/assets', to: 'assets'},
+            {from: 'src/data', to: 'data'}]),
         // generating html
         new HtmlWebpackPlugin({template: 'src/index.html'}),
         // replace
