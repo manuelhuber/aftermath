@@ -40,7 +40,7 @@ export class RollSimulator {
         this.rollNumber = Math.floor(Math.random() * 100) + 1;
     }
 
-    getDegreesOfResult (biggerNumber : number, smallerNumber : number) {
+    getDegreesOfResult (biggerNumber : number, smallerNumber : number) : number {
         return 1 + (Math.floor(biggerNumber / 10) - (Math.floor(smallerNumber / 10)));
     }
 

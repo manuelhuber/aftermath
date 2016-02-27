@@ -9,7 +9,7 @@ export class ContentConnector {
     systemContent : Article;
 
     constructor () {
-        this.systemContent = require('../data/content/system-content.json');
+        this.systemContent = require('../data/content/content-system.json');
     }
 
     getSystemContent () : Promise<Article> {

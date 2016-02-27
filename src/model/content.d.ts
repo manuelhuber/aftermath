@@ -1,7 +1,7 @@
 declare interface Article {
     'heading' : string;
     'content' : string;
-    'subcontent' : Subcontent[];
+    'subcontent' ?: Subcontent[];
 }
 
 declare interface Subcontent {

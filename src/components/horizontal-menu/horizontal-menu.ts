@@ -31,7 +31,6 @@ export class HorizontalMenu {
     }
 
     toggleMenu (value ? : boolean) : void {
-        console.log('geb');
         this.menuClosed = value === undefined ? !this.menuClosed : value;
     }
 }
