@@ -56,10 +56,10 @@
 
 .character-details-bottom {
     position: relative;
+    color: black;
     height: 60%;
     width: 100%;
     padding-top: 30px;
-    overflow: hidden;
 }
 
 .character-details-flags {
@@ -67,22 +67,22 @@
     width: 100%;
 }
 
+// Tab selector inactive
 .character-details-flag {
     display: inline-block;
     position: relative;
     margin: 0 10px 0 10px;
     padding: 0 5px;
     line-height: 20px;
-    background-color: @color-grey-1;
-    color: @color-grey-3;
-    border-top: 1px solid @color-grey-2;
+    background-color: @color-brown-0;
+    border-top: 1px solid @color-brown-1;
 }
 
+// The
 .character-details-flag:before,
 .character-details-flag:after {
-    border: 1px solid @color-grey-2;
-    background-color: @color-grey-1;
-    color: @color-grey-2
+    border: 1px solid @color-brown-1;
+    background-color: @color-brown-0;
 }
 
 .character-details-flag:before {
@@ -107,25 +107,14 @@
     transform: rotate(-27deg);
 }
 
-.character-details-flag:hover {
-    background-color: @color-grey-4;
-    color: @color-grey-0;
-    border-color: @color-grey-4;
+// tab selector is selected or hovered
+.character-details-flag.is-active, .character-details-flag:hover {
+    z-index: 2;
+    border-color: @color-brown-1;
+    background-color: @color-brown-1;
     &.character-details-flag:before, &.character-details-flag:after, &.character-details {
-        background-color: @color-grey-4;
-        color: @color-grey-0;
-        border-color: @color-grey-4;
-    }
-}
-
-.character-details-flag.is-active {
-    color: @color-grey-0;
-    border-color: @color-grey-2;
-    background-color: @color-grey-2;
-    &.character-details-flag:before, &.character-details-flag:after, &.character-details {
-        color: @color-grey-0;
-        background-color: @color-grey-2;
-        border-color: @color-grey-2;
+        background-color: @color-brown-1;
+        border-color: @color-brown-1;
     }
 }
 
@@ -135,5 +124,6 @@
     left: 0;
     right: 0;
     bottom: 30px;
-    background-color: @color-grey-2;
+    background-color: @color-brown-1;
+    box-shadow: -1px -1px 8px black;
 }
