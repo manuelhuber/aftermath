@@ -15,7 +15,7 @@
         </div>
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
-                <div id="character-list-entry-wrapper" class="character-list-entry-wrapper clickable {{styleclass}}"
+                <div class="character-list-entry-wrapper clickable {{styleclass}}"
                      *ngFor="#character of characters; #i = index"
                      [attr.data-name]="character.name"
                      [attr.data-experience]="character.experience"

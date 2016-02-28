@@ -5,7 +5,6 @@ import { Component, AfterViewInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import './header.less';
-import {Login} from '../login/login';
 
 /*
  * App Component

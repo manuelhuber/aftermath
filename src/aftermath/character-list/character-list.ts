@@ -1,5 +1,5 @@
 // Services
-import { Component, Inject, AfterViewInit, NgZone } from 'angular2/core';
+import { Component, Inject, OnInit, NgZone } from 'angular2/core';
 import { NgFor, NgIf, NgStyle } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
 
@@ -24,7 +24,7 @@ enum SORT {
     directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle, InlineIcon],
     template: require('./character-list.html')
 })
-export class CharacterList implements AfterViewInit {
+export class CharacterList implements OnInit {
 
     /** Actual Data ------------------------------------------------------------------------------------------------- */
 
@@ -48,40 +48,53 @@ export class CharacterList implements AfterViewInit {
     reverseSort : number = 1;
     lastSort : number;
 
-    constructor (@Inject(CharacterService) characterService : CharacterService,
+    constructor (@Inject(CharacterService) private characterService : CharacterService,
                  @Inject(NgZone) zone : NgZone) {
-        characterService.getCharacters().subscribe((characters) => {
-            this.characters = characters;
-            this.selectedCharacterId = this.characters[0].id;
-        });
 
         window.onresize = (ev : UIEvent) => {
             // Angular won't update the view unless I use zone.run - not sure why
-            zone.run(() => { this.showScroll = this.shouldWeScroll(); });
+            if (this.showList) {
+                zone.run(() => {
+                    this.shouldWeScroll();
+                });
+            }
         };
     }
 
-    ngAfterViewInit () : void {
-        if (!this.characters || !document.getElementById('character-list-entry-wrapper')) {
-            return;
-        }
+    ngOnInit () : any {
+        this.characterService.getCharacters().subscribe((characters) => {
+            this.characters = characters;
+            this.selectedCharacterId = this.characters[0].id;
+            // For some reason I can't access the HTML elements without the setTimeout
+            // Maybe Angular needs some time to draw stuff?
+            setTimeout(() => {
+                this.updateScrollableDiv();
+                this.updateHtmlEntries();
+                this.shouldWeScroll();
+            }, 0);
 
+        });
+        return undefined;
+    }
+
+    /**
+     * Since all of the entries are position absolute the scrollableDiv doesn't grow on it's own and we need to
+     * manually set the height of it
+     */
+    updateScrollableDiv () : void {
+        this.entryHeight = document.getElementsByClassName('character-list-entry-wrapper').item(0).scrollHeight;
+        this.scrollableDiv = document.getElementById('character-list-entries-scrollable');
+        this.scrollableDiv.style.height = this.entryHeight * this.characters.length + 'px';
+    }
+
+    /**
+     * Collects a reference to the HTML for all list entries (which is needed for sorting)
+     */
+    updateHtmlEntries () : void {
         let entriesList : NodeListOf<Element> = document.getElementsByClassName('character-list-entry-wrapper');
         for (let i : number = 0; i < entriesList.length; i++) {
             this.htmlEntries.push(<HTMLElement>entriesList.item(i));
         }
-
-        this.entryHeight = document.getElementById('character-list-entry-wrapper').scrollHeight;
-
-        this.scrollableDiv = document.getElementById('character-list-entries-scrollable');
-        // Since all of the entries are position absolute the div doesn't grow on it's own
-        // and we need to manually set the height of it
-        this.scrollableDiv.style.height = this.entryHeight * this.characters.length + 'px';
-
-        // Timeout is to fix the error about changing something without firing change event
-        // It' angular magic and I don't really get it.
-        // If we set the showScroll variable in the function it doesn't update. I really don't get angular
-        setTimeout(() => { this.showScroll = this.shouldWeScroll(); }, 0);
     }
 
     toggleList () : void {
@@ -174,19 +187,24 @@ export class CharacterList implements AfterViewInit {
      * Checks if we need to scroll.
      * If we are already scrolling it incorporates the height of the scroll bars to see if we actually need to scroll
      */
-    private shouldWeScroll () : boolean {
-        let entries : HTMLElement = document.getElementById('character-list-entries');
-        let down : HTMLElement = document.getElementById('character-list-scroll-down');
+    private shouldWeScroll () : void {
+        let entries : HTMLElement = <HTMLElement>document.getElementsByClassName('character-list-entries').item(0);
+        let down : HTMLElement = <HTMLElement>document.getElementsByClassName('character-list-scroll-down').item(0);
 
         // If we are already scrolling and the div doesn't fit into the area of the entries + scroll elements
         if (this.showScroll &&
             this.scrollableDiv.scrollHeight > entries.offsetHeight + down.offsetHeight) {
-            return true;
+
+            this.showScroll = true;
+
         } else if (!this.showScroll && this.scrollableDiv.scrollHeight > entries.offsetHeight) {
-            return true;
+
+            this.showScroll = true;
+
+        } else {
+            // If we don't need to scroll orient the scrollable at the top
+            this.scrollableDiv.style.top = '0';
+            this.showScroll = false;
         }
-        // If we don't need to scroll orient the scrollable at the top
-        this.scrollableDiv.style.top = '0';
-        return false;
     }
 }
