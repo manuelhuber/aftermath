@@ -61,14 +61,16 @@
                 <li>Modifikatoren draufzählen/abziehen um die <b>Target Number (TN)</b> zu erhalten</li>
                 <li>Unter die Target Number mit einem d100 Würfeln</li>
             </ol>
-            Je weiter du unter bzw über der Target Number bist, desto mehr <b>Degrees of Success (DoS)</b> bzw <b>Degrees
-            of Failure (DoF)</b> hast du. Somit ist bestanden nicht gleich bestanden, sondern je mehr DoS/DoF desto
-            beser/schlechter ist das Ergebnis. Und ja, die DoS/DoF Berechnung rechts stimmt so.
+            Je weiter du unter bzw über der Target Number bist, desto mehr <b>Degrees of Success (DoS) </b>bzw<b>
+            Degrees of Failure (DoF)</b> hast du. Somit ist bestanden nicht gleich bestanden, sondern je mehr DoS/DoF
+            desto beser/schlechter ist das Ergebnis. Und ja, die DoS/DoF Berechnung rechts stimmt so.
             <div class="h2">Stats</div>
             Characteristics, Skills & Talents können mit XP gekauft/verbessert werden, Aptitudes bekommt man während
             der Charactererstellung & Traits werden nur durch besondere Ereignise erlangt.<br>
             <b>Characteristics</b> sind die "Werte" eures Characters, wie "Stärke", "Beweglichkeit" etc.
-            Sie dienen als Grundlage für die meisten Skillchecks. <br>
+            Sie dienen als Grundlage für die meisten Skillchecks.<br>
+            <b>Characteristics Bonus</b> ist der 10er Wert der Characteristic. Toughness = 48 => Toughness Bonus = 4.
+            Abgekürzt wird dies mit einem großen B hinter der Characteristicsabkürzung (z.G. AgB für Agility Bonus)
             <b>Skills</b> sind gelernte Fähigkeiten, wie z.B. eine Sprache sprechen oder Auto fahren. Die meistens
             Checks die ihr macht werden Skillchecks sein.<br>
             <b>Talents</b> sind spezielle Verbesserungen, wie z.B. Schneller Nachladen.<br>
@@ -80,16 +82,16 @@
             <!-- System Overview Example --------------------------------------------------------------------------- -->
             <div class="content-page-example-box">
                 <div class="h2">Beispiel</div>
-                Dave ist neu in der Stadt und will rausfinden, wer in der Stadt illegale Organtransplationen durchführt.
-                Hierzu versucht er in der schäbigsten Taverne die er finden kann Informationen zu sammeln. Der GM bittet
-                ihn einen Skillcheck zu machen. Der treffendste Skill ist Inquiry (rumfragen) und die passendste
-                Characteristic dafür ist Fellowship. Dave hat einen Fellowship Wert von 31 und einen Inquiry Bonus von
-                +10, aber da die Tavernengäste sehr misstrauisch sind bekommt er eine -20 Modifikation. Somit ist seine
-                Target Number 31 + (10 - 20) = 21. <br>
+                Dave ist neu in der Stadt und will rausfinden, wer hier illegale Organtransplationen durchführt. <br>
+                Er versucht in der schäbigsten Taverne Informationen zu sammeln und will einen Skillcheck machen. Der
+                treffendste Skill ist Inquiry (rumfragen) und die passendste Characteristic dafür ist Fellowship. Dave
+                hat einen Fellowship Wert von 31 und einen Inquiry Bonus von +10, aber da die Tavernengäste sehr
+                misstrauisch sind bekommt er eine -20 Modifikation. Somit ist seine Target Number 31 + 10 - 20 = 21.
+                <br>
                 Er würfel eine 83 und hat somit 7 Degrees of Failure. Dies könnte schlimme Folgen für Dave haben, doch
-                zum Glück hat er das Talent "Clues from Crowds", wodurch er Testa wiederholen darf bei denen er versucht
+                zum Glück hat er das Talent "Clues from Crowds", wodurch er Tests wiederholen darf wenn er versucht
                 Informationen von Menschenmengen zu sammeln. <br>
-                Er würfel nochmal und erreicht eine 20. Ein knapper Erfolg und nur 1 DoS. Es reicht nicht für eine
+                Er würfel nochmal und erreicht eine 20. Ein knapper Erfolg mit 1 DoS. Es reicht nicht für eine
                 Adresse, aber für einen Namen und die Lieblingsbar des Chirurgen.
             </div>
 
@@ -97,8 +99,41 @@
 
         <!-- Combat ------------------------------------------------------------------------------------------------ -->
         <div id="content-system-combat" class="content-page-content-box">
-            <h1>Combat</h1>
+            <div class="h1">Combat</div>
+            <div class="content-page-example-box">
+                <div class="h3">Beispiel</div>
+                Jericho und Fill haben die Nachmittagsschicht auf dem Wachturm. Sie unterhalten sich freundlich, doch
+                Jericho hat dunkle Pläne, von denen Fill nichts weiß. Jericho legt seine Shotgun an und schießt auf
+                Fill's Kopf.
+                <ul>
+                    <li>Er hat einen Ballistic Skill von 34</li>
+                    <li>Die Action Called Shot (Kopf) gibt einen -20 Malus</li>
+                    <li>Er erhält einen +20 Bonus weil er vor dem Angriff eine ganze Action Zeit hatte um zu Zielen</li>
+                    <li>Er erhält einen +30 Bonus für "Point Blank Range"</li>
+                    <li>Eine Shotgun hat einen zusätzlichen Bonus von +10 bei "Point Blank Range"</li>
+                    <li>Er erhält einen +30 Bonuse weil Fill nicht mit diesem Angriff gerechnet hat</li>
+                </ul>
+                Insgesamt ergibt sich +70, allerdings ist der maximale Modifikator +60. Seine Target Number ist 34 + 60
+                = 94. <br>
+                Er würfel 1d100 und bekommt 17. 9 Degrees of Success. <br>
+                Der Schaden einer Shotung beträgt 1d10 + 4 und zusätzlich +3 für Point Blank Range <br>
+                Er würfelt 1d10 und bekommt eine 2. Allerdings darf man bei einem Angriff das Ergbnis eines Wurfes durch
+                die DoS des Angriffs ersetzen. Also ersetzt er seine 2 durch 9 für einen gesamten Schadenswert von 9 + 4
+                + 3 = 16 <br>
+                Fill hat einen Toughness Bonus von 2 und einen Helm mit Rüstungswert von 2, für eine gesamte
+                Schadensverringerung von 4. <br>
+                Er erhält 16 - 4 = 12 Schaden, wodurch er seine 9 Wounds verliert und 3 Punkte kritischen Schaden nimmt.
+                <br>
+                Der kritische Effekt ist: +0 Toughness Test bestehen oder werde gestunnt für 1 Runde. <br>
+                Fill würfelt seinen Toughness check und erhält eine 78! Nicht bestanden! <br>
+                Jericho nimmt den betäubten Fill und schubst ihn aus dem 6 Meter hohen Wachturm.
+                Als er unten mit seinem Kopf aufschlägt erleidet er 1d10 + 6 = 8 Schadenund stirbt an einem
+                zersplitterten Schädel. <br>
+                Jericho ist zufrieden.
+            </div>
         </div>
+
+
         <div class="content-page-content-box">
             lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
             calcariaes.
