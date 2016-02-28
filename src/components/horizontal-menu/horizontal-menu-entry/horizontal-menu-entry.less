@@ -1,10 +1,31 @@
 @import (reference) "../../../style/common";
 
+.horizontal-menu-entry {
+}
+
 // Top level (and general) style
 .horizontal-menu-entry-text {
+    position: relative;
     padding: 5px;
     background: linear-gradient(to top, @color-grey-5 0, @color-grey-4 25%, @color-grey-4 75%, @color-grey-5 100%) no-repeat;
     color: @color-grey-0;
+}
+
+.horizontal-menu-entry-close {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .horizontal-menu-entry-icon {
+        transform: rotate(180deg);
+    }
+
+    &.close {
+        .horizontal-menu-entry-icon {
+            transform: none;
+        }
+    }
 }
 
 .horizontal-menu-entry-text:hover {

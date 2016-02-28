@@ -1,30 +1,30 @@
 <div class="content-page">
 
-    <!-- Menu -->
+    <!-- Menu ------------------------------------------------------------------------------------------------------ -->
     <div class="content-page-menu">
         <horizontal-menu>
 
-            <horizontal-menu-entry (click)="scrollTo($event, 'content-system-overview')" text="Basics">
+            <horizontal-menu-entry scrollTo="content-system-overview" text="Basics">
             </horizontal-menu-entry>
 
-            <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation')" text="Character Creation">
+            <horizontal-menu-entry scrollTo="content-system-combat" text="Combat">
 
-                <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation-homeworld')"
-                                       text="homeworlds"></horizontal-menu-entry>
+                <horizontal-menu-entry text="homeworlds">
+                </horizontal-menu-entry>
 
-                <horizontal-menu-entry (click)="scrollTo($event, 'content-character-creation-background')"
-                                       text="backgrounds"></horizontal-menu-entry>
+                <horizontal-menu-entry text="backgrounds">
+                </horizontal-menu-entry>
 
             </horizontal-menu-entry>
 
-            <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="Entry2">
+            <horizontal-menu-entry text="Entry2">
 
-                <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1">
+                <horizontal-menu-entry text="SubEntry2.1">
 
-                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1.1">
+                    <horizontal-menu-entry text="SubEntry2.1.1">
                     </horizontal-menu-entry>
 
-                    <horizontal-menu-entry (click)="scrollTo($event, 'first-content')" text="SubEntry2.1.2">
+                    <horizontal-menu-entry text="SubEntry2.1.2">
                     </horizontal-menu-entry>
 
                 </horizontal-menu-entry>
@@ -36,8 +36,10 @@
         </horizontal-menu>
     </div>
 
-    <!-- Content -->
+    <!-- Content --------------------------------------------------------------------------------------------------- -->
     <div class="content-page-content">
+
+        <!-- System Overview --------------------------------------------------------------------------------------- -->
         <div id="content-system-overview" class="content-page-content-box">
             <div class="h1">Basics</div>
             Warhammer40k Dark Heresy ist ein d100 basiertes System in einem dunklen SciFi Setting. Das Setting lässt
@@ -50,7 +52,8 @@
                 </li>
                 <li>Niedrig Würfeln = besser</li>
             </ul>
-            <roll-simulator class="content-page-content-example" style="float: right;"></roll-simulator>
+            <roll-simulator class="content-page-example-box content-system-roll-simulator"
+                            style="float: right;"></roll-simulator>
             <div class="h2">Checks</div>
             (Fast) Alles im System basiert auf <b>Checks</b>. So funktionierts:
             <ol>
@@ -58,8 +61,8 @@
                 <li>Modifikatoren draufzählen/abziehen um die <b>Target Number (TN)</b> zu erhalten</li>
                 <li>Unter die Target Number mit einem d100 Würfeln</li>
             </ol>
-            Je weiter du unterhalb der Target Number bist, desto mehr <b>Degrees of Success (DoS)</b> bzw <b>Degrees
-            of Failure (DoF)</b> hast du. Somit ist bestanden nicht gleich bestanden. Je mehr DoS/DoF desto
+            Je weiter du unter bzw über der Target Number bist, desto mehr <b>Degrees of Success (DoS)</b> bzw <b>Degrees
+            of Failure (DoF)</b> hast du. Somit ist bestanden nicht gleich bestanden, sondern je mehr DoS/DoF desto
             beser/schlechter ist das Ergebnis. Und ja, die DoS/DoF Berechnung rechts stimmt so.
             <div class="h2">Stats</div>
             Characteristics, Skills & Talents können mit XP gekauft/verbessert werden, Aptitudes bekommt man während
@@ -73,52 +76,28 @@
             Upgrades<br>
             <b>Traits</b> sind passive/angeborene Eigenschaften, wie z.B. Nachtsicht (Traits sind selten für
             Spieler).<br>
-            <span></span>
+
+            <!-- System Overview Example --------------------------------------------------------------------------- -->
+            <div class="content-page-example-box">
+                <div class="h2">Beispiel</div>
+                Dave ist neu in der Stadt und will rausfinden, wer in der Stadt illegale Organtransplationen durchführt.
+                Hierzu versucht er in der schäbigsten Taverne die er finden kann Informationen zu sammeln. Der GM bittet
+                ihn einen Skillcheck zu machen. Der treffendste Skill ist Inquiry (rumfragen) und die passendste
+                Characteristic dafür ist Fellowship. Dave hat einen Fellowship Wert von 31 und einen Inquiry Bonus von
+                +10, aber da die Tavernengäste sehr misstrauisch sind bekommt er eine -20 Modifikation. Somit ist seine
+                Target Number 31 + (10 - 20) = 21. <br>
+                Er würfel eine 83 und hat somit 7 Degrees of Failure. Dies könnte schlimme Folgen für Dave haben, doch
+                zum Glück hat er das Talent "Clues from Crowds", wodurch er Testa wiederholen darf bei denen er versucht
+                Informationen von Menschenmengen zu sammeln. <br>
+                Er würfel nochmal und erreicht eine 20. Ein knapper Erfolg und nur 1 DoS. Es reicht nicht für eine
+                Adresse, aber für einen Namen und die Lieblingsbar des Chirurgen.
+            </div>
+
         </div>
-        <div id="content-character-creation" class="content-page-content-box">
-            RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes.
-            Rinse each side of the lobster with
-            half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse
-            each
-            side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus,
-            festus
-            calcariaes. Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes
-            cursuses
-            dignus placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of shrimps.RCum
-            zirbus
-            persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of the lobster with half
-            a
-            kilo
-            of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of
-            the
 
-            <div id="content-character-creation-homeworld" class="h2">Homeworlds</div>
-            lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
-            calcariaes.
-            Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus
-            placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus
-            persuadere,
-            omnes cursuses dignus placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of
-            shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of
-            the
-            lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
-            calcariaes.
-            Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus
-            placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus
-            persuadere,
-
-            <div id="content-character-creation-background" class="content-page-content-heading">Background</div>
-            omnes cursuses dignus placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of
-            shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of
-            the
-            lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
-            calcariaes.
-            Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus
-            placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of shrimps.RCum zirbus
-            persuadere,
-            omnes cursuses dignus placidus, festus calcariaes. Rinse each side of the lobster with half a kilo of
-            shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus calcariaes. Rinse each side of
-            the
+        <!-- Combat ------------------------------------------------------------------------------------------------ -->
+        <div id="content-system-combat" class="content-page-content-box">
+            <h1>Combat</h1>
         </div>
         <div class="content-page-content-box">
             lobster with half a kilo of shrimps.RCum zirbus persuadere, omnes cursuses dignus placidus, festus
