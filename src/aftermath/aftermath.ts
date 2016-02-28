@@ -1,7 +1,6 @@
 import { Component } from 'angular2/core';
-import { RouteConfig, Router, ROUTER_DIRECTIVES } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
 
-import { Login } from './login/login';
 import { System } from './content-pages/system/system';
 import { CharacterList } from  './character-list/character-list';
 import { Header } from './header/header';
@@ -16,9 +15,8 @@ import './aftermath.less';
     template: require('./aftermath.html')
 })
 @RouteConfig([
-    {path: '/', component: Login, name: 'Login'},
     {path: '/system', component: System, name: 'System'},
-    {path: '/**', redirectTo: ['/Login']}
+    {path: '/**', redirectTo: ['System']}
 ])
 export class Aftermath {
 }
