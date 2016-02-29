@@ -1,15 +1,8 @@
-/*
- * Angular 2 decorators and services
- */
 import { Component, AfterViewInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
 import './header.less';
 
-/*
- * App Component
- * Top Level Component
- */
 @Component({
     selector: 'header',
     directives: [ROUTER_DIRECTIVES],
