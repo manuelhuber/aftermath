@@ -36,11 +36,11 @@
 
 .character-details-stats {
     float: right;
-    width: 45%;
+    width: 47%;
     height: 100%;
 
     color: @color-grey-0;
-    margin: 0 0 0 5%;
+    margin: 0 0 0 3%;
     padding: 15px 20px;
     background: @color-red-5 url("/assets/images/page.png") repeat;
     border: 2px solid @color-grey-1;
@@ -109,14 +109,19 @@
 
 .character-details-buttons {
     position: absolute;
-    top: 100%;
+    bottom: -5px;
     right: 0;
+    transform: translateY(100%);
 }
 
 .character-details-previous, .character-details-next {
     float: right;
     width: 30px;
-    height: 20px;
+    height: 30px;
+}
+
+.character-details-previous{
+    margin-right: 5px;
 }
 
 .character-details-next-icon, .character-details-previous-icon {

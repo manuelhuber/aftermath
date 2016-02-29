@@ -1,5 +1,6 @@
 // Services
-import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit } from 'angular2/core';
+import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit }
+    from 'angular2/core';
 import { NgIf } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
 import { CharacterService } from '../../../service/character-service';
@@ -10,7 +11,7 @@ import './character-details.less';
 
 @Component({
     selector: 'character-details',
-    directives: [ InlineIcon ],
+    directives: [InlineIcon],
     template: require('./character-details.html')
 })
 export class CharacterDetails {

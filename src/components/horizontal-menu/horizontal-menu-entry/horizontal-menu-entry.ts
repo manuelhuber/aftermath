@@ -57,9 +57,6 @@ export class HorizontalMenuEntry implements AfterContentInit {
         if (this.inputFunction) {
             this.inputFunction();
         }
-
-        console.log(this.children);
-
     }
 
     /**

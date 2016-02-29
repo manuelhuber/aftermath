@@ -32,9 +32,7 @@
         <button (click)="rollD100()">
             Roll 1d100
         </button>
-        <div class="roll-simulator-number-label">
-            Roll:
-        </div>
+        <label class="roll-simulator-number-label"> Roll: </label>
         <input class="roll-simulator-number-input" type="number" max="100" min="1" [(ngModel)]="rollNumber">
         <div class="roll-simulator-number-label">
             Result:
@@ -45,12 +43,10 @@
             <span *ngIf="!checkFailed">DoS</span>
         </div>
     </div>
-    <div class="roll-simulator-number-label">
-        <b>Char</b>acteristics Value:
-    </div>
+
+    <label class="roll-simulator-number-label"> <b>Char</b>acteristics Value: </label>
     <input class="roll-simulator-number-input" type="number" max="100" min="1" [(ngModel)]="baseNumber">
-    <div class="roll-simulator-number-label">
-        Total <b>Mod</b>ifier:
-    </div>
+
+    <label class="roll-simulator-number-label"> Total <b>Mod</b>ifier: </label>
     <input class="roll-simulator-number-input" type="number" max="60" min="-60" [(ngModel)]="modifierNumber">
 </div>
