@@ -14,25 +14,13 @@
     height: 85%;
     width: 85%;
     max-width: 750px;
-    background: @color-grey-0 url("/assets/images/main-background.png");
+    background: url('/assets/images/stripes-glare-yellow-black.png') no-repeat, @color-grey-2 url("/assets/images/main-background.png");
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 3px black solid;
+    border: 2px @color-grey-5 solid;
     padding: 30px;
     overflow: hidden;
-}
-
-.character-details:after {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 200px;
-    height: 55px;
-    background-image: repeating-linear-gradient(transparent, transparent 10px, @color-yellow-0 10px, @color-yellow-0 25px);
-    transform: translate(-35%, -10%) rotate(-45deg);
 }
 
 .character-details-top {
@@ -48,10 +36,18 @@
 }
 
 .character-details-stats {
-    background: black;
-    display: inline-block;
-    width: 50%;
+    float: right;
+    width: 45%;
     height: 100%;
+
+    color: @color-grey-0;
+    margin: 0 0 0 5%;
+    padding: 15px 20px;
+    background: @color-red-5 url("/assets/images/page.png") repeat;
+    border: 2px solid @color-grey-1;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
 }
 
 .character-details-bottom {
@@ -69,7 +65,7 @@
         margin: 0 0 0 5px;
         padding: 0 10px;
         line-height: 20px;
-        background-color: @color-brown-1;
+        background: @color-brown-1;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         box-shadow: -1px -1px 8px black;
@@ -79,15 +75,15 @@
 }
 
 // A horizontal line to cover the shadow at the bottom of the flag
-.character-details-flag:before {
+.character-details-flag:after {
     content: " ";
     background-color: @color-brown-1;
-    width: 110%;
+    width: 105%;
     height: 7px;
     position: absolute;
-    top: 100%;
+    bottom: 1px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 100%);
 }
 
 // selected tab flag
@@ -102,7 +98,7 @@
 
 .character-details-cards {
     position: absolute;
-    top: 50px;
+    top: 49px;
     left: 0;
     right: 0;
     bottom: 30px;

@@ -16,16 +16,16 @@ export class CharacterDetails {
     @Input() active : boolean = true;
     @Input() selectedCharacterId : number;
     @Input() characterIds : number[];
-    character : CharacterModel = {
-        'id': 0,
-        'name': '--',
-        'image': '',
-        'experience': 0,
-        'description': '',
-        'achievements': [],
-        'items': []
-    };
     tab : string = 'items';
+    character : CharacterModel = {
+    'id': 0,
+    'name': '--',
+    'image': '',
+    'experience': 0,
+    'description': '',
+    'achievements': [],
+    'items': []
+};
 
     // Needed for two way binding
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
