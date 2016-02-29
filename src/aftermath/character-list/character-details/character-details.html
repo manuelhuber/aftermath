@@ -6,8 +6,8 @@
 
             <div class="character-details-stats">
 
-                <div class="h1"> {{character.name}} </div>
-                <div> {{character.description}} </div>
+                <div class="h1"> {{character.name}}</div>
+                <div> {{character.description}}</div>
 
             </div>
 
@@ -20,7 +20,6 @@
                 <div class="character-details-flag" [class.is-active]="tab === 'items'" (click)="tab = 'items'">
                     Items
                 </div>
-
                 <div class="character-details-flag" [class.is-active]="tab === 'achievements'"
                      (click)="tab = 'achievements'">Achievements
                 </div>
@@ -30,11 +29,19 @@
             <div class="character-details-cards">
 
                 <div *ngIf="tab === 'items'">items</div>
-
                 <div *ngIf="tab === 'achievements'">achievements</div>
+
             </div>
         </div>
 
-    </div>
+        <div class="character-details-buttons">
+            <inline-icon class="character-details-next clickable" (click)="nextCharacter()"
+                         iconClass="character-details-next-icon"
+                         iconName="single-arrow-up"></inline-icon>
+            <inline-icon class="character-details-previous clickable" (click)="previousCharacter()"
+                         iconClass="character-details-previous-icon"
+                         iconName="single-arrow-up"></inline-icon>
+        </div>
 
+    </div>
 </div>

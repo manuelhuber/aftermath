@@ -1,14 +1,16 @@
 // Services
-import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange } from 'angular2/core';
+import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit } from 'angular2/core';
 import { NgIf } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
+import { CharacterService } from '../../../service/character-service';
+import { InlineIcon } from '../../../components/inline-icon/inline-icon';
 
 // Style
 import './character-details.less';
-import {CharacterService} from '../../../service/character-service';
 
 @Component({
     selector: 'character-details',
+    directives: [ InlineIcon ],
     template: require('./character-details.html')
 })
 export class CharacterDetails {
@@ -18,14 +20,14 @@ export class CharacterDetails {
     @Input() characterIds : number[];
     tab : string = 'items';
     character : CharacterModel = {
-    'id': 0,
-    'name': '--',
-    'image': '',
-    'experience': 0,
-    'description': '',
-    'achievements': [],
-    'items': []
-};
+        'id': 0,
+        'name': '--',
+        'image': '',
+        'experience': 0,
+        'description': '',
+        'achievements': [],
+        'items': []
+    };
 
     // Needed for two way binding
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
@@ -58,12 +60,31 @@ export class CharacterDetails {
         this.activeChange.emit(false);
     }
 
+    previousCharacter () : void {
+        let potentialNextCharacter : number = this.characterIds.indexOf(this.selectedCharacterId) - 1;
+        this.selectedCharacterId = potentialNextCharacter >= 0 ?
+            this.characterIds[potentialNextCharacter] :
+            this.characterIds[this.characterIds.length - 1];
+        this.getNewCharacterData();
+    }
+
+    nextCharacter () : void {
+        let potentialNextId : number = this.characterIds.indexOf(this.selectedCharacterId) + 1;
+        this.selectedCharacterId = potentialNextId < this.characterIds.length ?
+            this.characterIds[potentialNextId] : this.characterIds[0];
+        this.getNewCharacterData();
+    }
+
     ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
         if (!!changes['selectedCharacterId']) {
-            this.characterService.getCharacterByID(this.selectedCharacterId).subscribe((character : CharacterModel) => {
-                this.character = character;
-            });
+            this.getNewCharacterData();
         }
+    }
+
+    private getNewCharacterData () : void {
+        this.characterService.getCharacterByID(this.selectedCharacterId).subscribe((character : CharacterModel) => {
+            this.character = character;
+        });
     }
 
 }

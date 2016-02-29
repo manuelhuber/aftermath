@@ -20,7 +20,6 @@
     transform: translate(-50%, -50%);
     border: 2px @color-grey-5 solid;
     padding: 30px;
-    overflow: hidden;
 }
 
 .character-details-top {
@@ -55,21 +54,22 @@
     color: black;
     height: 60%;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 // Tab flag inactive
 .character-details-flag {
     display: inline-block;
-        position: relative;
-        margin: 0 0 0 5px;
-        padding: 0 10px;
-        line-height: 20px;
-        background: @color-brown-1;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        box-shadow: -1px -1px 8px black;
-    }
+    position: relative;
+    margin: 0 0 0 5px;
+    padding: 2px 10px;
+    line-height: 20px;
+    background: @color-brown-1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: -1px -1px 8px black;
+}
+
 .character-details-flag:first-child {
     margin-left: 5px;
 }
@@ -78,7 +78,7 @@
 .character-details-flag:after {
     content: " ";
     background-color: @color-brown-1;
-    width: 105%;
+    width: calc(~'100% + 8px');
     height: 7px;
     position: absolute;
     bottom: 1px;
@@ -98,11 +98,37 @@
 
 .character-details-cards {
     position: absolute;
-    top: 49px;
+    top: 43px;
     left: 0;
     right: 0;
     bottom: 30px;
     padding: 15px;
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
+}
+
+.character-details-buttons {
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.character-details-previous, .character-details-next {
+    float: right;
+    width: 30px;
+    height: 20px;
+}
+
+.character-details-next-icon, .character-details-previous-icon {
+    fill: @color-yellow-0;
+    stroke: black;
+    stroke-width: 10px;
+}
+
+.character-details-next-icon {
+    transform: rotate(90deg);
+}
+
+.character-details-previous-icon {
+    transform: rotate(-90deg);
 }

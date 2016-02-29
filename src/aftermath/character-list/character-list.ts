@@ -65,6 +65,7 @@ export class CharacterList implements OnInit {
         this.characterService.getCharacters().subscribe((characters) => {
             this.characters = characters;
             this.selectedCharacterId = this.characters[0].id;
+            this.sortedIds = this.characters.map( (character : CharacterModel) => character.id);
             // For some reason I can't access the HTML elements without the setTimeout
             // Maybe Angular needs some time to draw stuff?
             setTimeout(() => {
