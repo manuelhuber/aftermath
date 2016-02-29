@@ -18,7 +18,7 @@ export class CharacterService {
     getCharacterByID (id : number) : Observable<CharacterModel> {
         return this.characters.map((characters : CharacterModel[]) => {
 
-            // Filter the array for the character with the ID. If no character is there, we return undefined
+            // Filter the array for the character with the ID. If there is none, we return undefined
             return characters.reduce((prev : CharacterModel, curr : CharacterModel) => {
                 return prev ? prev : curr.id === id ? curr : undefined;
             }, undefined);
