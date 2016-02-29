@@ -1,14 +1,10 @@
 <div class="character-list" [class.list-is-visible]="showList" [class.list-is-not-visible]="!showList">
     <div class="character-list-background">
         <div class="character-list-buttons">
-            <span id="character-list-scroll-up" class="character-list-scroll-up" *ngIf="showScroll"
-                  (click)="scrollUp()">
-                <inline-icon class="clickable"
-                             iconClass="character-list-scroll-up-icon"
-                             iconName="single-arrow-up"
-                             iconWidth="20"
-                             iconHeight="20"></inline-icon>
-            </span>
+            <inline-icon id="character-list-scroll-up" class="character-list-scroll-up clickable" *ngIf="showScroll"
+                         (click)="scrollUp()"
+                         iconClass="character-list-scroll-up-icon"
+                         iconName="single-arrow-up"></inline-icon>
             <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">A</span>
             <span class="character-list-buttons-sort clickable" (click)="sortXP()">XP</span>
 
@@ -26,19 +22,14 @@
                 </div>
             </div>
         </div>
-        <div id="character-list-scroll-down" class="character-list-scroll-down" *ngIf="showScroll"
-             (click)="scrollDown()">
-            <inline-icon iconClass="character-list-scroll-down-icon"
-                         iconName="single-arrow-up"
-                         iconWidth="20"
-                         iconHeight="20"></inline-icon>
-        </div>
+        <inline-icon id="character-list-scroll-down" class="character-list-scroll-down clickable" *ngIf="showScroll"
+                     (click)="scrollDown()"
+                     iconClass="character-list-scroll-down-icon"
+                     iconName="single-arrow-up"></inline-icon>
     </div>
     <inline-icon class="character-list-close clickable"
                  iconClass="character-list-close-icon"
                  iconName="double-arrow-down"
-                 iconWidth=20
-                 iconHeight=20
                  (click)="toggleList()"></inline-icon>
     <character-details class="character-list-details" [active]="showCharacterDetails" [characterIds]="sortedIds"
                        [selectedCharacterId]="selectedCharacterId"

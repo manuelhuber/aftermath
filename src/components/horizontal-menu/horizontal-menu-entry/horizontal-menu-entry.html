@@ -3,9 +3,7 @@
     <div (click)="onClick($event)" class="horizontal-menu-entry-text">{{text}}
         <inline-icon *ngIf="hasSub" (click)="closeClick($event)" class="horizontal-menu-entry-close" [class.close]="showSub"
                      iconClass="horizontal-menu-entry-icon"
-                     iconName="single-arrow-up"
-                     iconWidth="15"
-                     iconHeight="15"></inline-icon>
+                     iconName="single-arrow-up"></inline-icon>
     </div>
     <div *ngIf="showSub" class="horizontal-menu-entry-sub">
         <ng-content></ng-content>

@@ -10,8 +10,8 @@ import './../../assets/inline-icons.svg';
 export class InlineIcon {
 
     @Input() iconName : string;
-    @Input() iconWidth : number;
-    @Input() iconHeight : number;
+    @Input() iconWidth : string = '100%';
+    @Input() iconHeight : string = '100%';
     @Input() iconClass : string;
     @Input() iconFill : string;
 
