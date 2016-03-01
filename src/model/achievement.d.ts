@@ -1,7 +1,6 @@
-declare interface AchievementModel {
+import './sortable.d.ts';
+
+declare interface AchievementModel extends sortable {
     id : number;
-    name : string;
-    description : string;
-    perk : string;
-    acquisitionDate : Date;
+    description : number;
 }

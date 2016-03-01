@@ -29,7 +29,7 @@ export class HorizontalMenuEntry implements AfterContentInit {
     showSub : boolean;
     hasSub : boolean;
 
-    constructor (private menu : HorizontalMenu) {}
+    constructor () {}
 
     /**
      * Check for subs, once the content is initialized

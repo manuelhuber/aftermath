@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { CharacterConnector } from '../connector/character-connector';
 import { Observable } from 'rxjs/Rx';
+import { AchievementModel } from '../model/achievement';
 
 @Injectable()
 export class CharacterService {

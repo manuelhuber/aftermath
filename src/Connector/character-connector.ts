@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
+import { AchievementModel } from '../model/achievement';
 
 /**
  * Just a mock implementation.
