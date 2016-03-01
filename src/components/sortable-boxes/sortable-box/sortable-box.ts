@@ -1,5 +1,5 @@
 // Serivces
-import { Component } from 'angular2/core';
+import { Component, Input } from 'angular2/core';
 
 @Component({
     selector: 'sortable-box',
@@ -11,5 +11,7 @@ import { Component } from 'angular2/core';
  * Sticks to the top of the screen when scrolling down
  */
 export class SortableBox {
+
+    @Input() sortable : sortable;
 
 }
