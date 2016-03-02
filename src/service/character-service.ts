@@ -13,7 +13,7 @@ export class CharacterService {
     achievements : Observable<AchievementModel[]>;
 
     constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
-        this.characters = connector.getCharacters();
+        this.characters = connector.getCharacters().cache();
         this.items = connector.getItems();
         this.achievements = connector.getAchievements();
     }

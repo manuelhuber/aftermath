@@ -13,6 +13,7 @@ import { ItemModel } from '../model/item';
  * And search for the link
  */
 
+const BASE_URL : string = 'https://spreadsheets.google.com/feeds/list/';
 const SPREADSHEET_KEY : string = '1i-i4lnApPVyM84Puxb8h7JjodZqHGasAWiN1u2Lxs5g';
 const CHARACTER_WORKSHEET_ID : string = 'od6';
 
@@ -22,11 +23,11 @@ export class CharacterConnectorGoogleSpreadsheet {
     constructor (private http : Http) {}
 
     getCharacters () : Observable<CharacterModel[]> {
-        return this.http.get(`https://spreadsheets.google.com/feeds/list/${SPREADSHEET_KEY}/${CHARACTER_WORKSHEET_ID}/public/values?alt=json`)
+        return this.http.get(`${BASE_URL}${SPREADSHEET_KEY}/${CHARACTER_WORKSHEET_ID}/public/values?alt=json`)
             .map(response => response.json().feed.entry)
             .map((response : any[]) => {
                 let result : CharacterModel[] = [];
-                response.forEach((row : any)=> {
+                response.forEach((row : any) => {
                     let char : CharacterModel = {
                         id: JSON.parse(row.gsx$id.$t),
                         name: row.gsx$name.$t,
