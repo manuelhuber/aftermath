@@ -1,8 +1,9 @@
-import { Injectable } from 'angular2/core';
-import { CharacterConnector } from '../connector/character-connector';
+import { Injectable, Inject } from 'angular2/core';
+import { CharacterConnectorGoogleSpreadsheet } from '../connector/character-connector-google-spreadsheet';
 import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
 import { ItemModel } from '../model/item';
+import {CharacterConnector} from '../model/character-connector';
 
 @Injectable()
 export class CharacterService {
@@ -11,7 +12,7 @@ export class CharacterService {
     items : Observable<ItemModel[]>;
     achievements : Observable<AchievementModel[]>;
 
-    constructor (private connector : CharacterConnector) {
+    constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
         this.characters = connector.getCharacters();
         this.items = connector.getItems();
         this.achievements = connector.getAchievements();

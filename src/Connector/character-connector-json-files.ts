@@ -5,10 +5,10 @@ import { AchievementModel } from '../model/achievement';
 import { ItemModel } from '../model/item';
 
 /**
- * Just a mock implementation.
+ * Gets all the data from the jsons laying on the server
  */
 @Injectable()
-export class CharacterConnector {
+export class CharacterConnectorJsonFiles {
 
     constructor (private http : Http) { }
 

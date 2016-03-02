@@ -24,7 +24,7 @@ if ('production' === process.env.ENV) {
  * our top level component that holds all of our components
  */
 import { Aftermath } from './aftermath/aftermath';
-import { CharacterConnector } from './connector/character-connector.ts';
+import { CharacterConnectorGoogleSpreadsheet } from './connector/character-connector-google-spreadsheet';
 import { ContentConnector } from './connector/content-connector';
 
 /*
@@ -37,7 +37,7 @@ export function main () : any {
             ...HTTP_PROVIDERS,
             ...ROUTER_PROVIDERS,
             ngCore.provide(LocationStrategy, {useClass: HashLocationStrategy}),
-            CharacterConnector,
+            CharacterConnectorGoogleSpreadsheet,
             ContentConnector
         ])
         .catch(err => console.error(err));
