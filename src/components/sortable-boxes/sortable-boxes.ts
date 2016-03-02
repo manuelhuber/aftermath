@@ -41,7 +41,6 @@ export class SortableBoxes implements AfterViewChecked {
             this.htmlEntries.push(<HTMLElement>entriesList.item(i));
         }
         this.boxWidth = this.htmlEntries[0].style.width;
-        console.log(this.htmlEntries[0]);
         return true;
     }
 

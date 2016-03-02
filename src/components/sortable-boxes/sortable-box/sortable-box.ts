@@ -15,6 +15,6 @@ import './sortable-box.less';
  */
 export class SortableBox {
 
-    @Input() sortable : sortable;
+    @Input() sortable : Sortable;
 
 }

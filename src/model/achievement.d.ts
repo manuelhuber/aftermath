@@ -1,6 +1,6 @@
 import './sortable.d.ts';
 
-declare interface AchievementModel extends sortable {
+declare interface AchievementModel extends Sortable {
     id : number;
     description : string;
 }
