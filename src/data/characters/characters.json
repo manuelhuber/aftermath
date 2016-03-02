@@ -11,7 +11,6 @@
       3
     ],
     "items": [
-      1,
       2,
       3
     ]
@@ -24,13 +23,11 @@
     "description": "Shamash is a murdering hobo. Like everybody else.",
     "achievements": [
       1,
-      2,
       3
     ],
     "items": [
       1,
-      2,
-      3
+      2
     ]
   },
   {
@@ -40,9 +37,7 @@
     "experience": 233,
     "description": "Enya is a murdering hobo. Like everybody else.",
     "achievements": [
-      1,
-      2,
-      3
+      1
     ],
     "items": [
       1,
@@ -57,13 +52,9 @@
     "experience": 352,
     "description": "Alatair is a murdering hobo. Like everybody else.",
     "achievements": [
-      1,
-      2,
-      3
+      2
     ],
     "items": [
-      1,
-      2,
       3
     ]
   },

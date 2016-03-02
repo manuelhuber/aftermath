@@ -2,11 +2,10 @@
 //declare const ARMOR : string = 'ARMOR';
 //declare const TRINKET : string = 'TRINKET';
 
-declare interface ItemModel {
+import './sortable.d.ts';
+
+declare interface ItemModel extends sortable {
     id : number;
-    name : string;
     type : string;
-    rarity : string;
     description : string;
-    acquisitionDate : Date;
 }
