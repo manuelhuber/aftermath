@@ -1,5 +1,7 @@
-<sortable-boxes>
-    <sortable-box *ngFor="#sortable of sortables; #i = index" [sortable]="sortable">
-        {{sortable.description}}
-    </sortable-box>
-</sortable-boxes>
+<div class="character-details-items">
+    <sortable-boxes>
+        <sortable-box *ngFor="#sortable of items; #i = index" [sortable]="sortable">
+            {{sortable.description}}
+        </sortable-box>
+    </sortable-boxes>
+</div>

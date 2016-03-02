@@ -1,6 +1,9 @@
 // Serivces
 import { Component, Input } from 'angular2/core';
 
+// Style
+import './sortable-box.less';
+
 @Component({
     selector: 'sortable-box',
     template: require('./sortable-box.html')
