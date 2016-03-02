@@ -12,7 +12,7 @@ import './character-details.less';
 
 @Component({
     selector: 'character-details',
-    directives: [InlineIcon, CharacterDetailsItems],
+    directives: [InlineIcon, CharacterDetailsItems, NgIf],
     template: require('./character-details.html')
 })
 export class CharacterDetails {
@@ -67,6 +67,7 @@ export class CharacterDetails {
         this.selectedCharacterId = potentialNextCharacter >= 0 ?
             this.characterIds[potentialNextCharacter] :
             this.characterIds[this.characterIds.length - 1];
+        // We need to manually call it since ngOnChanges only works when in- & output changes
         this.getNewCharacterData();
     }
 
@@ -74,9 +75,13 @@ export class CharacterDetails {
         let potentialNextId : number = this.characterIds.indexOf(this.selectedCharacterId) + 1;
         this.selectedCharacterId = potentialNextId < this.characterIds.length ?
             this.characterIds[potentialNextId] : this.characterIds[0];
+        // We need to manually call it since ngOnChanges only works when in- & output changes
         this.getNewCharacterData();
     }
 
+    /**
+     * Will only be called when in- & output changes, for example selecting a character via character list
+     */
     ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
         if (!!changes['selectedCharacterId']) {
             this.getNewCharacterData();
