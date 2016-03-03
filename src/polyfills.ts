@@ -3,33 +3,23 @@ import 'es6-shim';
 // (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)
 import 'es6-promise';
 import 'reflect-metadata';
+//import 'rxjs/Rx';
+import 'zone.js/dist/zone-microtask.min';
+
+// Manually include all operators we to minimize file size
+import 'rxjs/add/operator/cache';
+import 'rxjs/add/operator/map';
 
 if ('production' === process.env.ENV) {
-    // Production
 
-    // In production Reflect with es7-reflect-metadata/reflect-metadata is added
-
-    // Zone.js
-    require('zone.js/dist/zone-microtask.min');
-
-    // RxJS
-    // In production manually include the operators you use
-    require('rxjs/add/operator/map');
-    require('rxjs/add/operator/mergeMap');
+    // Nothing special for production right now
 
 } else {
     // Development
 
     Error['stackTraceLimit'] = Infinity;
 
-    require('zone.js/dist/zone-microtask');
     require('zone.js/dist/long-stack-trace-zone');
-
-    // RxJS
-    // In development we are including every operator
-    require('rxjs/add/operator/map');
-    require('rxjs/add/operator/mergeMap');
-
 }
 
 // For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
