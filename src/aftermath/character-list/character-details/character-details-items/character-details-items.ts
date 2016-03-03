@@ -14,7 +14,7 @@ import {ItemModel} from '../../../../model/item';
 
 @Component({
     selector: 'character-details-items',
-    directives: [SortableBoxes, SortableBox],
+    directives: [SortableBoxes, SortableBox, NgFor],
     template: require('./character-details-items.html')
 })
 export class CharacterDetailsItems implements OnChanges {
