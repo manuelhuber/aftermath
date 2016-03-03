@@ -20,7 +20,7 @@ module.exports = helpers.validate({
     // static data for index.html
     metadata: metadata,
     // for faster builds use 'eval'
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     debug: true,
     // cache: false,
 
