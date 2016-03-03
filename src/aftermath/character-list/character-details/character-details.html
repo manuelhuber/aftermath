@@ -26,12 +26,12 @@
 
             </div>
 
-            <div>
+            <div class="character-details-cards">
 
-                <div class="character-details-cards" *ngIf="tab === 'items'">
+                <div *ngIf="tab === 'items'">
                     <character-details-items [character]="character"></character-details-items>
                 </div>
-                <div class="character-details-cards" *ngIf="tab === 'achievements'">
+                <div *ngIf="tab === 'achievements'">
                     achievements
                 </div>
 

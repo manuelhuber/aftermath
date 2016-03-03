@@ -75,7 +75,6 @@ export class CharacterList implements OnInit {
             }, 0);
 
         });
-        return undefined;
     }
 
     /**
