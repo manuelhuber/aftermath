@@ -1,5 +1,5 @@
 // Serivces
-import { Component, Input } from 'angular2/core';
+import { Component, Input, Inject } from 'angular2/core';
 
 // Style
 import './sortable-box.less';

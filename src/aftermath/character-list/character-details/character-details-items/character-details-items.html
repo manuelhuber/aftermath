@@ -1,5 +1,5 @@
 <div class="character-details-items">
-    <sortable-boxes>
+    <sortable-boxes [sortables]="items">
         <sortable-box *ngFor="#item of items; #i = index" [sortable]="item">
             <div class="character-details-items-card mod-rarity-{{item.rarity}}">
                 <img class="character-details-items-card-image" src="{{item.image}}" alt="">

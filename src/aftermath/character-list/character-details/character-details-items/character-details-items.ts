@@ -25,9 +25,16 @@ export class CharacterDetailsItems implements OnChanges {
     constructor (@Inject(CharacterService) private characterService : CharacterService) {}
 
     ngOnChanges (changes : {}) : any {
-        this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
-            this.items = items;
-        });
+
+        // This is needed so that on character change all items are removed and then readded from scratch
+
+        this.items = [];
+
+        setTimeout(() => {
+            this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
+                this.items = items;
+            });
+        }, 0);
     }
 
 }
