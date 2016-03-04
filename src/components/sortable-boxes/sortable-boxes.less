@@ -1,3 +1,5 @@
+@import (reference) "../../style/common";
+
 @sortable-boxes-header-height: 20px;
 
 .sortable-boxes {
@@ -26,3 +28,21 @@
     width: 100%;
     top: 0;
 }
+
+.sortable-boxes-fade-in, .sortable-boxes-fade-out {
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    z-index: 5;
+}
+
+.sortable-boxes-fade-in {
+    top: 0;
+    background: linear-gradient(to bottom, @color-brown-1, transparent);
+}
+
+.sortable-boxes-fade-out {
+    bottom: 0;
+    background: linear-gradient(to top, @color-brown-1 5px, transparent);
+}
+

@@ -8,8 +8,10 @@
         <span class="clickable" (click)="sortByDate()" [class.is-active]="lastSort === 2">RARITY</span>
     </div>
     <div class="sortable-boxes-content">
+        <div class="sortable-boxes-fade-in"></div>
         <div class="sortable-boxes-scrollable">
             <ng-content></ng-content>
         </div>
+        <div class="sortable-boxes-fade-out"></div>
     </div>
 </div>
