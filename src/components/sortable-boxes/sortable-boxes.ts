@@ -34,7 +34,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     // In percent
     boxWidth : number = 25;
     // In pixel
-    boxHeight : number = 240;
+    boxHeight : number;
 
     reverseSort : number = 1;
     lastSort : number = -1;
@@ -66,16 +66,21 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     }
 
     updateHtmlVariables () : boolean {
+
         let entriesList : NodeListOf<Element> = document.getElementsByClassName('sortable-box');
+
         if (!entriesList.length) {
             return false;
         }
+
         this.htmlEntries = [];
         for (let i : number = 0; i < entriesList.length; i++) {
             this.htmlEntries.push(<HTMLElement>entriesList.item(i));
             this.htmlEntries[i].style.width = this.boxWidth + '%';
-            this.htmlEntries[i].style.height = this.boxHeight + 'px';
         }
+
+        // Since all cards are positon absolute we need to manually set the height of the scrollable div
+        this.boxHeight = this.htmlEntries[0].offsetHeight;
         let scrollable : HTMLElement = <HTMLElement> document.getElementsByClassName('sortable-boxes-scrollable')[0];
         scrollable.style.height = (Math.floor(this.htmlEntries.length / this.coloumnCount) + 1) * this.boxHeight + 'px';
         return true;
