@@ -3,7 +3,7 @@ import { Component, Input, ElementRef, ContentChildren, QueryList, AfterContentI
 import { NgIf } from 'angular2/common';
 import { HorizontalMenu } from '../horizontal-menu';
 import { scrollSmooth } from '../../../util/scroll-util';
-import { InlineIcon } from '../../inline-icon/inline-icon';
+import { Icon } from '../../icon/icon';
 
 // Style
 import './horizontal-menu-entry.less';
@@ -11,7 +11,7 @@ import './horizontal-menu-entry.less';
 @Component({
     selector: 'horizontal-menu-entry',
     template: require('./horizontal-menu-entry.html'),
-    directives: [InlineIcon]
+    directives: [Icon]
 })
 export class HorizontalMenuEntry implements AfterContentInit {
 

@@ -1,13 +1,11 @@
 // Serivces
-import { Component, Inject, Input, Directive } from 'angular2/core';
-
-import './../../assets/inline-icons.svg';
+import { Component, Input } from 'angular2/core';
 
 @Component({
-    selector: 'inline-icon',
-    template: require('./inline-icon.html')
+    selector: 'icon',
+    template: require('./icon.html')
 })
-export class InlineIcon {
+export class Icon {
 
     @Input() iconName : string;
     @Input() iconWidth : string = '100%';

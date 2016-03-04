@@ -4,7 +4,7 @@ import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange
 import { NgIf } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
 import { CharacterService } from '../../../service/character-service';
-import { InlineIcon } from '../../../components/inline-icon/inline-icon';
+import { Icon } from '../../../components/icon/icon';
 import { CharacterDetailsItems } from './character-details-items/character-details-items';
 
 // Style
@@ -12,7 +12,7 @@ import './character-details.less';
 
 @Component({
     selector: 'character-details',
-    directives: [InlineIcon, CharacterDetailsItems, NgIf],
+    directives: [Icon, CharacterDetailsItems, NgIf],
     template: require('./character-details.html')
 })
 export class CharacterDetails {

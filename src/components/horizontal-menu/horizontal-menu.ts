@@ -1,7 +1,7 @@
 // Serivces
 import { Component, Inject, NgZone } from 'angular2/core';
 
-import { InlineIcon } from '../inline-icon/inline-icon';
+import { Icon } from '../icon/icon';
 
 // Style
 import './horizontal-menu.less';
@@ -9,7 +9,7 @@ import './horizontal-menu.less';
 @Component({
     selector: 'horizontal-menu',
     template: require('./horizontal-menu.html'),
-    directives: [InlineIcon]
+    directives: [Icon]
 })
 /**
  * A horizontal menu, to be filled with horizontal menu entries

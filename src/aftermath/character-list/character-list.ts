@@ -8,7 +8,7 @@ import { CharacterService } from '../../service/character-service';
 // Subcomponents
 import { CharacterListEntry } from './character-list-entry/character-list-entry';
 import { CharacterDetails } from './character-details/character-details';
-import { InlineIcon } from '../../components/inline-icon/inline-icon';
+import { Icon } from '../../components/icon/icon';
 
 // Style
 import './character-list.less';
@@ -21,7 +21,7 @@ enum SORT {
 @Component({
     selector: 'character-list',
     providers: [CharacterService],
-    directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle, InlineIcon],
+    directives: [CharacterListEntry, CharacterDetails, NgFor, NgIf, NgStyle, Icon],
     template: require('./character-list.html')
 })
 export class CharacterList implements OnInit {

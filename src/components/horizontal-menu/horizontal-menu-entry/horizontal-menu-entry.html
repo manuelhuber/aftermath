@@ -1,9 +1,9 @@
 <div class="horizontal-menu-entry">
 
     <div (click)="onClick($event)" class="horizontal-menu-entry-text">{{text}}
-        <inline-icon *ngIf="hasSub" (click)="closeClick($event)" class="horizontal-menu-entry-close" [class.close]="showSub"
+        <icon *ngIf="hasSub" (click)="closeClick($event)" class="horizontal-menu-entry-close" [class.close]="showSub"
                      iconClass="horizontal-menu-entry-icon"
-                     iconName="single-arrow-up"></inline-icon>
+                     iconName="single-arrow-up"></icon>
     </div>
     <div *ngIf="showSub" class="horizontal-menu-entry-sub">
         <ng-content></ng-content>
