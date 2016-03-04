@@ -117,6 +117,13 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         this.positionBoxes();
     }
 
+    sortByRarity () : void {
+        this.reverseSort = (this.lastSort === SORT.RARITY) ? -this.reverseSort : 1;
+        this.lastSort = SORT.RARITY;
+        this.htmlEntries.sort(this.getSortingFunction('rarity', this.reverseSort));
+        this.positionBoxes();
+    }
+
     getSortingFunction (attribute : string, reverseSort : number) : any {
         return (a : HTMLElement, b : HTMLElement) => {
             if (a.getAttribute('data-' + attribute) < b.getAttribute('data-' + attribute)) {
