@@ -30,7 +30,6 @@ module.exports = helpers.validate({
     // static data for index.html
     metadata: metadata,
 
-    devtool: 'source-map',
     cache: false,
     debug: false,
 
