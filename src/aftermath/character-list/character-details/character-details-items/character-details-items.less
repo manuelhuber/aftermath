@@ -5,13 +5,22 @@
     width: 100%;
 }
 
-.character-details-items-card {
-    margin: 10px auto;
+.character-details-items-card-wrapper {
+    margin: 0 auto;
+    height: 100%;
     width: 150px;
+    max-width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+.character-details-items-card {
+    padding: 10px 0;
     height: 100%;
     background: rgba(0, 0, 0, .75);
     border: 2px solid;
     color: @color-grey-0;
+    box-sizing: border-box;
 
     &.mod-rarity-0 {
         border-color: @color-yellow-0;

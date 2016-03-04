@@ -31,36 +31,32 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     @ContentChildren(SortableBox) sortables : QueryList<SortableBox>;
     a : AchievementModel;
     htmlEntries : HTMLElement[];
-    boxWidth : string;
-    boxHeight : string;
+    // In percent
+    boxWidth : number = 25;
+    // In pixel
+    boxHeight : number = 230;
 
     reverseSort : number = 1;
     lastSort : number = -1;
 
-    init : boolean = true;
-
     ngAfterViewInit () : any {
-        this.redraw();
+        this.initiateView();
     }
 
     ngOnChanges (changes : {}) : any {
-        console.log('fire');
-        this.redraw();
+        this.initiateView();
     }
 
     get coloumnCount () : number {
         return 4;
     }
 
-    redraw () : void {
+    initiateView () : void {
         setTimeout(() => {
             if (this.updateHtmlVariables()) {
-                console.log('after init');
-                console.log(this.htmlEntries);
-                this.positionBoxes();
-                this.init = false;
+                this.positionBoxes(true);
             }
-        }, 2000);
+        }, 1000);
     }
 
     updateHtmlVariables () : boolean {
@@ -71,19 +67,28 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         this.htmlEntries = [];
         for (let i : number = 0; i < entriesList.length; i++) {
             this.htmlEntries.push(<HTMLElement>entriesList.item(i));
+            this.htmlEntries[i].style.width = this.boxWidth + '%';
+            this.htmlEntries[i].style.height = this.boxHeight + 'px';
         }
-        this.boxWidth = this.htmlEntries[0].style.width;
-        this.boxHeight = this.htmlEntries[0].style.height;
+        let scrollable : HTMLElement = <HTMLElement> document.getElementsByClassName('sortable-boxes-scrollable')[0];
+        scrollable.style.height = Math.floor(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
         return true;
     }
 
     positionBoxes (firstTime : boolean = false) : void {
+        let column : number = 0;
+        let row : number = 0;
+
         this.htmlEntries.forEach((element : HTMLElement, index : number) => {
             if (firstTime) {
                 element.style.left = '0';
                 element.style.top = '0';
             }
-            element.style.left = index * 25 + '%';
+            setTimeout(() => {
+                element.style.left = (index % this.coloumnCount) * this.boxWidth + '%';
+                element.style.top = Math.floor(index / this.coloumnCount) * this.boxHeight + 'px';
+
+            }, 0);
         });
     }
 
@@ -91,6 +96,13 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         this.reverseSort = (this.lastSort === SORT.NAME) ? -this.reverseSort : 1;
         this.lastSort = SORT.NAME;
         this.htmlEntries.sort(this.getSortingFunction('name', this.reverseSort));
+        this.positionBoxes();
+    }
+
+    sortByDate () : void {
+        this.reverseSort = (this.lastSort === SORT.DATE) ? -this.reverseSort : 1;
+        this.lastSort = SORT.DATE;
+        this.htmlEntries.sort(this.getSortingFunction('date', this.reverseSort));
         this.positionBoxes();
     }
 

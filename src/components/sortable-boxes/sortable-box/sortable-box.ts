@@ -16,5 +16,6 @@ import './sortable-box.less';
 export class SortableBox {
 
     @Input() sortable : Sortable;
+    dateFormat : string = 'yyyy/dd/mm';
 
 }
