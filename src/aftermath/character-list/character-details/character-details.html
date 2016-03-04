@@ -26,16 +26,14 @@
 
             </div>
 
-            <div class="character-details-cards">
-
-                <div *ngIf="tab === 'items'">
-                    <character-details-items [character]="character"></character-details-items>
-                </div>
-                <div *ngIf="tab === 'achievements'">
-                    achievements
-                </div>
-
+            <div class="character-details-card" *ngIf="tab === 'items'">
+                <character-details-items [character]="character"></character-details-items>
             </div>
+            <div class="character-details-card" *ngIf="tab === 'achievements'">
+                achievements
+            </div>
+
+
         </div>
 
         <div class="character-details-buttons">

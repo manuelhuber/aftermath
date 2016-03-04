@@ -97,8 +97,6 @@ export class CharacterConnectorGoogleSpreadsheet {
                     numberArray.push(+entry);
                 }
             });
-        } catch (e) {
-            console.log(e);
         } finally {
             return numberArray;
         }

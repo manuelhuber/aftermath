@@ -51,12 +51,17 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         return 4;
     }
 
+    /**
+     * Unfortunately the sortable boxes take a bit to be drawn, so we have to set the timeout
+     * This is a really hacky solution and if the boxes take longer than 500ms to be drawn, it will fail, but that's
+     * unlikely and I couldn't come up with a better solution...
+     */
     initiateView () : void {
         setTimeout(() => {
             if (this.updateHtmlVariables()) {
                 this.positionBoxes(true);
             }
-        }, 1000);
+        }, 500);
     }
 
     updateHtmlVariables () : boolean {
