@@ -19,7 +19,7 @@ const SPREADSHEET_KEY : string = '1i-i4lnApPVyM84Puxb8h7JjodZqHGasAWiN1u2Lxs5g';
 const CHARACTER_WORKSHEET_ID : string = 'od6';
 const ITEM_WORKSHEET_ID : string = 'ogun2ej';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
-const OPTIONS : string = 'public/values?alt=json'
+const OPTIONS : string = 'public/values?alt=json';
 
 @Injectable()
 export class CharacterConnectorGoogleSpreadsheet {

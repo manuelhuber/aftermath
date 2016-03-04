@@ -25,7 +25,6 @@ if ('production' === process.env.ENV) {
  */
 import { Aftermath } from './aftermath/aftermath';
 import { CharacterConnectorGoogleSpreadsheet } from './connector/character-connector-google-spreadsheet';
-import { ContentConnector } from './connector/content-connector';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -37,8 +36,7 @@ export function main () : any {
             ...HTTP_PROVIDERS,
             ...ROUTER_PROVIDERS,
             ngCore.provide(LocationStrategy, {useClass: HashLocationStrategy}),
-            CharacterConnectorGoogleSpreadsheet,
-            ContentConnector
+            CharacterConnectorGoogleSpreadsheet
         ])
         .catch(err => console.error(err));
 }
