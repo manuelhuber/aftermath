@@ -1,5 +1,7 @@
 @import (reference) "../../../style/common.less";
 
+@character-details-buttons-height: 40px;
+
 .character-details-background {
     position: fixed;
     top: 0;
@@ -13,7 +15,7 @@
 
 .character-details {
     position: absolute;
-    height: 87%;
+    height: 93%;
     width: 90%;
     max-width: 750px;
     min-height: 500px;
@@ -22,25 +24,30 @@
     top: 15px;
     transform: translateX(-50%);
     border: 2px @color-grey-5 solid;
-    padding: 20px;
+    padding: 20px 35px 0 35px;
 }
 
 .character-details-top {
-    height: 34%;
+    height: 33%;
+    padding-bottom: 30px;
+    box-sizing: border-box;
 }
 
 .character-details-image {
     float: left;
-    width: 50%;
-    height: 100%;
-    background: no-repeat center;
-    background-size: contain;
+    max-width: 50%;
+    max-height: 100%;
+    margin-right: 10px;
+    //background: no-repeat center;
+    //background-size: contain;
 }
 
 .character-details-stats {
-    float: right;
-    width: 47%;
+    //float: right;
+    //width: 47%;
     height: 100%;
+
+    overflow: hidden;
 
     color: @color-grey-0;
     margin: 0 0 0 3%;
@@ -55,9 +62,8 @@
 .character-details-bottom {
     position: relative;
     color: black;
-    height: 66%;
+    height: calc(~'67% - '@character-details-buttons-height);
     width: 100%;
-    padding-top: 10px;
     box-sizing: border-box;
 }
 
@@ -102,20 +108,18 @@
 
 .character-details-card {
     position: absolute;
-    top: 33px;
+    top: 23px;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 15px;
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
 }
 
 .character-details-buttons {
-    position: absolute;
-    bottom: -5px;
-    right: 0;
-    transform: translateY(100%);
+    height: @character-details-buttons-height;
+    padding-top: 7px;
+    box-sizing: border-box;
 }
 
 .character-details-previous, .character-details-next {

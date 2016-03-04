@@ -3,6 +3,8 @@
 .character-details-items {
     height: 100%;
     width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .character-details-items-card-wrapper {
@@ -10,17 +12,22 @@
     height: 100%;
     width: 150px;
     max-width: 100%;
-    padding: 5px 0;
+    padding: 10px 0;
     box-sizing: border-box;
 }
 
 .character-details-items-card {
-    padding: 10px 0;
+
+    transition: all 200ms;
+
     height: 100%;
-    background: rgba(0, 0, 0, .75);
+    background: @color-grey-5 url("/assets/images/main-background.png") repeat;
     border: 2px solid;
+    border-radius: 15px;
+    overflow: hidden;
     color: @color-grey-0;
     box-sizing: border-box;
+    box-shadow: -5px 5px 5px fade(black, 50);
 
     &.mod-rarity-0 {
         border-color: @color-yellow-0;
@@ -54,8 +61,30 @@
     //}
 }
 
+.character-details-items-card:hover {
+    transform: translate(5px, -5px);
+}
+
 .character-details-items-card-image {
     display: block;
-    height: 30%;
+    height: 40%;
+    width: 100%;
+    object-fit: cover;
     margin: 0 auto;
+}
+
+.character-details-items-card-name {
+
+}
+
+.character-details-items-card-description {
+
+}
+
+.character-details-items-card-type {
+
+}
+
+.character-details-items-card-date {
+
 }

@@ -34,7 +34,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     // In percent
     boxWidth : number = 25;
     // In pixel
-    boxHeight : number = 230;
+    boxHeight : number = 240;
 
     reverseSort : number = 1;
     lastSort : number = -1;
@@ -77,7 +77,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
             this.htmlEntries[i].style.height = this.boxHeight + 'px';
         }
         let scrollable : HTMLElement = <HTMLElement> document.getElementsByClassName('sortable-boxes-scrollable')[0];
-        scrollable.style.height = Math.floor(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
+        scrollable.style.height = (Math.floor(this.htmlEntries.length / this.coloumnCount) + 1) * this.boxHeight + 'px';
         return true;
     }
 

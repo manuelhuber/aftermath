@@ -1,11 +1,23 @@
+@sortable-boxes-header-height: 20px;
+
 .sortable-boxes {
     position: relative;
     height: 100%;
     width: 100%;
 }
 
-.sortable-boxes-content{
-    height: 100%;
+.sortable-boxes-header {
+    height: @sortable-boxes-header-height;
+}
+
+.sortable-boxes-content {
+    height: calc(~'100% - ' @sortable-boxes-header-height);
     position: relative;
     overflow: hidden;
+}
+
+.sortable-boxes-scrollable {
+    position: absolute;
+    width: 100%;
+    top: 0;
 }
