@@ -60,6 +60,7 @@ export class CharacterDetails {
     close () : void {
         this.active = false;
         this.activeChange.emit(false);
+        document.body.style.overflow = '';
     }
 
     previousCharacter () : void {
@@ -85,6 +86,11 @@ export class CharacterDetails {
     ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
         if (!!changes['selectedCharacterId']) {
             this.getNewCharacterData();
+        }
+        if (!!changes['active']) {
+            if (changes['active'].currentValue) {
+                document.body.style.overflow = 'hidden';
+            }
         }
     }
 
