@@ -15,16 +15,19 @@
 
 .character-details {
     position: absolute;
-    height: 93%;
+    height: 95%;
     width: 90%;
-    max-width: 750px;
-    min-height: 500px;
+    max-width: 800px;
+    min-height: 800px;
     background: url('/assets/images/stripes-glare-yellow-black.png') no-repeat, @color-grey-2 url("/assets/images/main-background.png");
     left: 50%;
     top: 15px;
     transform: translateX(-50%);
     border: 2px @color-grey-5 solid;
     padding: 20px 35px 0 35px;
+    box-sizing: border-box;
+    border-width: 0 0 3px 0;
+    border-image: linear-gradient(to right, @color-yellow-0, rgba(255, 255, 255, 0)) 100% 1;
 }
 
 .character-details-top {

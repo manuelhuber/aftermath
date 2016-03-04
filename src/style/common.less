@@ -104,6 +104,12 @@ html, body {
     cursor: pointer;
 }
 
+.not-mobile {
+    @media @device-mobile {
+        display: none;
+    }
+}
+
 a {
     color: @color-red-0;
     text-decoration: none;
