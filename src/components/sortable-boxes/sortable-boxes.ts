@@ -1,5 +1,5 @@
 // Serivces
-import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone, ElementRef }
+import { Component, Input, AfterViewInit, OnChanges, Inject, NgZone, ElementRef }
     from 'angular2/core';
 import { NgIf } from 'angular2/common';
 
@@ -30,8 +30,6 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     @Input('sortables') sortablesInput : Sortable[];
 
-    //noinspection TypeScriptValidateTypes
-    @ContentChildren(SortableBox) sortables : QueryList<SortableBox>;
     a : AchievementModel;
     htmlEntries : HTMLElement[];
     // In percent
@@ -119,6 +117,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     }
 
     positionBoxes (firstTime : boolean = false) : void {
+        this.scrollableDiv.style.top = '0';
         this.htmlEntries.forEach((element : HTMLElement, index : number) => {
             if (firstTime) {
                 element.style.left = '0';

@@ -164,10 +164,6 @@ export class CharacterList implements OnInit {
         this.showCharacterDetails = true;
     }
 
-    eventHandling (event : Event) : void {
-        this.showCharacterDetails = event.returnValue;
-    }
-
     /**
      * Sorts the HTML Entries with the given function and sets the Top style attribute to visually sort them
      * @param sortFunction a standard sort function that returns -1, 0 or 1
