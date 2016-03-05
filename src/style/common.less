@@ -100,27 +100,17 @@ html, body {
     padding: 0;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
-.not-mobile {
-    @media @device-mobile {
-        display: none;
-    }
-}
-
 a {
     color: @color-red-0;
     text-decoration: none;
-}
 
-a:hover {
-    color: @color-red-1;
-}
+    &:hover {
+        color: @color-red-1;
+    }
 
-a:active {
-    color: @color-red-3;
+    &:active {
+        color: @color-red-3;
+    }
 }
 
 svg {
@@ -148,4 +138,14 @@ ul {
     font-family: "All Ages", serif;
     font-size: 20px;
     margin: 5px 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.not-mobile {
+    @media @device-mobile {
+        display: none;
+    }
 }

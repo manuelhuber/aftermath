@@ -6,10 +6,15 @@
     box-sizing: border-box;
     padding: 0 0 5px 7px;
     transition: padding 250ms;
-}
 
-.character-list-entry:hover {
-    padding: 0 0 5px 0;
+    &:hover {
+        padding: 0 0 5px 0;
+        .character-list-entry-data {
+            color: @color-grey-1;
+            text-shadow: none;
+            background: @color-grey-5 url("/assets/images/blood-splatter-small-bottom-right.png") no-repeat bottom right;
+        }
+    }
 }
 
 .character-list-entry-image {
@@ -36,12 +41,4 @@
     margin-right: -10px;
     border-width: 0 0 3px 0;
     border-image: linear-gradient(to right, @color-yellow-0, rgba(255, 255, 255, 0)) 100% 1;
-}
-
-&.character-list-entry:hover {
-    .character-list-entry-data {
-        color: @color-grey-1;
-        text-shadow: none;
-        background: @color-grey-5 url("/assets/images/blood-splatter-small-bottom-right.png") no-repeat bottom right;
-    }
 }
