@@ -192,6 +192,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
      * Returns false if we are already at the top, true if we actually scrolled
      */
     scrollUp () : boolean {
+        console.log('scrollup');
 
         // Already at the top or scrollable div is small than the content box
         if (this.scrollableDiv.offsetTop === 0 || this.scrollableDiv.scrollHeight < this.contentDiv.clientHeight) {
@@ -212,10 +213,12 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         if (!this.showScroll) {
             return;
         }
+        console.log(event.deltaY);
         // Scroll up, if the event was a scroll-up and prevent event bubbling if we scrolled successfully
-        if (event.deltaY < 0 && this.scrollUp()) {
-            event.preventDefault();
-
+        if (event.deltaY < 0) {
+            if (this.scrollUp()) {
+                event.preventDefault();
+            }
             // Scroll down otherwise and prevent event bubbling if we scrolled successfully
         } else if (this.scrollDown()) {
             event.preventDefault();
