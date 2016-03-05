@@ -3,7 +3,7 @@
 .roll-simulator {
     width: 200px;
     position: relative;
-    padding: 5px;
+    padding: 5px 5px 0 10px;
 }
 
 .roll-simulator-number-label {
@@ -19,6 +19,24 @@
     text-align: center;
     border-width: 0 0 1px 0;
     background: transparent;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.roll-simulator-roll-button {
+    border: none;
+    padding: 3px 6px;
+    background: @color-grey-2;
+    color: @color-grey-5;
+    box-shadow: 0 0 5px black, inset 0 0 5px @color-grey-1;
+    margin: 5px 0;
+    &:hover {
+        box-shadow: inset 0 0 5px black, 0 0 5px @color-grey-1;
+        color: @color-grey-1;
+        background: @color-grey-5;
+    }
 
     &:focus {
         outline: none;
@@ -74,33 +92,43 @@
     transform: translateY(50%);
     padding-left: 10px;
     color: @color-grey-3;
+
     &.mod-125 {
         bottom: 125%;
     }
+
     &.mod-100 {
         bottom: 100%;
     }
+
     &.mod-75 {
         bottom: 75%;
     }
+
     &.mod-50 {
         bottom: 50%;
     }
+
     &.mod-25 {
         bottom: 25%;
     }
+
     &.mod-roll {
+
         color: black;
         border-radius: 4px;
         background: @color-green-1;
         padding: 0 2px;
         margin-left: 10px;
+        box-shadow: 0 0 10px black;
+
         &.failed {
             background: @color-red-1;
             &:after {
                 background: @color-red-1;
             }
         }
+
         &:after {
             left: auto;
             right: 100%;
@@ -130,11 +158,11 @@
     padding: 0 2px;
     transform: translateY(50%);
     margin-right: 10px;
-    // For some reason the div doesn't grow with the text
     text-align: right;
     color: black;
     background-color: @color-grey-0;
     border-radius: 4px;
+    box-shadow: 0 0 10px black;
 }
 
 // The pointy nose
