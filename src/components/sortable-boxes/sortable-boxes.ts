@@ -1,5 +1,5 @@
 // Serivces
-import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone } from 'angular2/core';
+import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone, ElementRef } from 'angular2/core';
 import { NgIf } from 'angular2/common';
 
 import { SortableBox } from './sortable-box/sortable-box';
@@ -46,12 +46,18 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     reverseSort : number = 1;
     lastSort : number = -1;
 
-    constructor (@Inject(NgZone) private zone : NgZone) {
+    constructor (@Inject(NgZone) private zone : NgZone, @Inject(ElementRef) element : ElementRef) {
+        element.nativeElement.addEventListener("mousewheel", this.mouseWheelHandler.bind(this));
+        element.nativeElement.addEventListener("DOMMouseScroll", this.mouseWheelHandler.bind(this);
         window.addEventListener('resize', () => {
             zone.run(() => {
                 this.shouldWeScroll();
             });
         });
+
+        //myimage.addEventListener("mousewheel", MouseWheelHandler, false);
+        //// Firefox
+        //myimage.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
     }
 
     ngAfterViewInit () : any {
@@ -159,33 +165,60 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     /**
      * Moves the scrollable div up, so the entries further down are visible
+     * Returns false if we are already at the bottom, true if we actually scrolled
      */
-    scrollDown () : void {
+    scrollDown () : boolean {
+
+        let minimumValue : number = this.contentDiv.offsetHeight - this.scrollableDiv.scrollHeight;
+
+        // Already at the bottom
+        if (this.scrollableDiv.offsetTop === minimumValue) {
+            return false;
+        }
+
         let potentialNewTopValue : number =
             parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) - this.boxHeight / 2;
-        let minimumValue : number = this.contentDiv.offsetHeight - this.scrollableDiv.scrollHeight;
         this.scrollableDiv.style.top =
             potentialNewTopValue < minimumValue
                 ? minimumValue + 'px' : potentialNewTopValue + 'px';
+        return true;
 
     }
 
     /**
      * Moves the scrollable div down, so the entries further up are visible
+     * Returns false if we are already at the top, true if we actually scrolled
      */
-    scrollUp () : void {
+    scrollUp () : boolean {
+
+        // Already at the top
+        if (this.scrollableDiv.offsetTop === 0) {
+            return false;
+        }
+
         let potentialNewTopValue : number =
             parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) + this.boxHeight / 2;
         this.scrollableDiv.style.top = potentialNewTopValue > 0 ? '0' : potentialNewTopValue + 'px';
+        return true;
+    }
+
+    /**
+     * Scrolls the sortable box according to the mouse wheel & prevents the scrolling event from bubbling
+     * if the box is scrolling.
+     */
+    private mouseWheelHandler (event : WheelEvent) : void {
+        if (this.showScroll && event.deltaY < 0) {
+            if (this.scrollUp()) {
+                event.preventDefault();
+            }
+        } else {
+            if (this.scrollDown()) {
+                event.preventDefault();
+            }
+        }
     }
 
     private shouldWeScroll () : void {
-        console.log('this.scrollableDiv.scrollHeight');
-        console.log(this.scrollableDiv.scrollHeight);
-        console.log('this.contentDiv.clientHeight');
-        console.log(this.contentDiv.clientHeight);
-        console.log('this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight');
-        console.log(this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight);
         this.showScroll = this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight;
     }
 }
