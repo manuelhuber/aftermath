@@ -1,15 +1,24 @@
 <div class="sortable-boxes">
     <div class="sortable-boxes-header">
-        Sort by:
+        <span class="not-mobile">Sort by:</span>
         <span class="clickable" (click)="sortByName()" [class.is-active]="lastSort === 0">NAME</span>
         <span>|</span>
         <span class="clickable" (click)="sortByDate()" [class.is-active]="lastSort === 1">DATE</span>
         <span>|</span>
         <span class="clickable" (click)="sortByRarity()" [class.is-active]="lastSort === 2">RARITY</span>
     </div>
-    <div class="sortable-boxes-content">
+    {{foo}}
+    <div class="sortable-boxes-content-scrollbar" *ngIf="showScroll">
+        <icon class="sortable-boxes-content-scroll-up clickable" (click)="scrollUp()"
+              iconClass="sortable-boxes-content-scroll-up-icon"
+              iconName="single-arrow-up"></icon>
+        <icon class="sortable-boxes-content-scroll-down clickable" (click)="scrollDown()"
+              iconClass="sortable-boxes-content-scroll-down-icon"
+              iconName="single-arrow-up"></icon>
+    </div>
+    <div class="sortable-boxes-content" id="sortable-boxes-content">
         <div class="sortable-boxes-fade-in"></div>
-        <div class="sortable-boxes-scrollable">
+        <div class="sortable-boxes-scrollable" id="sortable-boxes-scrollable">
             <ng-content></ng-content>
         </div>
         <div class="sortable-boxes-fade-out"></div>

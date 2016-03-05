@@ -51,21 +51,19 @@ export class CharacterList implements OnInit {
     constructor (@Inject(CharacterService) private characterService : CharacterService,
                  @Inject(NgZone) zone : NgZone) {
 
-        window.onresize = (ev : UIEvent) => {
+        window.addEventListener('resize', () => {
             // Angular won't update the view unless I use zone.run - not sure why
-            if (this.showList) {
-                zone.run(() => {
-                    this.shouldWeScroll();
-                });
-            }
-        };
+            zone.run(() => {
+                this.shouldWeScroll();
+            });
+        });
     }
 
     ngOnInit () : any {
         this.characterService.getCharacters().subscribe((characters) => {
             this.characters = characters;
             this.selectedCharacterId = this.characters[0].id;
-            this.sortedIds = this.characters.map( (character : CharacterModel) => character.id);
+            this.sortedIds = this.characters.map((character : CharacterModel) => character.id);
             // For some reason I can't access the HTML elements without the setTimeout
             // Maybe Angular needs some time to draw stuff?
             setTimeout(() => {

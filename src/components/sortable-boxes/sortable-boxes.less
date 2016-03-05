@@ -1,6 +1,7 @@
 @import (reference) "../../style/common";
 
 @sortable-boxes-header-height: 20px;
+@sortable-boxes-scrollbar-width: 30px;
 
 .sortable-boxes {
     position: relative;
@@ -17,8 +18,38 @@
     }
 }
 
+.sortable-boxes-content-scrollbar {
+    position: absolute;
+    padding-left: 5px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: @sortable-boxes-scrollbar-width;
+    box-sizing: border-box;
+}
+
+.sortable-boxes-content-scroll-up, .sortable-boxes-content-scroll-down {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+}
+
+.sortable-boxes-content-scroll-up {
+    top: 30px;
+}
+
+.sortable-boxes-content-scroll-down {
+    bottom: 20px;
+}
+
+.sortable-boxes-content-scroll-down-icon {
+    transform: rotate(180deg);
+}
+
 .sortable-boxes-content {
     height: calc(~'100% - ' @sortable-boxes-header-height);
+    margin-right: @sortable-boxes-scrollbar-width;
     position: relative;
     overflow: hidden;
 }
@@ -27,6 +58,7 @@
     position: absolute;
     width: 100%;
     top: 0;
+    transition: all 250ms;
 }
 
 .sortable-boxes-fade-in, .sortable-boxes-fade-out {

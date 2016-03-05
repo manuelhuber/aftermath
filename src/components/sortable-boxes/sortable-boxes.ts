@@ -1,8 +1,9 @@
 // Serivces
-import { Component, Inject, Input, ContentChildren, QueryList, AfterViewInit, OnChanges } from 'angular2/core';
-import { DOM } from 'angular2/src/platform/dom/dom_adapter';
+import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone } from 'angular2/core';
+import { NgIf } from 'angular2/common';
 
 import { SortableBox } from './sortable-box/sortable-box';
+import { Icon } from '../icon/icon';
 
 // Style
 import './sortable-boxes.less';
@@ -16,7 +17,8 @@ enum SORT {
 
 @Component({
     selector: 'sortable-boxes',
-    template: require('./sortable-boxes.html')
+    template: require('./sortable-boxes.html'),
+    directives: [Icon, NgIf]
 })
 /**
  * A horizontal menu, to be filled with horizontal menu entries
@@ -36,8 +38,21 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     // In pixel
     boxHeight : number;
 
+    scrollableDiv : HTMLElement;
+    contentDiv : HTMLElement;
+
+    showScroll : boolean;
+
     reverseSort : number = 1;
     lastSort : number = -1;
+
+    constructor (@Inject(NgZone) private zone : NgZone) {
+        window.addEventListener('resize', () => {
+            zone.run(() => {
+                this.shouldWeScroll();
+            });
+        });
+    }
 
     ngAfterViewInit () : any {
         this.initiateView();
@@ -79,17 +94,23 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
             this.htmlEntries[i].style.width = this.boxWidth + '%';
         }
 
+        this.scrollableDiv = document.getElementById('sortable-boxes-scrollable');
+        this.contentDiv = document.getElementById('sortable-boxes-content');
+
         // Since all cards are positon absolute we need to manually set the height of the scrollable div
         this.boxHeight = this.htmlEntries[0].offsetHeight;
-        let scrollable : HTMLElement = <HTMLElement> document.getElementsByClassName('sortable-boxes-scrollable')[0];
-        scrollable.style.height = (Math.floor(this.htmlEntries.length / this.coloumnCount) + 1) * this.boxHeight + 'px';
+        this.scrollableDiv.style.height = Math.ceil(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
+
+        // That's the only way I got the initial scrolling check to work...
+        setTimeout(() => {
+            this.showScroll =
+                Math.ceil(this.htmlEntries.length / this.coloumnCount) * this.boxHeight > this.contentDiv.clientHeight;
+        }, 0);
+
         return true;
     }
 
     positionBoxes (firstTime : boolean = false) : void {
-        let column : number = 0;
-        let row : number = 0;
-
         this.htmlEntries.forEach((element : HTMLElement, index : number) => {
             if (firstTime) {
                 element.style.left = '0';
@@ -136,4 +157,35 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         };
     }
 
+    /**
+     * Moves the scrollable div up, so the entries further down are visible
+     */
+    scrollDown () : void {
+        let potentialNewTopValue : number =
+            parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) - this.boxHeight / 2;
+        let minimumValue : number = this.contentDiv.offsetHeight - this.scrollableDiv.scrollHeight;
+        this.scrollableDiv.style.top =
+            potentialNewTopValue < minimumValue
+                ? minimumValue + 'px' : potentialNewTopValue + 'px';
+
+    }
+
+    /**
+     * Moves the scrollable div down, so the entries further up are visible
+     */
+    scrollUp () : void {
+        let potentialNewTopValue : number =
+            parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) + this.boxHeight / 2;
+        this.scrollableDiv.style.top = potentialNewTopValue > 0 ? '0' : potentialNewTopValue + 'px';
+    }
+
+    private shouldWeScroll () : void {
+        console.log('this.scrollableDiv.scrollHeight');
+        console.log(this.scrollableDiv.scrollHeight);
+        console.log('this.contentDiv.clientHeight');
+        console.log(this.contentDiv.clientHeight);
+        console.log('this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight');
+        console.log(this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight);
+        this.showScroll = this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight;
+    }
 }
