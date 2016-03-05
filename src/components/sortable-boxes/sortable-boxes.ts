@@ -224,5 +224,8 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     private shouldWeScroll () : void {
         this.showScroll = this.scrollableDiv.scrollHeight > this.contentDiv.clientHeight;
+        if (!this.showScroll) {
+            this.scrollableDiv.style.top = '0';
+        }
     }
 }
