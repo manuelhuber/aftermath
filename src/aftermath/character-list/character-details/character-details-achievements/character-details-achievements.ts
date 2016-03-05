@@ -1,5 +1,5 @@
 // Services
-import { Component, Inject, Input, OnChanges } from 'angular2/core';
+import { Component, Inject, Input, OnInit, OnChanges, AfterViewInit } from 'angular2/core';
 import { NgFor } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
 
@@ -8,25 +8,24 @@ import { SortableBoxes } from '../../../../components/sortable-boxes/sortable-bo
 import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/sortable-box';
 
 // Style
-import './character-details-items.less';
-import { ItemModel } from '../../../../model/item';
+import './character-details-achievements.less';
+import {AchievementModel} from '../../../../model/achievement';
 
 @Component({
-    selector: 'character-details-items',
+    selector: 'character-details-achievements',
     directives: [SortableBoxes, SortableBox, NgFor],
-    template: require('./character-details-items.html')
+    template: require('./character-details-achievements.html')
 })
-export class CharacterDetailsItems implements OnChanges {
+export class CharacterDetailsAchievements implements OnChanges {
 
     @Input() character : CharacterModel;
-    items : ItemModel[];
+    achievements : AchievementModel[];
 
     listener : EventListener;
 
     constructor (@Inject(CharacterService) private characterService : CharacterService) {
-
         this.listener = (event : Event) => {
-            let cards : NodeListOf<Element> = document.getElementsByClassName('character-details-items-card');
+            let cards : NodeListOf<Element> = document.getElementsByClassName('character-details-achievement-card');
             for (let i : number = 0; i < cards.length; i++) {
                 let cardElement : HTMLElement = <HTMLElement>cards.item(i);
                 cardElement.classList.remove('is-active');
@@ -36,21 +35,21 @@ export class CharacterDetailsItems implements OnChanges {
                 window.removeEventListener('click', this.listener);
             }, 0);
         };
-
     }
 
     ngOnChanges (changes : {}) : any {
-
         // This is needed so that on character change all items are removed and then readded from scratch
 
-        this.items = [];
+        this.achievements = [];
 
         setTimeout(() => {
-            this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
-                this.items = items;
-            });
+            this.characterService.getAchievementsForCharacter(this.character)
+                .subscribe((achievements : AchievementModel[]) => {
+                    this.achievements = achievements;
+                });
         }, 0);
     }
+
 
     clickCard (event : Event) : void {
         let target : Element = <Element>event.currentTarget;
@@ -61,5 +60,4 @@ export class CharacterDetailsItems implements OnChanges {
             window.addEventListener('click', this.listener);
         }, 0);
     }
-
 }

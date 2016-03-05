@@ -6,13 +6,15 @@ import { Observable } from 'rxjs/Rx';
 import { CharacterService } from '../../../service/character-service';
 import { Icon } from '../../../components/icon/icon';
 import { CharacterDetailsItems } from './character-details-items/character-details-items';
+import { CharacterDetailsAchievements } from './character-details-achievements/character-details-achievements';
 
 // Style
 import './character-details.less';
+import './character-details-sortables.less';
 
 @Component({
     selector: 'character-details',
-    directives: [Icon, CharacterDetailsItems, NgIf],
+    directives: [Icon, NgIf, CharacterDetailsItems, CharacterDetailsAchievements],
     template: require('./character-details.html')
 })
 export class CharacterDetails {

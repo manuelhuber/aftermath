@@ -30,7 +30,7 @@
                 <character-details-items [character]="character"></character-details-items>
             </div>
             <div class="character-details-card" *ngIf="tab === 'achievements'">
-                achievements
+                <character-details-achievements [character]="character"></character-details-achievements>
             </div>
 
 
@@ -38,11 +38,11 @@
 
         <div class="character-details-buttons">
             <icon class="character-details-next clickable" (click)="nextCharacter()"
-                         iconClass="character-details-next-icon"
-                         iconName="single-arrow-up"></icon>
+                  iconClass="character-details-next-icon"
+                  iconName="single-arrow-up"></icon>
             <icon class="character-details-previous clickable" (click)="previousCharacter()"
-                         iconClass="character-details-previous-icon"
-                         iconName="single-arrow-up"></icon>
+                  iconClass="character-details-previous-icon"
+                  iconName="single-arrow-up"></icon>
         </div>
 
     </div>

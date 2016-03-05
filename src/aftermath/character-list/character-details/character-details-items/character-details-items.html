@@ -1,18 +1,18 @@
-<div class="character-details-items">
+<div class="character-details-sortable">
 
     <sortable-boxes [sortables]="items">
         <sortable-box *ngFor="#item of items; #i = index" [sortable]="item">
 
-            <div class="character-details-items-card-wrapper">
-                <div class="character-details-items-card mod-rarity-{{item.rarity}}" (click)="clickCard($event)">
-                    <img class="character-details-items-card-image" src="{{item.image}}" alt="">
-                    <div class="character-details-items-card-text">
+            <div class="character-details-sortable-card-wrapper">
+                <div class="character-details-sortable-card character-details-items-card mod-rarity-{{item.rarity}}" (click)="clickCard($event)">
+                    <img class="character-details-sortable-card-image" src="{{item.image}}" alt="">
+                    <div class="character-details-sortable-card-text">
 
-                        <div class="character-details-items-card-text-border"></div>
-                        <div class="character-details-items-card-name h3">{{item.name}}</div>
+                        <div class="character-details-sortable-card-text-border"></div>
+                        <div class="character-details-sortable-card-name h3">{{item.name}}</div>
                         <div class="character-details-items-card-type">{{item.type}}</div>
-                        <div class="character-details-items-card-description">{{item.description}}</div>
-                        <div class="character-details-items-card-date">
+                        <div class="character-details-sortable-card-description">{{item.description}}</div>
+                        <div class="character-details-sortable-card-date">
                             <!--The date pipe doesn't have the german format ...-->
                             {{item.date | date:'d'}}.{{item.date | date:'M'}}.{{item.date | date:'y'}}
                         </div>

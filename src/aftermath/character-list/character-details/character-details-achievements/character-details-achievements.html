@@ -1,0 +1,28 @@
+<div class="character-details-sortable">
+
+    <sortable-boxes [sortables]="achievements">
+        <sortable-box *ngFor="#achievement of achievements; #i = index" [sortable]="achievement">
+
+            <div class="character-details-sortable-card-wrapper">
+                <div class="character-details-sortable-card character-details-achievement-card
+                mod-rarity-{{achievement.rarity}}"
+                     (click)="clickCard($event)">
+                    <img class="character-details-sortable-card-image" src="{{achievement.image}}" alt="">
+                    <div class="character-details-sortable-card-text">
+
+                        <div class="character-details-sortable-card-text-border"></div>
+                        <div class="character-details-sortable-card-name h3">{{achievement.name}}</div>
+                        <div class="character-details-sortable-card-description">{{achievement.description}}</div>
+                        <div class="character-details-sortable-card-date">
+                            <!--The date pipe doesn't have the german format ...-->
+                            {{achievement.date | date:'d'}}.{{achievement.date | date:'M'}}.{{achievement.date |
+                            date:'y'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </sortable-box>
+    </sortable-boxes>
+
+</div>
