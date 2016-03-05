@@ -1,5 +1,5 @@
 // Services
-import { Component, Inject, Input, OnInit, OnChanges } from 'angular2/core';
+import { Component, Inject, Input, OnInit, OnChanges, AfterViewInit } from 'angular2/core';
 import { NgFor } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
 
@@ -22,7 +22,23 @@ export class CharacterDetailsItems implements OnChanges {
     @Input() character : CharacterModel;
     items : ItemModel[];
 
-    constructor (@Inject(CharacterService) private characterService : CharacterService) {}
+    listener : EventListener;
+
+    constructor (@Inject(CharacterService) private characterService : CharacterService) {
+
+        this.listener = (event : Event) => {
+            let cards : NodeListOf<Element> = document.getElementsByClassName('character-details-items-card');
+            for (let i : number = 0; i < cards.length; i++) {
+                let cardElement : HTMLElement = <HTMLElement>cards.item(i);
+                cardElement.classList.remove('is-active');
+            }
+
+            setTimeout(() => {
+                window.removeEventListener('click', this.listener);
+            }, 0);
+        };
+
+    }
 
     ngOnChanges (changes : {}) : any {
 
@@ -34,6 +50,16 @@ export class CharacterDetailsItems implements OnChanges {
             this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
                 this.items = items;
             });
+        }, 0);
+    }
+
+    clickCard (event : Event) : void {
+        let target : Element = <Element>event.currentTarget;
+        target.classList.add('is-active');
+
+        // Without the timeout the new event listener is instantly triggered
+        setTimeout(() => {
+            window.addEventListener('click', this.listener);
         }, 0);
     }
 
