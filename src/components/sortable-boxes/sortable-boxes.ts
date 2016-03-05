@@ -1,5 +1,6 @@
 // Serivces
-import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone, ElementRef } from 'angular2/core';
+import { Component, Input, ContentChildren, QueryList, AfterViewInit, OnChanges, Inject, NgZone, ElementRef }
+    from 'angular2/core';
 import { NgIf } from 'angular2/common';
 
 import { SortableBox } from './sortable-box/sortable-box';
@@ -47,8 +48,8 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     lastSort : number = -1;
 
     constructor (@Inject(NgZone) private zone : NgZone, @Inject(ElementRef) element : ElementRef) {
-        element.nativeElement.addEventListener("mousewheel", this.mouseWheelHandler.bind(this));
-        element.nativeElement.addEventListener("DOMMouseScroll", this.mouseWheelHandler.bind(this);
+        element.nativeElement.addEventListener('mousewheel', this.mouseWheelHandler.bind(this));
+        element.nativeElement.addEventListener('DOMMouseScroll', this.mouseWheelHandler.bind(this));
         window.addEventListener('resize', () => {
             zone.run(() => {
                 this.shouldWeScroll();
@@ -105,7 +106,8 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
         // Since all cards are positon absolute we need to manually set the height of the scrollable div
         this.boxHeight = this.htmlEntries[0].offsetHeight;
-        this.scrollableDiv.style.height = Math.ceil(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
+        this.scrollableDiv.style.height =
+            Math.ceil(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
 
         // That's the only way I got the initial scrolling check to work...
         setTimeout(() => {
@@ -171,8 +173,9 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
         let minimumValue : number = this.contentDiv.offsetHeight - this.scrollableDiv.scrollHeight;
 
-        // Already at the bottom
-        if (this.scrollableDiv.offsetTop === minimumValue) {
+        // Already at the bottom or scrollable div is small than the content box
+        if (this.scrollableDiv.offsetTop === minimumValue ||
+            this.scrollableDiv.scrollHeight < this.contentDiv.clientHeight) {
             return false;
         }
 
@@ -191,8 +194,8 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
      */
     scrollUp () : boolean {
 
-        // Already at the top
-        if (this.scrollableDiv.offsetTop === 0) {
+        // Already at the top or scrollable div is small than the content box
+        if (this.scrollableDiv.offsetTop === 0 || this.scrollableDiv.scrollHeight < this.contentDiv.clientHeight) {
             return false;
         }
 
@@ -207,14 +210,16 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
      * if the box is scrolling.
      */
     private mouseWheelHandler (event : WheelEvent) : void {
-        if (this.showScroll && event.deltaY < 0) {
-            if (this.scrollUp()) {
-                event.preventDefault();
-            }
-        } else {
-            if (this.scrollDown()) {
-                event.preventDefault();
-            }
+        if (!this.showScroll) {
+            return;
+        }
+        // Scroll up, if the event was a scroll-up and prevent event bubbling if we scrolled successfully
+        if (event.deltaY < 0 && this.scrollUp()) {
+            event.preventDefault();
+
+            // Scroll down otherwise and prevent event bubbling if we scrolled successfully
+        } else if (this.scrollDown()) {
+            event.preventDefault();
         }
     }
 
