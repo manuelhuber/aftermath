@@ -139,25 +139,6 @@ export class CharacterList implements OnInit {
         });
     }
 
-    /**
-     * Sort the characters by XP
-     */
-    sortXP () : void {
-        this.reverseSort = (this.lastSort === SORT.EXPERIENCE) ? -this.reverseSort : 1;
-        this.lastSort = SORT.EXPERIENCE;
-        this.sortHtmlEntries((a : HTMLElement, b : HTMLElement) => {
-            let experienceA : number = parseInt(a.getAttribute('data-experience'), 10);
-            let experienceB : number = parseInt(b.getAttribute('data-experience'), 10);
-            if (experienceA > experienceB) {
-                return -this.reverseSort;
-            } else if (experienceA < experienceB) {
-                return this.reverseSort;
-            } else {
-                return 0;
-            }
-        });
-    }
-
     showDetails (event : Event) : void {
         let htmlTarget : HTMLElement = <HTMLElement>event.currentTarget;
         this.selectedCharacterId = parseInt(htmlTarget.getAttribute('data-id'), 10);

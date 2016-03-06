@@ -46,9 +46,9 @@ export class CharacterDetailsItems implements OnChanges {
         this.items = [];
 
         setTimeout(() => {
-            this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
-                this.items = items;
-            });
+            //this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
+            //    this.items = items;
+            //});
         }, 0);
     }
 

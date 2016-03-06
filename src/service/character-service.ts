@@ -4,17 +4,16 @@ import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
 import { ItemModel } from '../model/item';
 import {CharacterConnector} from '../model/character-connector';
+import {CharacterDetailsModel} from '../model/character-details';
 
 @Injectable()
 export class CharacterService {
 
     characters : Observable<CharacterModel[]>;
-    items : Observable<ItemModel[]>;
     achievements : Observable<AchievementModel[]>;
 
     constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
         this.characters = connector.getCharacters().cache();
-        this.items = connector.getItems().cache();
         this.achievements = connector.getAchievements().cache();
     }
 
@@ -33,17 +32,14 @@ export class CharacterService {
         });
     }
 
+    getCharacterDetails (id : number) : Observable<CharacterDetailsModel> {
+        return this.connector.getCharacterDetails(id);
+    }
+
     getAchievementsForCharacter (character : CharacterModel) : Observable<AchievementModel[]> {
         return this.achievements.map((achievements : AchievementModel[]) => {
             return achievements.filter((achievement : AchievementModel) =>
                 character.achievements.some((id : number) => id === achievement.id));
-        });
-    }
-
-    getItemsForCharacter (character : CharacterModel) : Observable<ItemModel[]> {
-        return this.items.map((items : ItemModel[]) => {
-            return items.filter((item : ItemModel) =>
-                character.items.some((id : number) => id === item.id));
         });
     }
 }

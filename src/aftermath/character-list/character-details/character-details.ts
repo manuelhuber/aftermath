@@ -11,6 +11,7 @@ import { CharacterDetailsAchievements } from './character-details-achievements/c
 // Style
 import './character-details.less';
 import './character-details-sortables.less';
+import {CharacterDetailsModel} from '../../../model/character-details';
 
 @Component({
     selector: 'character-details',
@@ -27,10 +28,7 @@ export class CharacterDetails {
         'id': 0,
         'name': '--',
         'image': '',
-        'experience': 0,
-        'description': '',
         'achievements': [],
-        'items': []
     };
 
     // Needed for two way binding

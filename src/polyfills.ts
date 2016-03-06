@@ -9,6 +9,7 @@ import 'zone.js/dist/zone-microtask.min';
 // Manually include all operators we to minimize file size
 import 'rxjs/add/operator/cache';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/combineLatest';
 
 if ('production' === process.env.ENV) {
 
