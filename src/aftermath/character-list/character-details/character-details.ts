@@ -30,6 +30,7 @@ export class CharacterDetails {
         'image': '',
         'achievements': [],
     };
+    details : CharacterDetailsModel;
 
     // Needed for two way binding
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
@@ -95,9 +96,18 @@ export class CharacterDetails {
     }
 
     private getNewCharacterData () : void {
+        if (!this.selectedCharacterId) {
+            return;
+        }
+
         this.characterService.getCharacterByID(this.selectedCharacterId).subscribe((character : CharacterModel) => {
             this.character = character;
         });
+
+        this.characterService.getCharacterDetails(this.selectedCharacterId)
+            .subscribe((details : CharacterDetailsModel) => {
+                this.details = details;
+            });
     }
 
 }

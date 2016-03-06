@@ -27,7 +27,7 @@
             </div>
 
             <div class="character-details-card" *ngIf="tab === 'items'">
-                <character-details-items [character]="character"></character-details-items>
+                <character-details-items [details]="details"></character-details-items>
             </div>
             <div class="character-details-card" *ngIf="tab === 'achievements'">
                 <character-details-achievements [character]="character"></character-details-achievements>

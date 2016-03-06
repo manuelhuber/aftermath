@@ -6,7 +6,8 @@ import { ItemModel } from '../model/item';
 import { CharacterDetailsModel } from '../model/character-details';
 import { CharacterSpreadsheets, SpreadsheetKeys } from '../model/spreadsheet-keys';
 import { applyFrontSheetToCharacter } from './spreadsheet-to-character-details-mapper';
-import {applyBackSheetToCharacter} from './spreadsheet-to-character-details-mapper';
+import { applyBackSheetToCharacter } from './spreadsheet-to-character-details-mapper';
+import { CharacterConnector } from '../model/character-connector';
 
 /**
  * Fetches the data from google spreadsheets
@@ -53,7 +54,7 @@ const EMPTY_MODEL : CharacterDetailsModel = {
 };
 
 @Injectable()
-export class CharacterConnectorGoogleSpreadsheet {
+export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
     characters : Observable<CharacterSpreadsheets>;
 
@@ -118,23 +119,26 @@ export class CharacterConnectorGoogleSpreadsheet {
                 return character;
             }
 
-            let front : Observable<any> =
-                this.http.get(`${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`)
-                    .map(response => response.json()).map((response : any[]) => {
+            let frontUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`;
+            let backUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`;
+
+            let front : Observable<any> = this.http.get(frontUrl)
+                .map(response => response.json()).map((response : any[]) => {
                     applyFrontSheetToCharacter(response, character);
                 });
 
-            let back : Observable<any> =
-                this.http.get(`${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`)
-                    .map(response => response.json()).map((response : any[]) => {
+            let back : Observable<any> = this.http.get(backUrl)
+                .map(response => response.json()).map((response : any[]) => {
                     applyBackSheetToCharacter(response, character);
                 });
 
+            //Observable.fromArray([frontUrl, backUrl]).concatMap((res : any) => console.log(res));
+
             // When front & back is done, return the model
-            return Observable.combineLatest([front, back], (front : any, back : any) => {
+            return Observable.combineLatest(front, back).map(() => {
                 return character;
             });
-        })
+        }).concatAll();
     }
 
     /**

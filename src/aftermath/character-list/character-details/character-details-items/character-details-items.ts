@@ -1,6 +1,6 @@
 // Services
 import { Component, Inject, Input, OnChanges } from 'angular2/core';
-import { NgFor } from 'angular2/common';
+import { NgFor, NgIf } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
 
 // Sub components
@@ -10,15 +10,16 @@ import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/
 // Style
 import './character-details-items.less';
 import { ItemModel } from '../../../../model/item';
+import { CharacterDetailsModel } from '../../../../model/character-details';
 
 @Component({
     selector: 'character-details-items',
-    directives: [SortableBoxes, SortableBox, NgFor],
+    directives: [SortableBoxes, SortableBox, NgFor, NgIf],
     template: require('./character-details-items.html')
 })
 export class CharacterDetailsItems implements OnChanges {
 
-    @Input() character : CharacterModel;
+    @Input() details : CharacterDetailsModel;
     items : ItemModel[];
 
     listener : EventListener;

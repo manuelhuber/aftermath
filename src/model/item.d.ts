@@ -5,7 +5,6 @@
 import './sortable.d.ts';
 
 declare interface ItemModel extends Sortable {
-    id : number;
     type : string;
     description : string;
     image : string;

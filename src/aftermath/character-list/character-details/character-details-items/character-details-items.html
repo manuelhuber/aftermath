@@ -1,7 +1,7 @@
 <div class="character-details-sortable">
 
-    <sortable-boxes [sortables]="items">
-        <sortable-box *ngFor="#item of items; #i = index" [sortable]="item">
+    <sortable-boxes [sortables]="items" *ngIf="details && details.items">
+        <sortable-box *ngFor="#item of details.items; #i = index" [sortable]="item">
 
             <div class="character-details-sortable-card-wrapper">
                 <div class="character-details-sortable-card character-details-items-card mod-rarity-{{item.rarity}}" (click)="clickCard($event)">

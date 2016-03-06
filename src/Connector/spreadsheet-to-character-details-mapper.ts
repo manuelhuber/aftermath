@@ -1,6 +1,7 @@
 import {CharacterDetailsModel} from '../model/character-details';
+import {ItemModel} from '../model/item';
 
-export function applyFrontSheetToCharacter (json : any, character : CharacterDetailsModel) : CharacterDetailsModel {
+export function applyFrontSheetToCharacter (json : any, character : CharacterDetailsModel) : void {
     let sheet : string[][] = jsonToArray(json);
 
     character.name = sheet[6][8];
@@ -19,14 +20,44 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.fellowship = JSON.parse(sheet[25][19]);
     character.influence = JSON.parse(sheet[27][19]);
 
-    console.log(character);
-    return character;
 }
 
-export function applyBackSheetToCharacter (json : any, character : CharacterDetailsModel) : CharacterDetailsModel {
+export function applyBackSheetToCharacter (json : any, character : CharacterDetailsModel) : void {
+    let sheet : string[][] = jsonToArray(json);
+    applyItems(sheet, character);
+    console.log(character);
     return null;
 }
 
+function applyItems (sheet : string[][], character : CharacterDetailsModel) : void {
+
+    let row : number = 43;
+    let itemName : string = sheet[row][2];
+
+    character.items = [];
+
+    while (!!itemName) {
+
+        // Building the date
+        let dateArray : string[] = sheet[row][17].split('.');
+        let date : Date = new Date();
+        date.setFullYear(parseInt(dateArray[2]));
+        // Months start at 0
+        date.setMonth(parseInt(dateArray[1])-1);
+        date.setDate(parseInt(dateArray[0]));
+
+        let item : ItemModel = {
+            name: itemName,
+            description: sheet[row][6],
+            type: sheet[row][15],
+            date: date,
+            image: sheet[row][19],
+            rarity: 0
+        };
+        character.items.push(item);
+        itemName = sheet[++row][2];
+    }
+}
 /**
  * Transforms the json to a 2 dimensional array
  */
