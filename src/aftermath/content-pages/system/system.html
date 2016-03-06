@@ -6,7 +6,7 @@
 
             <horizontal-menu-entry scrollTo="content-system-overview" text="Basics">
 
-                <horizontal-menu-entry scrollTo="content-system-overview-checks" text="Checks"></horizontal-menu-entry>
+                <horizontal-menu-entry scrollTo="content-system-overview-tests" text="Tests"></horizontal-menu-entry>
                 <horizontal-menu-entry scrollTo="content-system-overview-stats" text="Stats"></horizontal-menu-entry>
                 <horizontal-menu-entry scrollTo="content-system-overview-example"
                                        text="Example"></horizontal-menu-entry>
@@ -45,16 +45,16 @@
                 <li>Du bist ein Menschen: Du stirbst schnell & wirst kaum stärker</li>
                 <li>d100 basiertes System</li>
                 <li>Mehr crunch (= Regeln/System/Mathe/..) als DND5</li>
-                <!--This is here so it's kind of centered with the "checks" text. It sucks bit it's a quick solution-->
+                <!--This is here so it's kind of centered with the "Tests" text. It sucks bit it's a quick solution-->
                 <roll-simulator class="content-page-example-box content-system-roll-simulator"></roll-simulator>
                 <li>Point-Buy-System (XP wird für einzelne Upgrades ausgegeben)</li>
                 <li>Niedrig Würfeln = besser</li>
             </ul>
 
-            <!-- System Overview Checks ---------------------------------------------------------------------------- -->
-            <div class="h2" id="content-system-overview-checks">Checks</div>
+            <!-- System Overview Tests ---------------------------------------------------------------------------- -->
+            <div class="h2" id="content-system-overview-tests">Tests</div>
             <div>
-                (Fast) Alles im System basiert auf <b>Checks</b>. So funktionierts:
+                (Fast) Alles im System basiert auf <b>Tests</b>. So funktionierts:
                 <ol>
                     <li>Passende <b>Characteristic</b> (Stärke, Intelligenz, etc.) auswählen</li>
                     <li>Modifikatoren draufzählen/abziehen um die <b>Target Number (TN)</b> zu erhalten</li>
@@ -70,14 +70,14 @@
             <div>
                 Characteristics, Skills & Talents kannst du mit XP kauft/verbessern, Aptitudes bekommst du während
                 der Charactererstellung & Traits werden nur durch besondere Ereignise erlangt.<br>
-                <b>Characteristics</b> sind deine Werte wie Stärke & Intelligenz und Grundlage für fast alle Checks.<br>
+                <b>Characteristics</b> sind deine Werte wie Stärke & Intelligenz und Grundlage für fast alle Tests.<br>
                 <b>Characteristics Bonus</b> ist der 10er Wert der Characteristic. <br>
                 Agility=48 => Agility Bonus=4. Abgekürzt mit einem großen B hinter der Characteristics Abkürzung (z.B.
                 AgB
                 für Agility Bonus) <br>
                 <b>Skills</b> sind gelernte Fähigkeiten, wie z.B. eine Sprache sprechen oder Auto fahren und Skills
                 geben
-                dir einen Bonus wenn du einen entsprechenden Check machst<br>
+                dir einen Bonus wenn du einen entsprechenden Test machst<br>
                 <b>Talents</b> sind spezielle Verbesserungen, wie z.B. Schneller Nachladen.<br>
                 <b>Aptitudes</b> sind deine Affinitäten (z.B. "Tech") und verringern die XP Kosten von entsprechenden
                 Upgrades<br>
@@ -89,7 +89,7 @@
             <div class="content-page-example-box" id="content-system-overview-example">
                 <div class="h2">Beispiel</div>
                 Dave ist neu in der Stadt und will rausfinden, wer hier mit Organen handelt<br>
-                Er versucht in der schäbigsten Taverne Informationen zu sammeln und will einen Skillcheck machen. Der
+                Er versucht in der schäbigsten Taverne Informationen zu sammeln und will einen Skilltest machen. Der
                 treffendste Skill ist Inquiry (rumfragen) und die passendste Characteristic dafür ist Fellowship. Dave
                 hat einen Fellowship Wert von 31 und einen Inquiry Bonus von +10, aber da die Tavernengäste sehr
                 misstrauisch sind bekommt er eine -20 Modifikation. Somit ist seine Target Number 31 + 10 - 20 = 21.
@@ -130,7 +130,7 @@
                 aber der Ablauf ist immer gleich:
                 <ul>
                     <li>Du suchst dein Ziel</li>
-                    <li>Du machst deinen Angriffscheck (davor alle Modifikatoren zusammenrechnen)</li>
+                    <li>Du machst deinen Angriffstest (davor alle Modifikatoren zusammenrechnen)</li>
                     <li>Falls getroffen kann der Gegner evtl versuchen auszuweichen</li>
                     <li>Falls getroffen würfelst du Schaden</li>
                 </ul>
@@ -176,7 +176,7 @@
                 Er erhält 16 - 4 = 12 Schaden, wodurch er seine 9 Wounds verliert und 3 Punkte kritischen Schaden nimmt.
                 <br>
                 Der kritische Effekt ist: +0 Toughness Test bestehen oder werde gestunnt für 1 Runde. <br>
-                Fill würfelt seinen Toughness check und erhält eine 78! Nicht bestanden! <br>
+                Fill würfelt seinen Toughness Test und erhält eine 78! Nicht bestanden! <br>
                 Jericho nimmt den betäubten Fill und schubst ihn aus dem 6 Meter hohen Wachturm.
                 Als er unten mit seinem Kopf aufschlägt erleidet er 1d10 + 6 = 8 Schaden, womit er nun auf insgesamt 11
                 Punkte kritischen Schaden kommt und an einem zersplitterten Schädel stirbt.<br>
@@ -193,11 +193,11 @@
             <div class="h2">Items</div>
             <div>
                 Im Warhammer 40k Universum & in der Post Apokalypse ist nicht alles verfügbar und es gibt keine
-                allgemeine Währung. Du kannst mit einem Requisition Check (abhängig von der Characteristic "Influence")
+                allgemeine Währung. Du kannst mit einem Requisition Test (abhängig von der Characteristic "Influence")
                 versuchen einen Gegenstand zu besorgen. <br>
-                Es ist ein abstraktes System, da du kein Geld sammelst, sondern alles per Skillcheck machst, aber
+                Es ist ein abstraktes System, da du kein Geld sammelst, sondern alles per Skilltest machst, aber
                 es ist meiner Meinung nach eine schnelle Möglichkeit um einen langweiligen Teil (Münzen zählen &
-                Einkaufen rollenspielen) zu erledigen. Außerdem kannst du bei jedem Check erzählerisch frei gestalten
+                Einkaufen rollenspielen) zu erledigen. Außerdem kannst du bei jedem Test erzählerisch frei gestalten
                 wie der Deal von statten ging bzw schief lief.
             </div>
 
