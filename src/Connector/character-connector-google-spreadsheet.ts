@@ -79,9 +79,9 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     let entry : SpreadsheetKeys = {
                         spreadsheetKey: row.gsx$key.$t,
                         frontWorksheetKey: row.gsx$front.$t,
-                        backWorksheetKey: row.gsx$back.$t,
+                        backWorksheetKey: row.gsx$back.$t
                     };
-                    result[JSON.parse(row.gsx$id.$t)] = entry
+                    result[JSON.parse(row.gsx$id.$t)] = entry;
                 });
 
                 return result;
@@ -97,7 +97,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     id: JSON.parse(row.gsx$id.$t),
                     name: row.gsx$name.$t,
                     image: row.gsx$image.$t,
-                    achievements: this.parseStringToNumberArray(row.gsx$achievements.$t),
+                    achievements: this.parseStringToNumberArray(row.gsx$achievements.$t)
                 };
                 result.push(char);
             });

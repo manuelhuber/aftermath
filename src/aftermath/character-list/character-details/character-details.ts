@@ -28,7 +28,7 @@ export class CharacterDetails {
         'id': 0,
         'name': '--',
         'image': '',
-        'achievements': [],
+        'achievements': []
     };
     details : CharacterDetailsModel;
 
@@ -88,6 +88,8 @@ export class CharacterDetails {
         if (!!changes['selectedCharacterId']) {
             this.getNewCharacterData();
         }
+
+        // Making the body overflow hidden while the details are active removes the double scroll bar on small screens
         if (!!changes['active']) {
             if (changes['active'].currentValue) {
                 document.body.style.overflow = 'hidden';

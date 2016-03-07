@@ -25,7 +25,6 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 export function applyBackSheetToCharacter (json : any, character : CharacterDetailsModel) : void {
     let sheet : string[][] = jsonToArray(json);
     applyItems(sheet, character);
-    console.log(character);
     return null;
 }
 
@@ -41,10 +40,10 @@ function applyItems (sheet : string[][], character : CharacterDetailsModel) : vo
         // Building the date
         let dateArray : string[] = sheet[row][17].split('.');
         let date : Date = new Date();
-        date.setFullYear(parseInt(dateArray[2]));
+        date.setFullYear(parseInt(dateArray[2], 10));
         // Months start at 0
-        date.setMonth(parseInt(dateArray[1])-1);
-        date.setDate(parseInt(dateArray[0]));
+        date.setMonth(parseInt(dateArray[1], 10) - 1);
+        date.setDate(parseInt(dateArray[0], 10));
 
         let item : ItemModel = {
             name: itemName,
