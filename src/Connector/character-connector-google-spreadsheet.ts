@@ -36,6 +36,12 @@ const EMPTY_MODEL : CharacterDetailsModel = {
     story: '',
     experienceEarned: 0,
 
+    age: '',
+    look: '',
+    build: '',
+    quirks: '',
+    superstition: '',
+
     // Characteristics
     weaponSkill: 0,
     ballisticSkill: 0,

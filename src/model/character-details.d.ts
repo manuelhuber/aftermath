@@ -6,6 +6,13 @@ declare interface CharacterDetailsModel {
     role : string;
     about : string;
     story : string;
+    experienceEarned : number;
+
+    age : string;
+    look : string;
+    build : string;
+    quirks : string;
+    superstition : string;
 
     // Characteristics
     weaponSkill : number;
@@ -21,7 +28,6 @@ declare interface CharacterDetailsModel {
 
     skills : {(name : string) : number};
 
-    experienceEarned : number;
 
     talents : string[];
 
