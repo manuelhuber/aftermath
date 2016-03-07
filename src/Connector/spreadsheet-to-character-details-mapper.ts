@@ -7,6 +7,7 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.name = sheet[6][8];
     character.about = sheet[12][4];
     character.role = sheet[9][8];
+    character.story = sheet[73][2];
 
     character.weaponSkill = JSON.parse(sheet[19][9]);
     character.ballisticSkill = JSON.parse(sheet[21][9]);

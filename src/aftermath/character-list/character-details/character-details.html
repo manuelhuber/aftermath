@@ -1,14 +1,13 @@
 <div class="character-details-background" *ngIf="active" (click)="closeOnClick($event)">
-    <div class="character-details" *ngIf="character">
+    <div class="character-details" *ngIf="character && details">
         <div class="character-details-top">
 
             <img class="character-details-image" src="{{character.image}}" alt="">
 
             <div class="character-details-stats">
-
-                <div class="h1"> {{character.name}}</div>
-                <div> {{character.description}}</div>
-
+                <div class="h1">{{character.name}}</div>
+                <div class="h3">{{details.role}}</div>
+                <div>{{details.about}}</div>
             </div>
 
         </div>
@@ -16,23 +15,26 @@
         <div class="character-details-bottom" *ngIf="details">
 
             <div class="character-details-flags">
-
                 <div class="character-details-flag" [class.is-active]="tab === 'items'" (click)="tab = 'items'">
                     Items
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'achievements'"
-                     (click)="tab = 'achievements'">Achievements
+                     (click)="tab = 'achievements'">
+                    Achievements
                 </div>
-
+                <div class="character-details-flag" [class.is-active]="tab === 'story'"
+                     (click)="tab = 'story'">
+                    Story
+                </div>
             </div>
 
-            <div class="character-details-card" *ngIf="tab === 'items'">
-                <character-details-items [items]="details.items"></character-details-items>
+            <div class="character-details-card">
+                <character-details-items *ngIf="tab === 'items'" [items]="details.items"></character-details-items>
+                <character-details-achievements *ngIf="tab === 'achievements'"
+                                                [achievementIds]="character.achievements">
+                </character-details-achievements>
+                <div *ngIf="tab === 'story'" class="character-details-card-story"> {{details.story}}</div>
             </div>
-            <div class="character-details-card" *ngIf="tab === 'achievements'">
-                <character-details-achievements [character]="character"></character-details-achievements>
-            </div>
-
 
         </div>
 

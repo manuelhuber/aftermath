@@ -36,10 +36,10 @@ export class CharacterService {
         return this.connector.getCharacterDetails(id);
     }
 
-    getAchievementsForCharacter (character : CharacterModel) : Observable<AchievementModel[]> {
+    getAchievementsForCharacter (ids : number[]) : Observable<AchievementModel[]> {
         return this.achievements.map((achievements : AchievementModel[]) => {
             return achievements.filter((achievement : AchievementModel) =>
-                character.achievements.some((id : number) => id === achievement.id));
+                ids.some((id : number) => id === achievement.id));
         });
     }
 }
