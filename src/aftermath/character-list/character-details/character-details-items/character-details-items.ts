@@ -1,5 +1,5 @@
 // Services
-import { Component, Inject, Input, OnChanges } from 'angular2/core';
+import { Component, Inject, Input } from 'angular2/core';
 import { NgFor, NgIf } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
 
@@ -17,10 +17,9 @@ import { CharacterDetailsModel } from '../../../../model/character-details';
     directives: [SortableBoxes, SortableBox, NgFor, NgIf],
     template: require('./character-details-items.html')
 })
-export class CharacterDetailsItems implements OnChanges {
+export class CharacterDetailsItems {
 
-    @Input() details : CharacterDetailsModel;
-    items : ItemModel[];
+    @Input() items : ItemModel[];
 
     listener : EventListener;
 
@@ -38,19 +37,6 @@ export class CharacterDetailsItems implements OnChanges {
             }, 0);
         };
 
-    }
-
-    ngOnChanges (changes : {}) : any {
-
-        // This is needed so that on character change all items are removed and then readded from scratch
-
-        this.items = [];
-
-        setTimeout(() => {
-            //this.characterService.getItemsForCharacter(this.character).subscribe((items : ItemModel[]) => {
-            //    this.items = items;
-            //});
-        }, 0);
     }
 
     clickCard (event : Event) : void {
