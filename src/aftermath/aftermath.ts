@@ -2,6 +2,8 @@ import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
 
 import { System } from './content-pages/system/system';
+import { World } from './content-pages/world/world';
+import { Group } from './content-pages/group/group';
 import { CharacterList } from  './character-list/character-list';
 import { Header } from './header/header';
 import { Footer } from  './footer/footer';
@@ -18,6 +20,8 @@ import './aftermath.less';
 })
 @RouteConfig([
     {path: '/system', component: System, name: 'System'},
+    {path: '/world', component: World, name: 'World'},
+    {path: '/group', component: Group, name: 'Group'},
     {path: '/**', redirectTo: ['System']}
 ])
 export class Aftermath {

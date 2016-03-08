@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from 'angular2/core';
+import { Component, Inject } from 'angular2/core';
+import { Router } from 'angular2/router';
 
 import './footer.less';
 
@@ -44,8 +45,11 @@ export class Footer {
 
     randomQuote : string;
 
-    constructor () {
-        this.randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    constructor (@Inject(Router) route : Router) {
+        route.subscribe(() => {
+            this.randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        });
+
     }
 
 }
