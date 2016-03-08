@@ -18,6 +18,7 @@
                 <horizontal-menu-entry scrollTo="content-system-combat-actions" text="Actions"></horizontal-menu-entry>
                 <horizontal-menu-entry scrollTo="content-system-combat-attack" text="Attack"></horizontal-menu-entry>
                 <horizontal-menu-entry scrollTo="content-system-combat-damage" text="Damage"></horizontal-menu-entry>
+                <horizontal-menu-entry scrollTo="content-system-combat-cover" text="Cover"></horizontal-menu-entry>
                 <horizontal-menu-entry scrollTo="content-system-combat-example" text="Example"></horizontal-menu-entry>
 
 
@@ -143,14 +144,31 @@
                 In Dark Heresy gibt es Hit Locations (z.B. Bauch oder Kopf), die bei den meisten Angriffen zufällig
                 ermittelt wird. Die Hit Locations ist wichtig für die Bestimmung des Rüstungswerts und des Effekts bei
                 kritischem Schaden. Wenn du Schaden an einem Ziel machst, geh wie folgt vor:<br>
-                Zähl den TB (Toughness Bonus) und Rüstungswert der getroffenen Location zusammen und zieh sie vom
-                Schaden ab. Der noch verbleibende Schaden wird nun von den Wounds ( = Hitpoints) des Ziels abgezogen.
-                <br>
-                Wenn alle Wounds weg sind, nimmt dein Ziel kritischen Schaden. Abhängig vom Schadenstyp
-                (z.b. Explosion oder Impact), Hit Location und evtl bereits vorhandenem kritischen Schaden passiert nun
-                ein kritischer Effekt. Bei geringem krtischen Schaden (1-3) sind die Effekte schlecht, wie z.B.
-                gebrochene Knochen, und bei höherem kritischen Schaden (8+) sind sie tödlich.
+                <ul>
+                    <li>Zähl den TB (Toughness Bonus) und Rüstungswert der getroffenen Location zusammen</li>
+                    <li>Zieh sie vom Schaden ab</li>
+                    <li>Zieh den noch verbleibende Schaden von den Wounds (=Hitpoints) des Ziels ab</li>
+                    <li>Falls alle Wounds weg sind, nimmt dein Ziel kritischen Schaden</li>
+                </ul>
+                <div class="h3">Critical Damage</div>
+                Abhängig vom Schadenstyp (z.b. Explosion oder Impact), Hit Location und evtl bereits vorhandenem
+                kritischen Schaden passiert nun ein kritischer Effekt. Bei geringem krtischen Schaden (1-3) sind die
+                Effekte schlecht, wie z.B. gebrochene Knochen, und bei höherem kritischen Schaden (8+) sind sie tödlich.
             </div>
+
+            <!-- Combat Cover -------------------------------------------------------------------------------------- -->
+            <div class="h2" id="content-system-combat-cover">Cover</div>
+            <div>
+                Deckung verdeckt einen Teil deines Körpers. Wenn du z.b. an einem Hauseck stehst und um die Ecke schießt
+                ist wahrscheinlich dein linker Arm, linkes Bein und evtl sogar dein Körper hinter Deckung. Falls nun
+                eine dieser Stellen getroffen wird (und bei den meisten Angriffen wird dies per Zufall entschieden),
+                dann wirkt die Deckung wie zusätzliche Rüstung. Eine dicke Stahlplatte absorbiert bis zu 16 Schaden.
+                <br>
+                Falls der Schaden den Rüstungswert der Deckung übersteigt bekommst du den restlichen Schaden ab und der
+                Wert der Rüstung wird um 1 verringert. Wenn der Wert bei 0 ist, ist die Deckung zerstört.
+            </div>
+
+            <br>
 
             <div class="content-page-example-box" id="content-system-combat-example">
                 <div class="h3">Beispiel</div>
@@ -177,11 +195,10 @@
                 Er erhält 16 - 4 = 12 Schaden, wodurch er seine 9 Wounds verliert und 3 Punkte kritischen Schaden nimmt.
                 <br>
                 Der kritische Effekt ist: +0 Toughness Test bestehen oder werde gestunnt für 1 Runde. <br>
-                Fill würfelt seinen Toughness Test und erhält eine 78! Nicht bestanden! <br>
-                Jericho nimmt den betäubten Fill und schubst ihn aus dem 6 Meter hohen Wachturm.
-                Als er unten mit seinem Kopf aufschlägt erleidet er 1d10 + 6 = 8 Schaden, womit er nun auf insgesamt 11
-                Punkte kritischen Schaden kommt und an einem zersplitterten Schädel stirbt.<br>
-                Jericho ist zufrieden.
+                Fill würfelt seinen Toughness Test und erhält eine 78. Nicht bestanden! <br>
+                Jericho nimmt den betäubten Fill und schubst ihn aus dem 6 Meter hohen Wachturm. <br>
+                Als er unten aufschlägt erleidet er 1d10 + 6 = 8 Schaden, womit er nun auf insgesamt 11 Punkte
+                kritischen Schaden kommt und an einem zersplitterten Schädel stirbt.<br>
             </div>
 
         </div>
