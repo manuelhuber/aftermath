@@ -9,8 +9,6 @@ import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/
 
 // Style
 import './character-details-items.less';
-import { ItemModel } from '../../../../model/item';
-import { CharacterDetailsModel } from '../../../../model/character-details';
 
 @Component({
     selector: 'character-details-items',
@@ -19,7 +17,7 @@ import { CharacterDetailsModel } from '../../../../model/character-details';
 })
 export class CharacterDetailsItems {
 
-    @Input() items : ItemModel[];
+    @Input() items : Item[];
 
     listener : EventListener;
 

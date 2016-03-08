@@ -11,7 +11,6 @@ import { CharacterDetailsAchievements } from './character-details-achievements/c
 // Style
 import './character-details.less';
 import './character-details-sortables.less';
-import {CharacterDetailsModel} from '../../../model/character-details';
 
 @Component({
     selector: 'character-details',
@@ -30,7 +29,7 @@ export class CharacterDetails {
         'image': '',
         'achievements': []
     };
-    details : CharacterDetailsModel;
+    details : CharacterDetails;
 
     // Needed for two way binding
     @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
@@ -107,7 +106,7 @@ export class CharacterDetails {
         });
 
         this.characterService.getCharacterDetails(this.selectedCharacterId)
-            .subscribe((details : CharacterDetailsModel) => {
+            .subscribe((details : CharacterDetails) => {
                 this.details = details;
             });
     }

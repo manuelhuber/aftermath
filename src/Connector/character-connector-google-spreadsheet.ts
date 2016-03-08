@@ -2,8 +2,6 @@ import { Injectable } from 'angular2/core';
 import { Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
-import { ItemModel } from '../model/item';
-import { CharacterDetailsModel } from '../model/character-details';
 import { CharacterSpreadsheets, SpreadsheetKeys } from '../model/spreadsheet-keys';
 import { applyFrontSheetToCharacter } from './spreadsheet-to-character-details-mapper';
 import { applyBackSheetToCharacter } from './spreadsheet-to-character-details-mapper';
@@ -28,7 +26,7 @@ const ITEM_WORKSHEET_ID : string = 'ogun2ej';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
-const EMPTY_MODEL : CharacterDetailsModel = {
+const EMPTY_MODEL : CharacterDetails = {
     // General stuff
     name: '',
     role: '',
@@ -115,10 +113,10 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
      * Returns all the Character details from the spreadsheet for the given ID
      * If no spreadsheet is given, it will return null
      */
-    getCharacterDetails (id : number) : Observable<CharacterDetailsModel> {
+    getCharacterDetails (id : number) : Observable<CharacterDetails> {
 
         let keys : SpreadsheetKeys = this.characters[id];
-        let character : CharacterDetailsModel = EMPTY_MODEL;
+        let character : CharacterDetails = EMPTY_MODEL;
         if (!keys) {
             return null;
         }

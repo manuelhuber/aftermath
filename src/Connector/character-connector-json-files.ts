@@ -2,7 +2,6 @@ import { Injectable } from 'angular2/core';
 import { Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
-import { ItemModel } from '../model/item';
 
 /**
  * Gets all the data from the jsons laying on the server
@@ -22,7 +21,7 @@ export class CharacterConnectorJsonFiles {
             .map(res => res.json());
     }
 
-    getItems () : Observable<ItemModel[]> {
+    getItems () : Observable<Item[]> {
         return this.http.get('data/characters/items.json')
             .map(res => res.json());
     }

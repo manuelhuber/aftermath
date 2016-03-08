@@ -2,9 +2,7 @@ import { Injectable, Inject } from 'angular2/core';
 import { CharacterConnectorGoogleSpreadsheet } from '../connector/character-connector-google-spreadsheet';
 import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
-import { ItemModel } from '../model/item';
-import {CharacterConnector} from '../model/character-connector';
-import {CharacterDetailsModel} from '../model/character-details';
+import { CharacterConnector } from '../model/character-connector';
 
 @Injectable()
 export class CharacterService {
@@ -33,7 +31,7 @@ export class CharacterService {
         });
     }
 
-    getCharacterDetails (id : number) : Observable<CharacterDetailsModel> {
+    getCharacterDetails (id : number) : Observable<CharacterDetails> {
 
         return this.connector.getCharacterDetails(id);
 

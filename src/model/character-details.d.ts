@@ -1,18 +1,34 @@
-import {ItemModel} from './item';
-declare interface CharacterDetailsModel {
+declare interface CharacterDetails {
 
-    // General stuff
+    // General stuff left side (on the character sheet)
     name : string;
+    homeWorld : string;
+    background : string;
     role : string;
+    eliteAdvances : string;
+    divination : string;
     about : string;
-    story : string;
-    experienceEarned : number;
-
+    // General stuff right side (on the character sheet)
+    gender : string;
     age : string;
-    look : string;
     build : string;
+    complexion : string;
     quirks : string;
     superstition : string;
+    momentos : string;
+    allies : string;
+    enemies : string;
+
+    story : string;
+
+    // XP
+    experienceEarned : number;
+    characteristicExperience : number;
+    skillExperience : number;
+    talentExperience : number;
+    psykerExperience : number;
+    experienceAvailable : number;
+
 
     // Characteristics
     weaponSkill : number;
@@ -29,8 +45,26 @@ declare interface CharacterDetailsModel {
     skills : {(name : string) : number};
 
 
-    talents : string[];
+    talents : Talent[];
 
-    items : ItemModel[];
+    items : Item[];
 
+}
+
+declare interface Talent {
+    name : string;
+    description : string;
+}
+
+declare interface Item extends Sortable {
+    type : string;
+    description : string;
+    image : string;
+}
+
+declare interface Skill {
+    name : string;
+    characteristic : string;
+    rank : number;
+    total : number;
 }
