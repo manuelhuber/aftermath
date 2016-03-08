@@ -25,6 +25,15 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
     character.story = sheet[73][2];
 
+    applyAptitudes(sheet, character);
+
+    // Bad stuff
+    character.insanity = sheet[40][16] ? JSON.parse(sheet[40][16]) : 0;
+    applyNonEmptyStringToArray(sheet, 42, 10, 3, character.mentalDisorder);
+    character.corruption = sheet[46][16] ? JSON.parse(sheet[46][16]) : 0;
+    applyNonEmptyStringToArray(sheet, 48, 10, 3, character.malignances);
+    applyNonEmptyStringToArray(sheet, 48, 19, 3, character.mutations);
+
     // XP
     character.experienceEarned = JSON.parse(sheet[32][17]);
     character.characteristicExperience = JSON.parse(sheet[33][17]);
@@ -46,7 +55,10 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.influence = JSON.parse(sheet[27][19]);
 
     applyTalents(sheet, character);
-    applySkills(sheet, character);
+    // Left skill column
+    applySkills(22, 29, sheet, character);
+    // Right skill column
+    applySkills(35, 44, sheet, character);
 
 }
 
@@ -100,8 +112,48 @@ function applyTalents (sheet : string[][], character : CharacterDetails) {
     character.talents = talents;
 }
 
-function applySkills (sheet : string[][], character : CharacterDetails) {
+function applySkills (colOfName : number, colOfRankOne : number, sheet : string[][], character : CharacterDetails) {
+    for (let row : number = 19; row <= 45; row++) {
+        if (!!sheet[row][colOfRankOne]) {
+            let skill : Skill = {
+                name: sheet[row][colOfName],
+                rank: !!sheet[row][colOfRankOne + 3] ? 4 :
+                    !!sheet[row][colOfRankOne + 2] ? 3 :
+                        !!sheet[row][colOfRankOne + 1] ? 2 : 1,
+                total: JSON.parse(sheet[row][colOfRankOne + 4])
+            };
+            character.skills.push(skill);
+        }
+    }
+}
 
+/**
+ * If the number for the Aptitude is not 0 it will be added to the aptitude string array
+ * @param sheet
+ * @param character
+ */
+function applyAptitudes (sheet : string[][], character : CharacterDetails) {
+    for (let row : number = 32; row <= 50; row++) {
+        if (JSON.parse(sheet[row][8]) > 0) {
+            character.aptitudes.push(sheet[row][4]);
+        }
+    }
+}
+
+/**
+ * Adds the content of non-empty cells for the given row/col and adds it to the string array
+ * @param sheet
+ * @param row Starting row
+ * @param col Column
+ * @param rowCount Number of rows (going down from start)
+ * @param strings Array to which cell content should be added
+ */
+function applyNonEmptyStringToArray (sheet : string[][], row : number, col : number, rowCount : number, strings : string[]) {
+    for (let currentRow : number = row; currentRow < row + rowCount; currentRow++) {
+        if (!!sheet[currentRow][col]) {
+            strings.push(sheet[currentRow][col]);
+        }
+    }
 }
 
 /**

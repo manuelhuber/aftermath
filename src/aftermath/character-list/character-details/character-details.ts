@@ -17,7 +17,7 @@ import './character-details-sortables.less';
     directives: [Icon, NgIf, CharacterDetailsItems, CharacterDetailsAchievements],
     template: require('./character-details.html')
 })
-export class CharacterDetails {
+export class CharacterDetailsComponent {
 
     @Input() active : boolean = true;
     @Input() selectedCharacterId : number;

@@ -21,6 +21,15 @@ declare interface CharacterDetails {
 
     story : string;
 
+    aptitudes : string[];
+
+    // Bad stuff
+    insanity : number;
+    mentalDisorder : string[];
+    corruption : number;
+    malignances : string[];
+    mutations : string[];
+
     // XP
     experienceEarned : number;
     characteristicExperience : number;
@@ -28,7 +37,6 @@ declare interface CharacterDetails {
     talentExperience : number;
     psykerExperience : number;
     experienceAvailable : number;
-
 
     // Characteristics
     weaponSkill : number;
@@ -42,8 +50,7 @@ declare interface CharacterDetails {
     fellowship : number;
     influence : number;
 
-    skills : {(name : string) : number};
-
+    skills : Skill[];
 
     talents : Talent[];
 
@@ -64,7 +71,6 @@ declare interface Item extends Sortable {
 
 declare interface Skill {
     name : string;
-    characteristic : string;
     rank : number;
     total : number;
 }

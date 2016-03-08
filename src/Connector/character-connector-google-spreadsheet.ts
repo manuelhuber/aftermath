@@ -27,18 +27,42 @@ const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
 const EMPTY_MODEL : CharacterDetails = {
-    // General stuff
+    // General stuff left side (on the character sheet)
     name: '',
+    homeWorld: '',
+    background: '',
     role: '',
+    eliteAdvances: '',
+    divination: '',
     about: '',
-    story: '',
-    experienceEarned: 0,
-
+    // General stuff right side (on the character sheet)
+    gender: '',
     age: '',
-    look: '',
     build: '',
+    complexion: '',
     quirks: '',
     superstition: '',
+    momentos: '',
+    allies: '',
+    enemies: '',
+
+    story: '',
+
+    aptitudes: [],
+
+    insanity: 0,
+    mentalDisorder: [],
+    corruption: 0,
+    malignances: [],
+    mutations: [],
+
+    // XP
+    experienceEarned: 0,
+    characteristicExperience: 0,
+    skillExperience: 0,
+    talentExperience: 0,
+    psykerExperience: 0,
+    experienceAvailable: 0,
 
     // Characteristics
     weaponSkill: 0,
@@ -52,8 +76,10 @@ const EMPTY_MODEL : CharacterDetails = {
     fellowship: 0,
     influence: 0,
 
+    skills: [],
+
     talents: [],
-    skills: null,
+
     items: []
 };
 
