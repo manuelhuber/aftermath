@@ -57,7 +57,7 @@ function applyItems (sheet : string[][], character : CharacterDetailsModel) : vo
             type: sheet[row][15],
             date: date,
             image: sheet[row][19],
-            rarity: 0
+            rarity: JSON.parse(sheet[row][20])
         };
         character.items.push(item);
         itemName = sheet[++row][2];
