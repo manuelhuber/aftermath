@@ -52,7 +52,7 @@ module.exports = helpers.validate({
             // Support for *.json files.
             {test: /\.json$/, loader: 'json-loader'},
 
-            {test: /\.svg$/, loader: 'svg-inline'},
+            {test: /\.svg$/, loader: 'raw-loader'},
 
             // Support for CSS as raw text
             {test: /\.less$/, loader: 'style!css!less'},

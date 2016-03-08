@@ -110,7 +110,7 @@ module.exports = helpers.validate({
 
             {test: /\.(jpg|png)$/, loader: 'file-loader'},
 
-            {test: /\.svg$/, loader: 'svg-inline'},
+            {test: /\.svg$/, loader: 'raw-loader'},
 
             {test: /\.ttf$/, loader: 'url-loader'}
 
