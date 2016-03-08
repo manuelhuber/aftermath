@@ -62,7 +62,7 @@ const EMPTY_MODEL : CharacterDetailsModel = {
 @Injectable()
 export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
-    characters : Observable<CharacterSpreadsheets>;
+    characters : CharacterSpreadsheets;
 
     constructor (private http : Http) {}
 
@@ -76,22 +76,21 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
             this.http.get(`${BASE_URL}/${LIST}/${SPREADSHEET_KEY}/${CHARACTER_WORKSHEET_ID}/${OPTIONS}`);
 
         // Get the spreasheet keys
-        this.characters = baseCall
-            .map(response => response.json().feed.entry).map((response : any[]) => {
+        baseCall.map(response => response.json().feed.entry).subscribe((response : any[]) => {
 
-                let result : CharacterSpreadsheets = {};
-                response.forEach((row : any) => {
-                    // Save all the keys
-                    let entry : SpreadsheetKeys = {
-                        spreadsheetKey: row.gsx$key.$t,
-                        frontWorksheetKey: row.gsx$front.$t,
-                        backWorksheetKey: row.gsx$back.$t
-                    };
-                    result[JSON.parse(row.gsx$id.$t)] = entry;
-                });
-
-                return result;
+            let result : CharacterSpreadsheets = {};
+            response.forEach((row : any) => {
+                // Save all the keys
+                let entry : SpreadsheetKeys = {
+                    spreadsheetKey: row.gsx$key.$t,
+                    frontWorksheetKey: row.gsx$front.$t,
+                    backWorksheetKey: row.gsx$back.$t
+                };
+                result[JSON.parse(row.gsx$id.$t)] = entry;
             });
+
+            this.characters = result;
+        });
 
         // Return the CharacterModels
         return baseCall.map(response => response.json().feed.entry).map((response : any[]) => {
@@ -114,37 +113,33 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
     /**
      * Returns all the Character details from the spreadsheet for the given ID
-     * If no spreadsheet is given, it will return empty data
+     * If no spreadsheet is given, it will return null
      */
     getCharacterDetails (id : number) : Observable<CharacterDetailsModel> {
-        return this.characters.map((sheets : CharacterSpreadsheets) => {
 
-            let keys : SpreadsheetKeys = sheets[id];
-            let character : CharacterDetailsModel = EMPTY_MODEL;
-            if (!keys) {
-                return character;
-            }
+        let keys : SpreadsheetKeys = this.characters[id];
+        let character : CharacterDetailsModel = EMPTY_MODEL;
+        if (!keys) {
+            return null;
+        }
 
-            let frontUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`;
-            let backUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`;
+        let frontUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`;
+        let backUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`;
 
-            let front : Observable<any> = this.http.get(frontUrl)
-                .map(response => response.json()).map((response : any[]) => {
-                    applyFrontSheetToCharacter(response, character);
-                });
-
-            let back : Observable<any> = this.http.get(backUrl)
-                .map(response => response.json()).map((response : any[]) => {
-                    applyBackSheetToCharacter(response, character);
-                });
-
-            //Observable.fromArray([frontUrl, backUrl]).concatMap((res : any) => console.log(res));
-
-            // When front & back is done, return the model
-            return Observable.combineLatest(front, back).map(() => {
-                return character;
+        let front : Observable<any> = this.http.get(frontUrl)
+            .map(response => response.json()).map((response : any[]) => {
+                applyFrontSheetToCharacter(response, character);
             });
-        }).concatAll();
+
+        let back : Observable<any> = this.http.get(backUrl)
+            .map(response => response.json()).map((response : any[]) => {
+                applyBackSheetToCharacter(response, character);
+            });
+
+        // When front & back is done, return the model
+        return Observable.merge(front, back).bufferCount(2).map(() => {
+            return character;
+        });
     }
 
     /**
