@@ -54,6 +54,10 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.fellowship = JSON.parse(sheet[25][19]);
     character.influence = JSON.parse(sheet[27][19]);
 
+    character.homeworldBonus = sheet[48][30];
+    character.backgroundBonus = sheet[49][30];
+    character.roleBonus = sheet[50][30];
+
     applyTalents(sheet, character);
     // Left skill column
     applySkills(22, 29, sheet, character);
@@ -64,37 +68,39 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
 export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = jsonToArray(json);
+
+    character.fatePoints = JSON.parse(sheet[36][16]);
+
     applyItems(sheet, character);
-    return null;
 }
 
 function applyItems (sheet : string[][], character : CharacterDetails) : void {
 
-    let row : number = 43;
-    let itemName : string = sheet[row][2];
-
     character.items = [];
 
-    while (!!itemName) {
+    for (let row : number = 43; row <= 64; row++) {
 
-        // Building the date
-        let dateArray : string[] = sheet[row][17].split('.');
-        let date : Date = new Date();
-        date.setFullYear(parseInt(dateArray[2], 10));
-        // Months start at 0
-        date.setMonth(parseInt(dateArray[1], 10) - 1);
-        date.setDate(parseInt(dateArray[0], 10));
+        let itemName : string = sheet[row][2];
 
-        let item : Item = {
-            name: itemName,
-            description: sheet[row][6],
-            type: sheet[row][15],
-            date: date,
-            image: sheet[row][19],
-            rarity: JSON.parse(sheet[row][20])
-        };
-        character.items.push(item);
-        itemName = sheet[++row][2];
+        if (!!itemName) {
+            // Building the date
+            let dateArray : string[] = sheet[row][17].split('.');
+            let date : Date = new Date();
+            date.setFullYear(parseInt(dateArray[2], 10));
+            // Months start at 0
+            date.setMonth(parseInt(dateArray[1], 10) - 1);
+            date.setDate(parseInt(dateArray[0], 10));
+
+            let item : Item = {
+                name: itemName,
+                description: sheet[row][6],
+                type: sheet[row][15],
+                date: date,
+                image: sheet[row][19],
+                rarity: JSON.parse(sheet[row][20])
+            };
+            character.items.push(item);
+        }
     }
 }
 
@@ -111,7 +117,14 @@ function applyTalents (sheet : string[][], character : CharacterDetails) {
     }
     character.talents = talents;
 }
-
+/**
+ * Checks the skills, save the name, the highest rank and the total bonus
+ * Since the left & right column are a bit different in the spreadsheet we need to give all kinds of parameters
+ * @param colOfName The column where the name of the rank starts
+ * @param colOfRankOne The column in wich rank 1 ("known") is
+ * @param sheet
+ * @param character
+ */
 function applySkills (colOfName : number, colOfRankOne : number, sheet : string[][], character : CharacterDetails) {
     for (let row : number = 19; row <= 45; row++) {
         if (!!sheet[row][colOfRankOne]) {
@@ -157,7 +170,8 @@ function applyNonEmptyStringToArray (sheet : string[][], row : number, col : num
 }
 
 /**
- * Transforms the json to a 2 dimensional array
+ * Transforms the json to a 2 dimensional array that corresponds to the actual google spreadsheet
+ * Multi-row/column cells are addressed by the coordinates of the top left corner cell
  */
 function jsonToArray (json : any) : string[][] {
     let result : string[][] = [];

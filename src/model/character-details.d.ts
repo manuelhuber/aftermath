@@ -50,9 +50,15 @@ declare interface CharacterDetails {
     fellowship : number;
     influence : number;
 
+    homeworldBonus : string;
+    backgroundBonus : string;
+    roleBonus : string;
+
     skills : Skill[];
 
     talents : Talent[];
+
+    fatePoints : number;
 
     items : Item[];
 

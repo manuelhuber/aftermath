@@ -78,7 +78,13 @@ const EMPTY_MODEL : CharacterDetails = {
 
     skills: [],
 
+    homeworldBonus : '',
+    backgroundBonus : '',
+    roleBonus : '',
+
     talents: [],
+
+    fatePoints : 0,
 
     items: []
 };
