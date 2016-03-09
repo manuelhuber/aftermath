@@ -69,7 +69,7 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = jsonToArray(json);
 
-    character.fatePoints = JSON.parse(sheet[36][16]);
+    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
 
     applyItems(sheet, character);
 }
