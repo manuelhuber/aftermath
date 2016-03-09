@@ -32,8 +32,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     a : AchievementModel;
     htmlEntries : HTMLElement[];
-    // In percent
-    boxWidth : number = 25;
+
     // In pixel
     boxHeight : number;
 
@@ -69,6 +68,14 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     get coloumnCount () : number {
         return 4;
+    }
+
+    /**
+     * The percentage width of a single box
+     * @returns {number}
+     */
+    get boxWidth () : number {
+        return 100 / this.coloumnCount;
     }
 
     /**
