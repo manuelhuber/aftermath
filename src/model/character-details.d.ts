@@ -25,9 +25,9 @@ declare interface CharacterDetails {
 
     // Bad stuff
     insanity : number;
-    mentalDisorder : string[];
+    mentalDisorders : string[];
     corruption : number;
-    malignances : string[];
+    malignancies : string[];
     mutations : string[];
 
     // XP
@@ -59,6 +59,7 @@ declare interface CharacterDetails {
     talents : Talent[];
 
     fatePoints : number;
+    wounds : number;
 
     items : Item[];
 

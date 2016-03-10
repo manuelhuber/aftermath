@@ -1,13 +1,15 @@
 <div class="character-details-stats">
 
-    <!--Left Side -------------------------------------------------------------------------------------------------- -->
+    <!-- Left Side ------------------------------------------------------------------------------------------------- -->
     <div class="character-details-stats-left">
 
-        <!--Characteristics ---------------------------------------------------------------------------------------- -->
+        <!-- Characteristics --------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-box">
             <div class="character-details-stats-box-headline">Char</div>
             <div class="character-details-stats-characteristic">
                 <div class="character-details-stats-characteristic-title">
+                    <div title="Weapon Skill">Wounds:</div>
+                    <div title="Fate Points">FP:</div>
                     <div title="Weapon Skill">WS:</div>
                     <div title="Ballistic Skill">BS:</div>
                     <div title="Strength">S:</div>
@@ -20,6 +22,8 @@
                     <div title="Influence">Ifl:</div>
                 </div>
                 <div class="character-details-stats-characteristic-value">
+                    <div>{{details.wounds}}</div>
+                    <div>{{details.fatePoints}}</div>
                     <div>{{details.weaponSkill}}</div>
                     <div>{{details.ballisticSkill}}</div>
                     <div>{{details.strength}}</div>
@@ -34,7 +38,25 @@
             </div>
         </div>
 
-        <!--Characteristics ---------------------------------------------------------------------------------------- -->
+        <!-- Experience --------------------------------------------------------------------------------------------- -->
+        <div class="character-details-stats-box">
+            <div class="character-details-stats-box-headline">Experience</div>
+            <div class="bold">Total</div>
+            <div>{{details.experienceEarned}}</div>
+            <div class="bold">Available</div>
+            <div>{{details.experienceAvailable}}</div>
+            <div class="bold">Spent on</div>
+            <div>Char</div>
+            <div>{{details.characteristicExperience}}</div>
+            <div>Skills</div>
+            <div>{{details.skillExperience}}</div>
+            <div>Talents</div>
+            <div>{{details.talentExperience}}</div>
+            <div>Psychic</div>
+            <div>{{details.psykerExperience}}</div>
+        </div>
+
+        <!-- Aptitudes --------------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-aptitudes character-details-stats-box">
             <div class="character-details-stats-box-headline">Aptitudes</div>
             <div class="character-details-stats-aptitudes" *ngFor="#aptitude of details.aptitudes">{{aptitude}}</div>
@@ -43,10 +65,10 @@
     </div>
 
 
-    <!--Right Side ------------------------------------------------------------------------------------------------- -->
+    <!-- Right Side ------------------------------------------------------------------------------------------------ -->
     <div class="character-details-stats-right">
 
-        <!--Skills ------------------------------------------------------------------------------------------------- -->
+        <!-- Skills ------------------------------------------------------------------------------------------------ -->
         <div class="character-details-stats-skills character-details-stats-box">
             <div class="character-details-stats-box-headline">Skills</div>
             <div class="character-details-stats-skill block-5" *ngFor="#skill of details.skills">
@@ -55,7 +77,7 @@
             </div>
         </div>
 
-        <!--Talents ------------------------------------------------------------------------------------------------ -->
+        <!-- Talents ----------------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-talents character-details-stats-box">
             <div class="character-details-stats-box-headline">Talents</div>
             <div class="character-details-stats-talent block-5" *ngFor="#talent of details.talents">
@@ -65,6 +87,7 @@
             </div>
         </div>
 
+        <!-- Bonuses ----------------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-box">
             <div class="character-details-stats-box-headline">Creation Bonuses</div>
             <div class="block-5">{{details.homeworldBonus}}</div>
@@ -72,9 +95,17 @@
             <div class="block-5">{{details.roleBonus}}</div>
         </div>
 
+        <!-- Insanity ----------------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-box">
-            <div class="character-details-stats-box-headline">Experience</div>
+            <div class="character-details-stats-box-headline">Insanity: {{details.insanity}}</div>
+            <div *ngFor="#disorder of details.mentalDisorders" class="block-5">{{disorder}}</div>
+        </div>
 
+        <!-- Corruption -------------------------------------------------------------------------------------------- -->
+        <div class="character-details-stats-box">
+            <div class="character-details-stats-box-headline">Corruption: {{details.corruption}}</div>
+            <div *ngFor="#malignancy of details.malignancies" class="block-5">{{malignancy}}</div>
+            <div *ngFor="#mutation of details.mutations" class="block-5">{{mutation}}</div>
         </div>
 
     </div>

@@ -29,9 +29,9 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
     // Bad stuff
     character.insanity = sheet[40][16] ? JSON.parse(sheet[40][16]) : 0;
-    applyNonEmptyStringToArray(sheet, 42, 10, 3, character.mentalDisorder);
+    applyNonEmptyStringToArray(sheet, 42, 10, 3, character.mentalDisorders);
     character.corruption = sheet[46][16] ? JSON.parse(sheet[46][16]) : 0;
-    applyNonEmptyStringToArray(sheet, 48, 10, 3, character.malignances);
+    applyNonEmptyStringToArray(sheet, 48, 10, 3, character.malignancies);
     applyNonEmptyStringToArray(sheet, 48, 19, 3, character.mutations);
 
     // XP
@@ -68,6 +68,7 @@ export function applyBackSheetToCharacter (json : any, character : CharacterDeta
     let sheet : string[][] = jsonToArray(json);
 
     character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
+    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
 
     applyItems(sheet, character);
 }

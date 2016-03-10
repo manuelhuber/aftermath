@@ -1,5 +1,7 @@
 <div class="character-details-background" *ngIf="active" (click)="closeOnClick($event)">
     <div class="character-details" *ngIf="character && details">
+
+        <!--Top Part ----------------------------------------------------------------------------------------------- -->
         <div class="character-details-top">
 
             <img class="character-details-image" src="{{character.image}}" alt="">
@@ -18,6 +20,7 @@
 
         </div>
 
+        <!--Bottom Part -------------------------------------------------------------------------------------------- -->
         <div class="character-details-bottom" *ngIf="details">
 
             <div class="character-details-flags">
@@ -47,6 +50,7 @@
 
         </div>
 
+        <!--Buttons ------------------------------------------------------------------------------------------------ -->
         <div class="character-details-buttons">
             <icon class="character-details-next clickable" (click)="nextCharacter()"
                   iconClass="character-details-next-icon"

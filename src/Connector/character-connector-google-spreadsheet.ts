@@ -51,9 +51,9 @@ const EMPTY_MODEL : CharacterDetails = {
     aptitudes: [],
 
     insanity: 0,
-    mentalDisorder: [],
+    mentalDisorders: [],
     corruption: 0,
-    malignances: [],
+    malignancies: [],
     mutations: [],
 
     // XP
@@ -85,6 +85,7 @@ const EMPTY_MODEL : CharacterDetails = {
     talents: [],
 
     fatePoints: 0,
+    wounds: 0,
 
     items: []
 };
