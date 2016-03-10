@@ -67,6 +67,7 @@ declare interface CharacterDetails {
 declare interface Talent {
     name : string;
     description : string;
+    comment : string;
 }
 
 declare interface Item extends Sortable {

@@ -101,10 +101,12 @@
     position: relative;
 
     @media @device-mobile {
+        border: 1px solid @color-grey-5;
+        box-shadow: 0 0 5px black;
         &:hover {
             z-index: 10;
             height: auto;
-            
+
             .character-details-flag {
                 display: block;
             }
@@ -126,7 +128,7 @@
 
     @media @device-mobile {
         display: none;
-        background: @color-grey-4;
+        //background: @color-grey-4;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         margin: 0;
@@ -179,6 +181,9 @@
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
     overflow: auto;
+    @media @device-mobile {
+        top: 30px;
+    }
 }
 
 .character-details-card-story {

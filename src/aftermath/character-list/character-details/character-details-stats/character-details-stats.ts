@@ -13,7 +13,8 @@ import './character-details-stats.less';
     directives: [NgFor, NgIf],
     template: require('./character-details-stats.html')
 })
-export class CharacterDetailsStats {
+export class CharacterDetailsStats  {
 
     @Input() details : CharacterDetails;
+
 }

@@ -109,7 +109,8 @@ function applyTalents (sheet : string[][], character : CharacterDetails) : void 
         if (talentName !== NO_TALENT_NAME) {
             character.talents.push({
                 name: talentName,
-                description: sheet[row][10]
+                description: sheet[row][10],
+                comment: sheet[row][34]
             });
         }
     }

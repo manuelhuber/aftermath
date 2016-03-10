@@ -1,34 +1,83 @@
 <div class="character-details-stats">
-    <div class="character-details-stats-characteristic">
-        <div class="character-details-stats-characteristic-title">
-            <div title="Weapon Skill">WS:</div>
-            <div title="Ballistic Skill">BS:</div>
-            <div title="Strength">S:</div>
-            <div title="Toughness">T:</div>
-            <div title="Agility">Ag:</div>
-            <div title="Intelligence">Int:</div>
-            <div title="Perception">Per:</div>
-            <div title="Willpower">WP:</div>
-            <div title="Fellowship">Fel:</div>
-            <div title="Influence">Ifl:</div>
+
+    <!--Left Side -------------------------------------------------------------------------------------------------- -->
+    <div class="character-details-stats-left">
+
+        <!--Characteristics ---------------------------------------------------------------------------------------- -->
+        <div class="character-details-stats-box">
+            <div class="character-details-stats-box-headline">Char</div>
+            <div class="character-details-stats-characteristic">
+                <div class="character-details-stats-characteristic-title">
+                    <div title="Weapon Skill">WS:</div>
+                    <div title="Ballistic Skill">BS:</div>
+                    <div title="Strength">S:</div>
+                    <div title="Toughness">T:</div>
+                    <div title="Agility">Ag:</div>
+                    <div title="Intelligence">Int:</div>
+                    <div title="Perception">Per:</div>
+                    <div title="Willpower">WP:</div>
+                    <div title="Fellowship">Fel:</div>
+                    <div title="Influence">Ifl:</div>
+                </div>
+                <div class="character-details-stats-characteristic-value">
+                    <div>{{details.weaponSkill}}</div>
+                    <div>{{details.ballisticSkill}}</div>
+                    <div>{{details.strength}}</div>
+                    <div>{{details.toughness}}</div>
+                    <div>{{details.agility}}</div>
+                    <div>{{details.intelligence}}</div>
+                    <div>{{details.perception}}</div>
+                    <div>{{details.willpower}}</div>
+                    <div>{{details.fellowship}}</div>
+                    <div>{{details.influence}}</div>
+                </div>
+            </div>
         </div>
-        <div class="character-details-stats-characteristic-value">
-            <div>{{details.weaponSkill}}</div>
-            <div>{{details.ballisticSkill}}</div>
-            <div>{{details.strength}}</div>
-            <div>{{details.toughness}}</div>
-            <div>{{details.agility}}</div>
-            <div>{{details.intelligence}}</div>
-            <div>{{details.perception}}</div>
-            <div>{{details.willpower}}</div>
-            <div>{{details.fellowship}}</div>
-            <div>{{details.influence}}</div>
+
+        <!--Characteristics ---------------------------------------------------------------------------------------- -->
+        <div class="character-details-stats-aptitudes character-details-stats-box">
+            <div class="character-details-stats-box-headline">Aptitudes</div>
+            <div class="character-details-stats-aptitudes" *ngFor="#aptitude of details.aptitudes">{{aptitude}}</div>
         </div>
+
     </div>
-    <div class="character-details-stats-skills">
-        <div class="character-details-stats-skill" *ngFor="#skill of details.skills">
-            <div class="table-cell">{{skill.name}} (Rank {{skill.rank}})</div>
-            <div class="table-cell">{{skill.total}}</div>
+
+
+    <!--Right Side ------------------------------------------------------------------------------------------------- -->
+    <div class="character-details-stats-right">
+
+        <!--Skills ------------------------------------------------------------------------------------------------- -->
+        <div class="character-details-stats-skills character-details-stats-box">
+            <div class="character-details-stats-box-headline">Skills</div>
+            <div class="character-details-stats-skill block-5" *ngFor="#skill of details.skills">
+                <div class="character-details-stats-skill-value">{{skill.total}}</div>
+                <div class="character-details-stats-skill-title">{{skill.name}} (Rank {{skill.rank}})</div>
+            </div>
         </div>
+
+        <!--Talents ------------------------------------------------------------------------------------------------ -->
+        <div class="character-details-stats-talents character-details-stats-box">
+            <div class="character-details-stats-box-headline">Talents</div>
+            <div class="character-details-stats-talent block-5" *ngFor="#talent of details.talents">
+                <span class="bold">{{talent.name}}</span>
+                <span *ngIf="talent.comment">({{talent.comment}})</span>
+                <span>: {{talent.description}}</span>
+            </div>
+        </div>
+
+        <div class="character-details-stats-box">
+            <div class="character-details-stats-box-headline">Creation Bonuses</div>
+            <div class="block-5">{{details.homeworldBonus}}</div>
+            <div class="block-5">{{details.backgroundBonus}}</div>
+            <div class="block-5">{{details.roleBonus}}</div>
+        </div>
+
+        <div class="character-details-stats-box">
+            <div class="character-details-stats-box-headline">Experience</div>
+
+        </div>
+
     </div>
+
+
 </div>
