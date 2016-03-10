@@ -12,6 +12,7 @@ import { Icon } from '../../components/icon/icon';
 
 // Style
 import './character-list.less';
+import {VIEWMODE} from '../../service/responsiveness-service';
 
 enum SORT {
     ALPHABETICALLY,
@@ -50,20 +51,7 @@ export class CharacterList implements OnInit {
 
     constructor (@Inject(CharacterService) private characterService : CharacterService,
                  @Inject(NgZone) zone : NgZone,
-                 @Inject(ResponsivenessService) responsivenessService : ResponsivenessService) {
-
-        responsivenessService.addOnMobile(() => {
-            this.showList = false;
-        });
-        responsivenessService.addOnTablet(() => {
-            this.showList = false;
-        });
-        responsivenessService.addonDesktop(() => {
-            this.showList = true;
-        });
-        responsivenessService.addonLargeDesktop(() => {
-            this.showList = true;
-        });
+                 @Inject(ResponsivenessService) private responsivenessService : ResponsivenessService) {
 
         window.addEventListener('resize', () => {
             // Angular won't update the view unless I use zone.run - not sure why
@@ -85,6 +73,16 @@ export class CharacterList implements OnInit {
                 this.shouldWeScroll();
             }, 0);
 
+        });
+
+        // view-mode change handling
+        this.responsivenessService.onChange(() => {
+            if (this.responsivenessService.currentMode === VIEWMODE.MOBILE ||
+                this.responsivenessService.currentMode === VIEWMODE.TABLET) {
+                this.showList = false;
+            } else {
+                this.showList = true;
+            }
         });
     }
 

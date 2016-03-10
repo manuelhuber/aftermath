@@ -17,7 +17,7 @@
     position: absolute;
     height: 95%;
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     min-height: 550px;
     background: url('/assets/images/stripes-glare-yellow-black.png') no-repeat, @color-grey-2 url("/assets/images/main-background.png");
     left: 50%;
@@ -98,11 +98,12 @@
 
 .character-details-flags {
     height: 24px;
+    position: relative;
 
     @media @device-mobile {
-        overflow: hidden;
         &:hover {
-            overflow: visible;
+            z-index: 10;
+            height: auto;
         }
     }
 }
@@ -170,10 +171,6 @@
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
     overflow: auto;
-
-    @media @device-mobile {
-        z-index: -1;
-    }
 }
 
 .character-details-card-story {

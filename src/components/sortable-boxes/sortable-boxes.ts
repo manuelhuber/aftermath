@@ -1,14 +1,17 @@
 // Serivces
 import { Component, Input, AfterViewInit, OnChanges, Inject, NgZone, ElementRef }
     from 'angular2/core';
-import { NgIf } from 'angular2/common';
+import { ResponsivenessService } from '../../service/responsiveness-service';
 
+// Sub Components
+import { NgIf } from 'angular2/common';
 import { SortableBox } from './sortable-box/sortable-box';
 import { Icon } from '../icon/icon';
 
 // Style
 import './sortable-boxes.less';
 import {AchievementModel} from '../../model/achievement';
+import {VIEWMODE} from '../../service/responsiveness-service';
 
 enum SORT {
     NAME,
@@ -33,6 +36,8 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     a : AchievementModel;
     htmlEntries : HTMLElement[];
 
+    coloumnCount : number = 4;
+
     // In pixel
     boxHeight : number;
 
@@ -44,18 +49,24 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     reverseSort : number = 1;
     lastSort : number = -1;
 
-    constructor (@Inject(NgZone) private zone : NgZone, @Inject(ElementRef) element : ElementRef) {
+    constructor (@Inject(NgZone) private zone : NgZone, @Inject(ElementRef) element : ElementRef,
+                 @Inject(ResponsivenessService) private responsivenessService : ResponsivenessService) {
+
+        responsivenessService.onChange(() => {
+            this.initiateView();
+        });
+
+        // Cross Browser mouse scrolling
         element.nativeElement.addEventListener('mousewheel', this.mouseWheelHandler.bind(this));
         element.nativeElement.addEventListener('DOMMouseScroll', this.mouseWheelHandler.bind(this));
+
+        // Scroll check
         window.addEventListener('resize', () => {
             zone.run(() => {
                 this.shouldWeScroll();
             });
         });
 
-        //myimage.addEventListener("mousewheel", MouseWheelHandler, false);
-        //// Firefox
-        //myimage.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
     }
 
     ngAfterViewInit () : any {
@@ -64,10 +75,6 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     ngOnChanges (changes : {}) : any {
         this.initiateView();
-    }
-
-    get coloumnCount () : number {
-        return 4;
     }
 
     /**
@@ -92,25 +99,38 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         }, 100);
     }
 
+    /**
+     * Updates the column count
+     * Updates the references to HTML elements & variables (like box height)
+     * Sets the height of scrollable div
+     * Sets the width of entries
+     * @returns {boolean} false if the view has not been initiated yet (and there are still HTML elements missing)
+     */
     updateHtmlVariables () : boolean {
 
-        let entriesList : NodeListOf<Element> = document.getElementsByClassName('sortable-box');
+        // Update column count according to view model
+        this.coloumnCount = this.responsivenessService.currentMode === VIEWMODE.MOBILE ? 2 :
+            this.responsivenessService.currentMode === VIEWMODE.TABLET ? 3 : 4;
 
+        // Update references to HTML entries
+        let entriesList : NodeListOf<Element> = document.getElementsByClassName('sortable-box');
         if (!entriesList.length) {
             return false;
         }
-
         this.htmlEntries = [];
         for (let i : number = 0; i < entriesList.length; i++) {
             this.htmlEntries.push(<HTMLElement>entriesList.item(i));
             this.htmlEntries[i].style.width = this.boxWidth + '%';
         }
 
+        // Update references to container divs
         this.scrollableDiv = document.getElementById('sortable-boxes-scrollable');
         this.contentDiv = document.getElementById('sortable-boxes-content');
 
-        // Since all cards are positon absolute we need to manually set the height of the scrollable div
+        // Dynamically get the height (this way the code is a bit independent from the styling)
         this.boxHeight = this.htmlEntries[0].offsetHeight;
+
+        // Since all cards are positon absolute we need to manually set the height of the scrollable div
         this.scrollableDiv.style.height =
             Math.ceil(this.htmlEntries.length / this.coloumnCount) * this.boxHeight + 'px';
 
