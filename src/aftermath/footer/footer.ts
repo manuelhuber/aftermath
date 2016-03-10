@@ -48,7 +48,9 @@ const quotes : string[] = [
     'Sometimes the good must perish so that the rest survive',
     'Inspiration grows from the barrel of a gun',
     'If your plan\'s working, it\'s probably a trap',
-    'Victory? What use is victory? Let me have a battle of annihilation'
+    'Victory? What use is victory? Let me have a battle of annihilation',
+    'Years of love have been forgot, in the hatred of a minute',
+    'Every sinner has a past, every saint has a future'
 ];
 
 @Component({

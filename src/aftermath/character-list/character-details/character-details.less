@@ -96,6 +96,17 @@
     }
 }
 
+.character-details-flags {
+    height: 24px;
+
+    @media @device-mobile {
+        overflow: hidden;
+        &:hover {
+            overflow: visible;
+        }
+    }
+}
+
 // Tab flag inactive
 .character-details-flag {
     display: inline-block;
@@ -107,10 +118,25 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     box-shadow: -1px -1px 8px black;
+
+    @media @device-mobile {
+        display: block;
+        background: @color-grey-4;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin: 0;
+        box-shadow: none;
+        &:after {
+            content: none !important;
+        }
+    }
 }
 
 .character-details-flag:first-child {
     margin-left: 5px;
+    @media @device-mobile {
+        margin-left: 0;
+    }
 }
 
 // A horizontal line to cover the shadow at the bottom of the flag
@@ -144,6 +170,10 @@
     background-color: @color-brown-1;
     box-shadow: -1px -1px 8px black;
     overflow: auto;
+
+    @media @device-mobile {
+        z-index: -1;
+    }
 }
 
 .character-details-card-story {
