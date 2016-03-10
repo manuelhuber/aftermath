@@ -4,7 +4,7 @@
 
             <img class="character-details-image" src="{{character.image}}" alt="">
 
-            <div class="character-details-stats">
+            <div class="character-details-basics">
                 <div>
                     <span class="h1">{{character.name}}</span>
                     <span class="h3">{{details.age}}</span>
@@ -25,7 +25,7 @@
                     Items
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'achievements'"
-                     (click)="tab = 'achievements'">
+                     (click)="tab = 'achievements'" *ngIf="character.achievements.length">
                     Achievements
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'story'" (click)="tab = 'story'">
@@ -42,6 +42,7 @@
                                                 [achievementIds]="character.achievements">
                 </character-details-achievements>
                 <div *ngIf="tab === 'story'" class="character-details-card-story"> {{details.story}}</div>
+                <character-details-stats *ngIf="tab === 'stats'" [details]="details"></character-details-stats>
             </div>
 
         </div>

@@ -9,6 +9,7 @@ import { NgIf } from 'angular2/common';
 import { Icon } from '../../../components/icon/icon';
 import { CharacterDetailsItems } from './character-details-items/character-details-items';
 import { CharacterDetailsAchievements } from './character-details-achievements/character-details-achievements';
+import { CharacterDetailsStats } from './character-details-stats/character-details-stats';
 
 // Style
 import './character-details.less';
@@ -16,7 +17,7 @@ import './character-details-sortables.less';
 
 @Component({
     selector: 'character-details',
-    directives: [Icon, NgIf, CharacterDetailsItems, CharacterDetailsAchievements],
+    directives: [Icon, NgIf, CharacterDetailsItems, CharacterDetailsAchievements, CharacterDetailsStats],
     template: require('./character-details.html')
 })
 export class CharacterDetailsComponent {

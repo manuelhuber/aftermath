@@ -78,13 +78,13 @@ const EMPTY_MODEL : CharacterDetails = {
 
     skills: [],
 
-    homeworldBonus : '',
-    backgroundBonus : '',
-    roleBonus : '',
+    homeworldBonus: '',
+    backgroundBonus: '',
+    roleBonus: '',
 
     talents: [],
 
-    fatePoints : 0,
+    fatePoints: 0,
 
     items: []
 };
@@ -201,7 +201,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
         let numberArray : number[] = [];
         try {
             stringArray.forEach((entry : String) => {
-                if (!isNaN(+entry)) {
+                if (!isNaN(+entry) && +entry !== 0) {
                     numberArray.push(+entry);
                 }
             });

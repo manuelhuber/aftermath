@@ -1,0 +1,34 @@
+<div class="character-details-stats">
+    <div class="character-details-stats-characteristic">
+        <div class="character-details-stats-characteristic-title">
+            <div title="Weapon Skill">WS:</div>
+            <div title="Ballistic Skill">BS:</div>
+            <div title="Strength">S:</div>
+            <div title="Toughness">T:</div>
+            <div title="Agility">Ag:</div>
+            <div title="Intelligence">Int:</div>
+            <div title="Perception">Per:</div>
+            <div title="Willpower">WP:</div>
+            <div title="Fellowship">Fel:</div>
+            <div title="Influence">Ifl:</div>
+        </div>
+        <div class="character-details-stats-characteristic-value">
+            <div>{{details.weaponSkill}}</div>
+            <div>{{details.ballisticSkill}}</div>
+            <div>{{details.strength}}</div>
+            <div>{{details.toughness}}</div>
+            <div>{{details.agility}}</div>
+            <div>{{details.intelligence}}</div>
+            <div>{{details.perception}}</div>
+            <div>{{details.willpower}}</div>
+            <div>{{details.fellowship}}</div>
+            <div>{{details.influence}}</div>
+        </div>
+    </div>
+    <div class="character-details-stats-skills">
+        <div class="character-details-stats-skill" *ngFor="#skill of details.skills">
+            <div class="table-cell">{{skill.name}} (Rank {{skill.rank}})</div>
+            <div class="table-cell">{{skill.total}}</div>
+        </div>
+    </div>
+</div>

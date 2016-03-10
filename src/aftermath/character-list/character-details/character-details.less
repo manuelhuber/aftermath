@@ -63,7 +63,7 @@
     }
 }
 
-.character-details-stats {
+.character-details-basics {
     height: 100%;
 
     overflow: auto;
@@ -104,6 +104,10 @@
         &:hover {
             z-index: 10;
             height: auto;
+            
+            .character-details-flag {
+                display: block;
+            }
         }
     }
 }
@@ -121,7 +125,7 @@
     box-shadow: -1px -1px 8px black;
 
     @media @device-mobile {
-        display: block;
+        display: none;
         background: @color-grey-4;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -155,6 +159,10 @@
 // selected tab flag
 .character-details-flag.is-active {
     z-index: 2;
+
+    @media @device-mobile {
+        display: block;
+    }
 }
 
 // Only apply hover style to not active flags
