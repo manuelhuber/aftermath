@@ -2,7 +2,7 @@ export interface DebouncedFunction {
     (...args : any[]) : any;
 }
 
-export function debounce (func : DebouncedFunction, wait : number) {
+export function debounce (func : DebouncedFunction, wait : number) : () => void {
     // 'private' variable for instance
     // The returned function will be able to reference this due to closure.
     // Each call to the returned function will share this common timer.

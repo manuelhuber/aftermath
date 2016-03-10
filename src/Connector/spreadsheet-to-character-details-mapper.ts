@@ -1,4 +1,4 @@
-const NO_TALENT_NAME = 'None';
+const NO_TALENT_NAME : string = 'None';
 
 export function applyFrontSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = jsonToArray(json);
@@ -59,10 +59,8 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.roleBonus = sheet[50][30];
 
     applyTalents(sheet, character);
-    // Left skill column
-    applySkills(22, 29, sheet, character);
-    // Right skill column
-    applySkills(35, 44, sheet, character);
+
+    applySkill(sheet, character);
 
 }
 
@@ -104,19 +102,27 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
     }
 }
 
-function applyTalents (sheet : string[][], character : CharacterDetails) {
-    let talents : Talent[] = [];
+function applyTalents (sheet : string[][], character : CharacterDetails) : void {
+    character.talents = [];
     for (let row : number = 55; row < 70; row++) {
         let talentName : string = sheet[row][2];
         if (talentName !== NO_TALENT_NAME) {
-            talents.push({
+            character.talents.push({
                 name: talentName,
                 description: sheet[row][10]
             });
         }
     }
-    character.talents = talents;
 }
+
+function applySkill (sheet : string[][], character : CharacterDetails) : void {
+    character.skills = [];
+    // Left skill column
+    applySkillColumn(22, 29, sheet, character);
+    // Right skill column
+    applySkillColumn(35, 44, sheet, character);
+}
+
 /**
  * Checks the skills, save the name, the highest rank and the total bonus
  * Since the left & right column are a bit different in the spreadsheet we need to give all kinds of parameters
@@ -125,7 +131,10 @@ function applyTalents (sheet : string[][], character : CharacterDetails) {
  * @param sheet
  * @param character
  */
-function applySkills (colOfName : number, colOfRankOne : number, sheet : string[][], character : CharacterDetails) {
+function applySkillColumn (colOfName : number,
+                           colOfRankOne : number,
+                           sheet : string[][],
+                           character : CharacterDetails) : void {
     for (let row : number = 19; row <= 45; row++) {
         if (!!sheet[row][colOfRankOne]) {
             let skill : Skill = {
@@ -145,7 +154,8 @@ function applySkills (colOfName : number, colOfRankOne : number, sheet : string[
  * @param sheet
  * @param character
  */
-function applyAptitudes (sheet : string[][], character : CharacterDetails) {
+function applyAptitudes (sheet : string[][], character : CharacterDetails) : void {
+    character.aptitudes = [];
     for (let row : number = 32; row <= 50; row++) {
         if (JSON.parse(sheet[row][8]) > 0) {
             character.aptitudes.push(sheet[row][4]);
@@ -161,7 +171,11 @@ function applyAptitudes (sheet : string[][], character : CharacterDetails) {
  * @param rowCount Number of rows (going down from start)
  * @param strings Array to which cell content should be added
  */
-function applyNonEmptyStringToArray (sheet : string[][], row : number, col : number, rowCount : number, strings : string[]) {
+function applyNonEmptyStringToArray (sheet : string[][],
+                                     row : number,
+                                     col : number,
+                                     rowCount : number,
+                                     strings : string[]) : void {
     for (let currentRow : number = row; currentRow < row + rowCount; currentRow++) {
         if (!!sheet[currentRow][col]) {
             strings.push(sheet[currentRow][col]);

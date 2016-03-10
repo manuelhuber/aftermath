@@ -29,7 +29,7 @@ export class ResponsivenessService {
         this.update();
     }
 
-    onChange (func : () => any) {
+    onChange (func : () => any) : void {
         this.callbacks.push(func);
     }
 
