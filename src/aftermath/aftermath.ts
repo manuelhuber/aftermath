@@ -1,6 +1,7 @@
 import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
 
+// Sub Components
 import { System } from './content-pages/system/system';
 import { World } from './content-pages/world/world';
 import { Group } from './content-pages/group/group';

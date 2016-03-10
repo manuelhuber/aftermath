@@ -1,6 +1,7 @@
 import { Component, Inject } from 'angular2/core';
 import { Router } from 'angular2/router';
 
+// Style
 import './footer.less';
 
 const quotes : string[] = [

@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
+// Style
 import './header.less';
 
 @Component({

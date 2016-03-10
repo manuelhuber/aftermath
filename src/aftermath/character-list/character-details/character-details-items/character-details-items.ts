@@ -1,9 +1,9 @@
 // Services
 import { Component, Inject, Input } from 'angular2/core';
-import { NgFor, NgIf } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
 
 // Sub components
+import { NgFor, NgIf } from 'angular2/common';
 import { SortableBoxes } from '../../../../components/sortable-boxes/sortable-boxes';
 import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/sortable-box';
 

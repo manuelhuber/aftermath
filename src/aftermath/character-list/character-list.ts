@@ -1,11 +1,11 @@
 // Services
 import { Component, Inject, OnInit, NgZone } from 'angular2/core';
-import { NgFor, NgIf, NgStyle } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
 import { ResponsivenessService } from '../../service/responsiveness-service';
 import { CharacterService } from '../../service/character-service';
 
 // Subcomponents
+import { NgFor, NgIf, NgStyle } from 'angular2/common';
 import { CharacterListEntry } from './character-list-entry/character-list-entry';
 import { CharacterDetailsComponent } from './character-details/character-details';
 import { Icon } from '../../components/icon/icon';

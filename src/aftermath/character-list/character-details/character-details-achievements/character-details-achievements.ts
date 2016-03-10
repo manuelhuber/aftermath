@@ -1,15 +1,15 @@
 // Services
 import { Component, Inject, Input, OnInit, OnChanges, AfterViewInit } from 'angular2/core';
-import { NgFor } from 'angular2/common';
 import { CharacterService } from '../../../../service/character-service';
+import {AchievementModel} from '../../../../model/achievement';
 
 // Sub components
+import { NgFor } from 'angular2/common';
 import { SortableBoxes } from '../../../../components/sortable-boxes/sortable-boxes';
 import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/sortable-box';
 
 // Style
 import './character-details-achievements.less';
-import {AchievementModel} from '../../../../model/achievement';
 
 @Component({
     selector: 'character-details-achievements',
