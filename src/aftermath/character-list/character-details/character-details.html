@@ -28,9 +28,11 @@
                      (click)="tab = 'achievements'">
                     Achievements
                 </div>
-                <div class="character-details-flag" [class.is-active]="tab === 'story'"
-                     (click)="tab = 'story'">
+                <div class="character-details-flag" [class.is-active]="tab === 'story'" (click)="tab = 'story'">
                     Story
+                </div>
+                <div class="character-details-flag" [class.is-active]="tab === 'stats'" (click)="tab = 'stats'">
+                    Stats
                 </div>
             </div>
 

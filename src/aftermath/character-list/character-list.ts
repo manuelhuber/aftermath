@@ -2,7 +2,7 @@
 import { Component, Inject, OnInit, NgZone } from 'angular2/core';
 import { NgFor, NgIf, NgStyle } from 'angular2/common';
 import { Observable } from 'rxjs/Rx';
-
+import { ResponsivenessService } from '../../service/responsiveness-service';
 import { CharacterService } from '../../service/character-service';
 
 // Subcomponents
@@ -49,7 +49,21 @@ export class CharacterList implements OnInit {
     lastSort : number;
 
     constructor (@Inject(CharacterService) private characterService : CharacterService,
-                 @Inject(NgZone) zone : NgZone) {
+                 @Inject(NgZone) zone : NgZone,
+                 @Inject(ResponsivenessService) responsivenessService : ResponsivenessService) {
+
+        responsivenessService.addOnMobile(() => {
+            this.showList = false;
+        });
+        responsivenessService.addOnTablet(() => {
+            this.showList = false;
+        });
+        responsivenessService.addonDesktop(() => {
+            this.showList = true;
+        });
+        responsivenessService.addonLargeDesktop(() => {
+            this.showList = true;
+        });
 
         window.addEventListener('resize', () => {
             // Angular won't update the view unless I use zone.run - not sure why
