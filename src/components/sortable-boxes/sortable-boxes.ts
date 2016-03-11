@@ -45,7 +45,11 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     contentDiv : HTMLElement;
 
     showScroll : boolean;
+    atTop : boolean = true;
+    atBottom : boolean = false;
 
+    // When sorting by name/date/rarity the first sort should always be in ascending order but the next in descending
+    // So we need to remember by what criteria we sorted last and if the last sort was a ascending or descending sort
     reverseSort : number = 1;
     lastSort : number = -1;
 
@@ -144,16 +148,24 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     }
 
     positionBoxes (firstTime : boolean = false) : void {
+        // Move the div to the top
         this.scrollableDiv.style.top = '0';
+        this.atTop = true;
+        this.atBottom = false;
+
+        // Position boxes
         this.htmlEntries.forEach((element : HTMLElement, index : number) => {
+
+            // If this is the first time, the boxes start at the top left and get "dealt" to their position
             if (firstTime) {
                 element.style.left = '0';
                 element.style.top = '0';
             }
+
+            // Timeout needed so the initial animation is played
             setTimeout(() => {
                 element.style.left = (index % this.coloumnCount) * this.boxWidth + '%';
                 element.style.top = Math.floor(index / this.coloumnCount) * this.boxHeight + 'px';
-
             }, 0);
         });
     }
@@ -179,7 +191,13 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
         this.positionBoxes();
     }
 
-    getSortingFunction (attribute : string, reverseSort : number) : any {
+    /**
+     * Returns a sorting function for HTML Elements
+     * @param attribute The attribute which should be used for comparisons
+     * @param reverseSort
+     * @returns {function(HTMLElement, HTMLElement): (number|number|number)}
+     */
+    getSortingFunction (attribute : string, reverseSort : number) : (a : HTMLElement, b : HTMLElement) => number {
         return (a : HTMLElement, b : HTMLElement) => {
             if (a.getAttribute('data-' + attribute) < b.getAttribute('data-' + attribute)) {
                 return -reverseSort;
@@ -197,19 +215,25 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
      */
     scrollDown () : boolean {
 
+        this.atTop = false;
         let minimumValue : number = this.contentDiv.offsetHeight - this.scrollableDiv.scrollHeight;
 
         // Already at the bottom or scrollable div is small than the content box
         if (this.scrollableDiv.offsetTop === minimumValue ||
             this.scrollableDiv.scrollHeight < this.contentDiv.clientHeight) {
+            this.atBottom = true;
             return false;
         }
 
         let potentialNewTopValue : number =
             parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) - this.boxHeight / 2;
-        this.scrollableDiv.style.top =
-            potentialNewTopValue < minimumValue
-                ? minimumValue + 'px' : potentialNewTopValue + 'px';
+
+        if (potentialNewTopValue > minimumValue) {
+            this.scrollableDiv.style.top = potentialNewTopValue + 'px';
+        } else {
+            this.atBottom = true;
+            this.scrollableDiv.style.top = minimumValue + 'px';
+        }
         return true;
 
     }
@@ -220,14 +244,22 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
      */
     scrollUp () : boolean {
 
+        this.atBottom = false;
         // Already at the top or scrollable div is small than the content box
         if (this.scrollableDiv.offsetTop === 0 || this.scrollableDiv.scrollHeight < this.contentDiv.clientHeight) {
+            this.atTop = true;
             return false;
         }
 
         let potentialNewTopValue : number =
             parseInt(window.getComputedStyle(this.scrollableDiv).top.replace(/px/, ''), 10) + this.boxHeight / 2;
-        this.scrollableDiv.style.top = potentialNewTopValue > 0 ? '0' : potentialNewTopValue + 'px';
+
+        if (potentialNewTopValue < 0) {
+            this.scrollableDiv.style.top = potentialNewTopValue + 'px';
+        } else {
+            this.atTop = true;
+            this.scrollableDiv.style.top = '0';
+        }
         return true;
     }
 
