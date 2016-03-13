@@ -18,7 +18,7 @@ import './horizontal-menu.less';
  */
 export class HorizontalMenu {
     stickToTop : boolean;
-    menuClosed : boolean = true;
+    menuClosed : boolean = false;
 
     constructor (@Inject(NgZone) zone : NgZone) {
         window.onscroll = ( (event : Event) => {
