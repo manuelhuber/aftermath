@@ -31,6 +31,7 @@ export class ResponsivenessService {
 
     onChange (func : () => any) : void {
         this.callbacks.push(func);
+        func();
     }
 
     update () : void {
