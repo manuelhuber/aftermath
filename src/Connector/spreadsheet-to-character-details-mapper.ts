@@ -29,10 +29,10 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
     // Bad stuff
     character.insanity = sheet[40][16] ? JSON.parse(sheet[40][16]) : 0;
-    applyNonEmptyStringToArray(sheet, 42, 10, 3, character.mentalDisorders);
+    character.mentalDisorders = applyNonEmptyStringToArray(sheet, 42, 10, 3);
     character.corruption = sheet[46][16] ? JSON.parse(sheet[46][16]) : 0;
-    applyNonEmptyStringToArray(sheet, 48, 10, 3, character.malignancies);
-    applyNonEmptyStringToArray(sheet, 48, 19, 3, character.mutations);
+    character.malignancies = applyNonEmptyStringToArray(sheet, 48, 10, 3);
+    character.mutations = applyNonEmptyStringToArray(sheet, 48, 19, 3);
 
     // XP
     character.experienceEarned = JSON.parse(sheet[32][17]);
@@ -176,13 +176,14 @@ function applyAptitudes (sheet : string[][], character : CharacterDetails) : voi
 function applyNonEmptyStringToArray (sheet : string[][],
                                      row : number,
                                      col : number,
-                                     rowCount : number,
-                                     strings : string[]) : void {
+                                     rowCount : number) : string[] {
+    let strings : string[] = [];
     for (let currentRow : number = row; currentRow < row + rowCount; currentRow++) {
         if (!!sheet[currentRow][col]) {
             strings.push(sheet[currentRow][col]);
         }
     }
+    return strings;
 }
 
 /**
