@@ -26,4 +26,5 @@ import './aftermath.less';
     {path: '/**', redirectTo: ['System']}
 ])
 export class Aftermath {
+
 }
