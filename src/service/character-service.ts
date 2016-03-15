@@ -9,7 +9,7 @@ export class CharacterService {
 
     characters : Observable<CharacterModel[]>;
     achievements : Observable<AchievementModel[]>;
-    detailsCache : {(id : number) : Observable<CharacterDetails>} = {};
+    detailsCache : {[id : number] : Observable<CharacterDetails>} = {};
 
     constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
         this.characters = connector.getCharacters().cache();
