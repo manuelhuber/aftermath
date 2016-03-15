@@ -1,7 +1,7 @@
 const NO_TALENT_NAME : string = 'None';
 
 export function applyFrontSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = jsonToArray(json);
+    let sheet : string[][] = spreadsheetJsonToArray(json);
 
     // General stuff left side (on the character sheet)
     character.name = sheet[6][8];
@@ -29,10 +29,10 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
     // Bad stuff
     character.insanity = sheet[40][16] ? JSON.parse(sheet[40][16]) : 0;
-    character.mentalDisorders = applyNonEmptyStringToArray(sheet, 42, 10, 3);
+    character.mentalDisorders = getStringArrayFromSpreadsheet(sheet, 42, 10, 3);
     character.corruption = sheet[46][16] ? JSON.parse(sheet[46][16]) : 0;
-    character.malignancies = applyNonEmptyStringToArray(sheet, 48, 10, 3);
-    character.mutations = applyNonEmptyStringToArray(sheet, 48, 19, 3);
+    character.malignancies = getStringArrayFromSpreadsheet(sheet, 48, 10, 3);
+    character.mutations = getStringArrayFromSpreadsheet(sheet, 48, 19, 3);
 
     // XP
     character.experienceEarned = JSON.parse(sheet[32][17]);
@@ -65,7 +65,7 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 }
 
 export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = jsonToArray(json);
+    let sheet : string[][] = spreadsheetJsonToArray(json);
 
     character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
     character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
@@ -74,8 +74,6 @@ export function applyBackSheetToCharacter (json : any, character : CharacterDeta
 }
 
 function applyItems (sheet : string[][], character : CharacterDetails) : void {
-
-    character.items = [];
 
     for (let row : number = 43; row <= 64; row++) {
 
@@ -104,7 +102,6 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
 }
 
 function applyTalents (sheet : string[][], character : CharacterDetails) : void {
-    character.talents = [];
     for (let row : number = 55; row < 70; row++) {
         let talentName : string = sheet[row][2];
         if (talentName !== NO_TALENT_NAME) {
@@ -118,7 +115,6 @@ function applyTalents (sheet : string[][], character : CharacterDetails) : void 
 }
 
 function applySkill (sheet : string[][], character : CharacterDetails) : void {
-    character.skills = [];
     // Left skill column
     applySkillColumn(22, 29, sheet, character);
     // Right skill column
@@ -157,7 +153,6 @@ function applySkillColumn (colOfName : number,
  * @param character
  */
 function applyAptitudes (sheet : string[][], character : CharacterDetails) : void {
-    character.aptitudes = [];
     for (let row : number = 32; row <= 50; row++) {
         if (JSON.parse(sheet[row][8]) > 0) {
             character.aptitudes.push(sheet[row][4]);
@@ -173,10 +168,10 @@ function applyAptitudes (sheet : string[][], character : CharacterDetails) : voi
  * @param rowCount Number of rows (going down from start)
  * @param strings Array to which cell content should be added
  */
-function applyNonEmptyStringToArray (sheet : string[][],
-                                     row : number,
-                                     col : number,
-                                     rowCount : number) : string[] {
+function getStringArrayFromSpreadsheet (sheet : string[][],
+                                        row : number,
+                                        col : number,
+                                        rowCount : number) : string[] {
     let strings : string[] = [];
     for (let currentRow : number = row; currentRow < row + rowCount; currentRow++) {
         if (!!sheet[currentRow][col]) {
@@ -190,7 +185,7 @@ function applyNonEmptyStringToArray (sheet : string[][],
  * Transforms the json to a 2 dimensional array that corresponds to the actual google spreadsheet
  * Multi-row/column cells are addressed by the coordinates of the top left corner cell
  */
-function jsonToArray (json : any) : string[][] {
+function spreadsheetJsonToArray (json : any) : string[][] {
     let result : string[][] = [];
 
     // Initiliaze array with empty values
