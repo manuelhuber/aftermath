@@ -147,19 +147,27 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
      * If no spreadsheet is given, it will return null
      */
     getCharacterDetails (id : number) : Observable<CharacterDetails> {
+
         let keys : SpreadsheetKeys = this.characters[id];
+
         if (!keys) {
             return null;
         }
+
         let frontUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`;
         let backUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`;
+
         return Observable.forkJoin(
             this.http.get(frontUrl).map(response => response.json()),
             this.http.get(backUrl).map(response => response.json()))
+
             .map((response : any[]) => {
+
                 let character : CharacterDetails = EMPTY_MODEL;
+
                 applyFrontSheetToCharacter(response[0], character);
                 applyBackSheetToCharacter(response[1], character);
+
                 return character;
             });
     }
