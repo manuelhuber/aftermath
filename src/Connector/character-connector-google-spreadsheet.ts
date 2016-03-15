@@ -163,7 +163,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
             .map((response : any[]) => {
 
-                let character : CharacterDetails = EMPTY_MODEL;
+                let character : CharacterDetails = this.getEmptyCharacterDetails();
 
                 applyFrontSheetToCharacter(response[0], character);
                 applyBackSheetToCharacter(response[1], character);
@@ -208,5 +208,71 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
         } finally {
             return numberArray;
         }
+    }
+
+    private getEmptyCharacterDetails () : CharacterDetails {
+        return {
+            // General stuff left side (on the character sheet)
+            name: '',
+            homeWorld: '',
+            background: '',
+            role: '',
+            eliteAdvances: '',
+            divination: '',
+            about: '',
+            // General stuff right side (on the character sheet)
+            gender: '',
+            age: '',
+            build: '',
+            complexion: '',
+            quirks: '',
+            superstition: '',
+            momentos: '',
+            allies: '',
+            enemies: '',
+
+            story: '',
+
+            aptitudes: [],
+
+            insanity: 0,
+            mentalDisorders: [],
+            corruption: 0,
+            malignancies: [],
+            mutations: [],
+
+            // XP
+            experienceEarned: 0,
+            characteristicExperience: 0,
+            skillExperience: 0,
+            talentExperience: 0,
+            psykerExperience: 0,
+            experienceAvailable: 0,
+
+            // Characteristics
+            weaponSkill: 0,
+            ballisticSkill: 0,
+            strength: 0,
+            toughness: 0,
+            agility: 0,
+            intelligence: 0,
+            perception: 0,
+            willpower: 0,
+            fellowship: 0,
+            influence: 0,
+
+            skills: [],
+
+            homeworldBonus: '',
+            backgroundBonus: '',
+            roleBonus: '',
+
+            talents: [],
+
+            fatePoints: 0,
+            wounds: 0,
+
+            items: []
+        };
     }
 }
