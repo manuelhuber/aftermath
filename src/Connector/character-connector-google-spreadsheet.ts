@@ -26,70 +26,6 @@ const ITEM_WORKSHEET_ID : string = 'ogun2ej';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
-const EMPTY_MODEL : CharacterDetails = {
-    // General stuff left side (on the character sheet)
-    name: '',
-    homeWorld: '',
-    background: '',
-    role: '',
-    eliteAdvances: '',
-    divination: '',
-    about: '',
-    // General stuff right side (on the character sheet)
-    gender: '',
-    age: '',
-    build: '',
-    complexion: '',
-    quirks: '',
-    superstition: '',
-    momentos: '',
-    allies: '',
-    enemies: '',
-
-    story: '',
-
-    aptitudes: [],
-
-    insanity: 0,
-    mentalDisorders: [],
-    corruption: 0,
-    malignancies: [],
-    mutations: [],
-
-    // XP
-    experienceEarned: 0,
-    characteristicExperience: 0,
-    skillExperience: 0,
-    talentExperience: 0,
-    psykerExperience: 0,
-    experienceAvailable: 0,
-
-    // Characteristics
-    weaponSkill: 0,
-    ballisticSkill: 0,
-    strength: 0,
-    toughness: 0,
-    agility: 0,
-    intelligence: 0,
-    perception: 0,
-    willpower: 0,
-    fellowship: 0,
-    influence: 0,
-
-    skills: [],
-
-    homeworldBonus: '',
-    backgroundBonus: '',
-    roleBonus: '',
-
-    talents: [],
-
-    fatePoints: 0,
-    wounds: 0,
-
-    items: []
-};
-
 @Injectable()
 export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
@@ -220,6 +156,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
             eliteAdvances: '',
             divination: '',
             about: '',
+
             // General stuff right side (on the character sheet)
             gender: '',
             age: '',
@@ -250,16 +187,18 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
             experienceAvailable: 0,
 
             // Characteristics
-            weaponSkill: 0,
-            ballisticSkill: 0,
-            strength: 0,
-            toughness: 0,
-            agility: 0,
-            intelligence: 0,
-            perception: 0,
-            willpower: 0,
-            fellowship: 0,
-            influence: 0,
+            characteristics: {
+                weaponSkill: 0,
+                ballisticSkill: 0,
+                strength: 0,
+                toughness: 0,
+                agility: 0,
+                intelligence: 0,
+                perception: 0,
+                willpower: 0,
+                fellowship: 0,
+                influence: 0
+            },
 
             skills: [],
 
@@ -272,7 +211,9 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
             fatePoints: 0,
             wounds: 0,
 
-            items: []
+            items: [],
+
+            relationships : []
         };
     }
 }

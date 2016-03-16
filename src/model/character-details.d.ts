@@ -39,16 +39,7 @@ declare interface CharacterDetails {
     experienceAvailable : number;
 
     // Characteristics
-    weaponSkill : number;
-    ballisticSkill : number;
-    strength : number;
-    toughness : number;
-    agility : number;
-    intelligence : number;
-    perception : number;
-    willpower : number;
-    fellowship : number;
-    influence : number;
+    characteristics : Characteristics;
 
     homeworldBonus : string;
     backgroundBonus : string;
@@ -63,6 +54,21 @@ declare interface CharacterDetails {
 
     items : Item[];
 
+    relationships : NpcRelationship[];
+
+}
+
+declare interface Characteristics {
+    weaponSkill : number;
+    ballisticSkill : number;
+    strength : number;
+    toughness : number;
+    agility : number;
+    intelligence : number;
+    perception : number;
+    willpower : number;
+    fellowship : number;
+    influence : number;
 }
 
 declare interface Talent {
@@ -81,4 +87,9 @@ declare interface Skill {
     name : string;
     rank : number;
     total : number;
+}
+
+declare interface NpcRelationship {
+    question : string;
+    answer : string;
 }

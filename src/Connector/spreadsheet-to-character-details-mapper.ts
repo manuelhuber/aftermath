@@ -23,7 +23,7 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.allies = sheet[12][26];
     character.enemies = sheet[13][26];
 
-    character.story = sheet[73][2];
+    applyCharacteristics(sheet, character);
 
     applyAptitudes(sheet, character);
 
@@ -42,18 +42,6 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     character.psykerExperience = JSON.parse(sheet[36][17]);
     character.experienceAvailable = JSON.parse(sheet[38][17]);
 
-    //characteristics
-    character.weaponSkill = JSON.parse(sheet[19][9]);
-    character.ballisticSkill = JSON.parse(sheet[21][9]);
-    character.strength = JSON.parse(sheet[23][9]);
-    character.toughness = JSON.parse(sheet[25][9]);
-    character.agility = JSON.parse(sheet[27][9]);
-    character.intelligence = JSON.parse(sheet[19][19]);
-    character.perception = JSON.parse(sheet[21][19]);
-    character.willpower = JSON.parse(sheet[23][19]);
-    character.fellowship = JSON.parse(sheet[25][19]);
-    character.influence = JSON.parse(sheet[27][19]);
-
     character.homeworldBonus = sheet[48][30];
     character.backgroundBonus = sheet[49][30];
     character.roleBonus = sheet[50][30];
@@ -62,41 +50,32 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
     applySkill(sheet, character);
 
+    character.story = sheet[73][2];
+
 }
 
-export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = spreadsheetJsonToArray(json);
-
-    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
-    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
-
-    applyItems(sheet, character);
+function applyCharacteristics (sheet : string[][], character : CharacterDetails) : void {
+    character.characteristics.weaponSkill = JSON.parse(sheet[19][9]);
+    character.characteristics.ballisticSkill = JSON.parse(sheet[21][9]);
+    character.characteristics.strength = JSON.parse(sheet[23][9]);
+    character.characteristics.toughness = JSON.parse(sheet[25][9]);
+    character.characteristics.agility = JSON.parse(sheet[27][9]);
+    character.characteristics.intelligence = JSON.parse(sheet[19][19]);
+    character.characteristics.perception = JSON.parse(sheet[21][19]);
+    character.characteristics.willpower = JSON.parse(sheet[23][19]);
+    character.characteristics.fellowship = JSON.parse(sheet[25][19]);
+    character.characteristics.influence = JSON.parse(sheet[27][19]);
 }
 
-function applyItems (sheet : string[][], character : CharacterDetails) : void {
-
-    for (let row : number = 43; row <= 64; row++) {
-
-        let itemName : string = sheet[row][2];
-
-        if (!!itemName) {
-            // Building the date
-            let dateArray : string[] = sheet[row][17].split('.');
-            let date : Date = new Date();
-            date.setFullYear(parseInt(dateArray[2], 10));
-            // Months start at 0
-            date.setMonth(parseInt(dateArray[1], 10) - 1);
-            date.setDate(parseInt(dateArray[0], 10));
-
-            let item : Item = {
-                name: itemName,
-                description: sheet[row][6],
-                type: sheet[row][15],
-                date: date,
-                image: sheet[row][19],
-                rarity: JSON.parse(sheet[row][20])
-            };
-            character.items.push(item);
+/**
+ * If the number for the Aptitude is not 0 it will be added to the aptitude string array
+ * @param sheet
+ * @param character
+ */
+function applyAptitudes (sheet : string[][], character : CharacterDetails) : void {
+    for (let row : number = 32; row <= 50; row++) {
+        if (JSON.parse(sheet[row][8]) > 0) {
+            character.aptitudes.push(sheet[row][4]);
         }
     }
 }
@@ -148,19 +127,6 @@ function applySkillColumn (colOfName : number,
 }
 
 /**
- * If the number for the Aptitude is not 0 it will be added to the aptitude string array
- * @param sheet
- * @param character
- */
-function applyAptitudes (sheet : string[][], character : CharacterDetails) : void {
-    for (let row : number = 32; row <= 50; row++) {
-        if (JSON.parse(sheet[row][8]) > 0) {
-            character.aptitudes.push(sheet[row][4]);
-        }
-    }
-}
-
-/**
  * Adds the content of non-empty cells for the given row/col and adds it to the string array
  * @param sheet
  * @param row Starting row
@@ -179,6 +145,43 @@ function getStringArrayFromSpreadsheet (sheet : string[][],
         }
     }
     return strings;
+}
+
+export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
+    let sheet : string[][] = spreadsheetJsonToArray(json);
+
+    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
+    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
+
+    applyItems(sheet, character);
+}
+
+function applyItems (sheet : string[][], character : CharacterDetails) : void {
+
+    for (let row : number = 43; row <= 64; row++) {
+
+        let itemName : string = sheet[row][2];
+
+        if (!!itemName) {
+            // Building the date
+            let dateArray : string[] = sheet[row][17].split('.');
+            let date : Date = new Date();
+            date.setFullYear(parseInt(dateArray[2], 10));
+            // Months start at 0
+            date.setMonth(parseInt(dateArray[1], 10) - 1);
+            date.setDate(parseInt(dateArray[0], 10));
+
+            let item : Item = {
+                name: itemName,
+                description: sheet[row][6],
+                type: sheet[row][15],
+                date: date,
+                image: sheet[row][19],
+                rarity: JSON.parse(sheet[row][20])
+            };
+            character.items.push(item);
+        }
+    }
 }
 
 /**

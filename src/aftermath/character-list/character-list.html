@@ -1,13 +1,14 @@
 <div class="character-list" [class.list-is-visible]="showList" [class.list-is-not-visible]="!showList">
     <div class="character-list-background">
+
         <div class="character-list-buttons">
             <icon id="character-list-scroll-up" class="character-list-scroll-up clickable" *ngIf="showScroll"
                          (click)="scrollUp()"
                          iconClass="character-list-scroll-up-icon"
                          iconName="single-arrow-up"></icon>
-            <span>Sort by:</span>
-            <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">NAME</span>
+            <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">Sort by name</span>
         </div>
+
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
             <div id="character-list-entries-scrollable" class="character-list-entries-scrollable">
                 <div class="character-list-entry-wrapper clickable {{styleclass}}"
@@ -20,10 +21,12 @@
                 </div>
             </div>
         </div>
+
         <icon id="character-list-scroll-down" class="character-list-scroll-down clickable" *ngIf="showScroll"
                      (click)="scrollDown()"
                      iconClass="character-list-scroll-down-icon"
                      iconName="single-arrow-up"></icon>
+
     </div>
     <icon class="character-list-close clickable"
                  iconClass="character-list-close-icon"
