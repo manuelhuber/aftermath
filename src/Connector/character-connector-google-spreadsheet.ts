@@ -3,8 +3,8 @@ import { Http } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { AchievementModel } from '../model/achievement';
 import { CharacterSpreadsheets, SpreadsheetKeys } from '../model/spreadsheet-keys';
-import { applyFrontSheetToCharacter } from './spreadsheet-to-character-details-mapper';
-import { applyBackSheetToCharacter } from './spreadsheet-to-character-details-mapper';
+import { applyFrontSheetToCharacter, applyBackSheetToCharacter,
+    applyCharacterDetailsSheetToCharacter } from './spreadsheet-to-character-details-mapper';
 import { CharacterConnector } from '../model/character-connector';
 
 /**
@@ -51,7 +51,8 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                 let entry : SpreadsheetKeys = {
                     spreadsheetKey: row.gsx$key.$t,
                     frontWorksheetKey: row.gsx$front.$t,
-                    backWorksheetKey: row.gsx$back.$t
+                    backWorksheetKey: row.gsx$back.$t,
+                    characterDetailsWorksheetKey: row.gsx$characterdetails.$t,
                 };
                 result[JSON.parse(row.gsx$id.$t)] = entry;
             });
@@ -92,10 +93,13 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
         let frontUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.frontWorksheetKey}/${OPTIONS}`;
         let backUrl : string = `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.backWorksheetKey}/${OPTIONS}`;
+        let characterDetailsUrl : string =
+            `${BASE_URL}/${CELLS}/${keys.spreadsheetKey}/${keys.characterDetailsWorksheetKey}/${OPTIONS}`;
 
         return Observable.forkJoin(
             this.http.get(frontUrl).map(response => response.json()),
-            this.http.get(backUrl).map(response => response.json()))
+            this.http.get(backUrl).map(response => response.json()),
+            this.http.get(characterDetailsUrl).map(response => response.json()))
 
             .map((response : any[]) => {
 
@@ -103,6 +107,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
                 applyFrontSheetToCharacter(response[0], character);
                 applyBackSheetToCharacter(response[1], character);
+                applyCharacterDetailsSheetToCharacter(response[2], character);
 
                 return character;
             });
@@ -213,7 +218,9 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
             items: [],
 
-            relationships : []
+
+
+            relationships: []
         };
     }
 }

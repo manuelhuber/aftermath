@@ -184,6 +184,26 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
     }
 }
 
+export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
+    let sheet : string[][] = spreadsheetJsonToArray(json);
+    applyRelationships(sheet, character);
+}
+
+function applyRelationships (sheet : string[][], character : CharacterDetails) : void {
+    let row : number = 28;
+    let col : number = 2;
+
+    while (!!sheet[row][col]) {
+
+        character.relationships.push({
+            question: sheet[row][col],
+            answer: sheet[row + 1][col]
+        });
+
+        row += 3;
+    }
+}
+
 /**
  * Transforms the json to a 2 dimensional array that corresponds to the actual google spreadsheet
  * Multi-row/column cells are addressed by the coordinates of the top left corner cell

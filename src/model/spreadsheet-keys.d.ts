@@ -6,4 +6,5 @@ export interface SpreadsheetKeys {
     spreadsheetKey : string;
     frontWorksheetKey : string;
     backWorksheetKey : string;
+    characterDetailsWorksheetKey : string;
 }
