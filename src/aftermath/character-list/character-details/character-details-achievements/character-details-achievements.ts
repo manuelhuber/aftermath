@@ -1,7 +1,7 @@
 // Services
 import { Component, Inject, Input, OnInit, OnChanges, AfterViewInit } from 'angular2/core';
 import { CharacterService } from '../../../../service/character-service';
-import {AchievementModel} from '../../../../model/achievement';
+import { AchievementModel } from '../../../../model/achievement';
 
 // Sub components
 import { NgFor } from 'angular2/common';

@@ -1,6 +1,5 @@
 // Services
-import { Component, Inject, Input } from 'angular2/core';
-import { CharacterService } from '../../../../service/character-service';
+import { Component, Input } from 'angular2/core';
 
 // Sub components
 import { NgFor, NgIf } from 'angular2/common';
