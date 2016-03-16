@@ -218,7 +218,17 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
             items: [],
 
+            sins: {
+                gluttony: 0,
+                greed: 0,
+                sloth: 0,
+                envy: 0,
+                wrath: 0,
+                pride: 0,
+                lust: 0
+            },
 
+            personality: [],
 
             relationships: []
         };

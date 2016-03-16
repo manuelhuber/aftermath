@@ -1,4 +1,20 @@
-<div *ngFor="#relationship of details.relationships">
-    <div>{{relationship.question}}</div>
-    <div>{{relationship.answer}}</div>
+<div>
+    <div>{{details.story}}</div>
+    <!--<div>gluttony: {{details.sins.gluttony}}</div>-->
+    <!--<div>greed: {{details.sins.greed}}</div>-->
+    <!--<div>sloth: {{details.sins.sloth}}</div>-->
+    <!--<div>envy: {{details.sins.envy}}</div>-->
+    <!--<div>wrath: {{details.sins.wrath}}</div>-->
+    <!--<div>pride: {{details.sins.pride}}</div>-->
+    <!--<div>lust: {{details.sins.lust}}</div>-->
+
+    <div *ngFor="#relationship of details.relationships">
+        <div>{{relationship.question}}</div>
+        <div>{{relationship.answer}}</div>
+    </div>
+
+    <div *ngFor="#personality of details.personality">
+        <div>{{personality.question}}</div>
+        <div>{{personality.answer}}</div>
+    </div>
 </div>

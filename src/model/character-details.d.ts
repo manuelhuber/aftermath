@@ -54,7 +54,11 @@ declare interface CharacterDetails {
 
     items : Item[];
 
-    relationships : NpcRelationship[];
+    sins : Sins;
+
+    personality : QuestionAnswer[];
+
+    relationships : QuestionAnswer[];
 
 }
 
@@ -89,7 +93,17 @@ declare interface Skill {
     total : number;
 }
 
-declare interface NpcRelationship {
+declare interface Sins {
+    gluttony : number;
+    greed : number;
+    sloth : number;
+    envy : number;
+    wrath : number;
+    pride : number;
+    lust : number;
+}
+
+declare interface QuestionAnswer {
     question : string;
     answer : string;
 }

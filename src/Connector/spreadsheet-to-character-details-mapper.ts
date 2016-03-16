@@ -186,11 +186,34 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
 
 export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = spreadsheetJsonToArray(json);
-    applyRelationships(sheet, character);
+
+    applySins(sheet, character);
+
+    // Apply personality
+    applyQuestionAndAnswers(13, sheet, character);
+    // Apply the NPC relations
+    applyQuestionAndAnswers(29, sheet, character);
 }
 
-function applyRelationships (sheet : string[][], character : CharacterDetails) : void {
-    let row : number = 28;
+function applySins (sheet : string[][], character : CharacterDetails) : void {
+    character.sins.gluttony = getSinLevel(4, sheet);
+    character.sins.greed = getSinLevel(5, sheet);
+    character.sins.sloth = getSinLevel(6, sheet);
+    character.sins.envy = getSinLevel(7, sheet);
+    character.sins.wrath = getSinLevel(8, sheet);
+    character.sins.pride = getSinLevel(9, sheet);
+    character.sins.lust = getSinLevel(10, sheet);
+}
+
+function getSinLevel (row : number, sheet : string[][]) : number {
+    return !!sheet[row][9] ? 5 :
+        !!sheet[row][8] ? 4 :
+            !!sheet[row][7] ? 3 :
+                !!sheet[row][6] ? 2 : 1;
+
+}
+
+function applyQuestionAndAnswers (row : number, sheet : string[][], character : CharacterDetails) : void {
     let col : number = 2;
 
     while (!!sheet[row][col]) {

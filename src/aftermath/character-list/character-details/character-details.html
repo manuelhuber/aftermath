@@ -30,15 +30,12 @@
                      (click)="tab = 'achievements'" *ngIf="character.achievements.length">
                     Achievements
                 </div>
-                <div class="character-details-flag" [class.is-active]="tab === 'story'" (click)="tab = 'story'">
-                    Story
-                </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'stats'" (click)="tab = 'stats'">
                     Stats
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'personality'"
                      (click)="tab = 'personality'">
-                    Details
+                    Story
                 </div>
             </div>
 
@@ -47,7 +44,6 @@
                 <character-details-achievements *ngIf="tab === 'achievements'"
                                                 [achievementIds]="character.achievements">
                 </character-details-achievements>
-                <div *ngIf="tab === 'story'" class="character-details-card-story"> {{details.story}}</div>
                 <character-details-stats *ngIf="tab === 'stats'" [details]="details"></character-details-stats>
                 <character-details-personality *ngIf="tab === 'personality'"
                                                [details]="details"></character-details-personality>
