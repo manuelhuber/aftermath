@@ -1,5 +1,4 @@
-<div>
-    <div>{{details.story}}</div>
+<div class="character-details-personality">
     <!--<div>gluttony: {{details.sins.gluttony}}</div>-->
     <!--<div>greed: {{details.sins.greed}}</div>-->
     <!--<div>sloth: {{details.sins.sloth}}</div>-->
@@ -8,13 +7,15 @@
     <!--<div>pride: {{details.sins.pride}}</div>-->
     <!--<div>lust: {{details.sins.lust}}</div>-->
 
-    <div *ngFor="#relationship of details.relationships">
-        <div>{{relationship.question}}</div>
+    <div class="block-5" *ngFor="#relationship of details.relationships">
+        <div class="bold">{{relationship.question}}</div>
         <div>{{relationship.answer}}</div>
     </div>
 
-    <div *ngFor="#personality of details.personality">
-        <div>{{personality.question}}</div>
+    <div class="block-5" *ngFor="#personality of details.personality">
+        <div class="bold">{{personality.question}}</div>
         <div>{{personality.answer}}</div>
     </div>
+
+    <div>{{details.story}}</div>
 </div>
