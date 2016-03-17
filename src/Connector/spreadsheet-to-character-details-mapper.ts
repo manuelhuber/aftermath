@@ -54,6 +54,17 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
 }
 
+export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
+    let sheet : string[][] = spreadsheetJsonToArray(json);
+
+    applySins(sheet, character);
+
+    // Apply personality
+    character.personality = getQuestionAndAnswers(13, sheet, character);
+    // Apply the NPC relations
+    character.relationships = getQuestionAndAnswers(29, sheet, character);
+}
+
 export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = spreadsheetJsonToArray(json);
 
@@ -61,17 +72,6 @@ export function applyBackSheetToCharacter (json : any, character : CharacterDeta
     character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
 
     applyItems(sheet, character);
-}
-
-export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = spreadsheetJsonToArray(json);
-
-    applySins(sheet, character);
-
-    // Apply personality
-    applyQuestionAndAnswers(13, sheet, character);
-    // Apply the NPC relations
-    applyQuestionAndAnswers(29, sheet, character);
 }
 
 function applyCharacteristics (sheet : string[][], character : CharacterDetails) : void {
@@ -221,18 +221,22 @@ function getSinLevel (row : number, sheet : string[][]) : number {
 
 }
 
-function applyQuestionAndAnswers (row : number, sheet : string[][], character : CharacterDetails) : void {
+function getQuestionAndAnswers (row : number, sheet : string[][], character : CharacterDetails) : QuestionAnswer[] {
     let col : number = 2;
+
+    let questionsAndAnswers : QuestionAnswer[] = [];
 
     while (!!sheet[row][col]) {
 
-        character.relationships.push({
+        questionsAndAnswers.push({
             question: sheet[row][col],
             answer: sheet[row + 1][col]
         });
 
         row += 3;
     }
+
+    return questionsAndAnswers;
 }
 
 /**

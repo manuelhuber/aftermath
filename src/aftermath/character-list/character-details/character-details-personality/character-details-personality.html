@@ -7,15 +7,18 @@
     <!--<div>pride: {{details.sins.pride}}</div>-->
     <!--<div>lust: {{details.sins.lust}}</div>-->
 
+    <div class="h3">Relationships</div>
     <div class="block-5" *ngFor="#relationship of details.relationships">
         <div class="bold">{{relationship.question}}</div>
         <div>{{relationship.answer}}</div>
     </div>
 
+    <div class="h3">Personality</div>
     <div class="block-5" *ngFor="#personality of details.personality">
         <div class="bold">{{personality.question}}</div>
         <div>{{personality.answer}}</div>
     </div>
 
+    <div class="h3">Story</div>
     <div>{{details.story}}</div>
 </div>
