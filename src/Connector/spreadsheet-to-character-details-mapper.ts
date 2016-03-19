@@ -163,23 +163,29 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
         let itemName : string = sheet[row][2];
 
         if (!!itemName) {
-            // Building the date
-            let dateArray : string[] = sheet[row][17].split('.');
-            let date : Date = new Date();
-            date.setFullYear(parseInt(dateArray[2], 10));
-            // Months start at 0
-            date.setMonth(parseInt(dateArray[1], 10) - 1);
-            date.setDate(parseInt(dateArray[0], 10));
 
-            let item : Item = {
+            // Building the date
+            let date : Date = new Date();
+            try {
+                let dateArray : string[] = sheet[row][17].split('.');
+                date.setFullYear(parseInt(dateArray[2], 10));
+                // Months start at 0
+                date.setMonth(parseInt(dateArray[1], 10) - 1);
+                date.setDate(parseInt(dateArray[0], 10));
+            } catch (e : any) {
+                date.setFullYear(2112);
+                date.setMonth(0);
+                date.setDate(1);
+            }
+
+            character.items.push({
                 name: itemName,
                 description: sheet[row][6],
                 type: sheet[row][15],
                 date: date,
                 image: sheet[row][19],
                 rarity: JSON.parse(sheet[row][20])
-            };
-            character.items.push(item);
+            });
         }
     }
 }
