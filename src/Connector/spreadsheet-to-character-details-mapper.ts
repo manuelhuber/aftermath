@@ -54,6 +54,26 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
 
 }
 
+export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
+    let sheet : string[][] = spreadsheetJsonToArray(json);
+
+    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
+    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
+
+    applyItems(sheet, character);
+}
+
+export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
+    let sheet : string[][] = spreadsheetJsonToArray(json);
+
+    applySins(sheet, character);
+
+    // Apply personality
+    applyQuestionAndAnswers(13, sheet, character);
+    // Apply the NPC relations
+    applyQuestionAndAnswers(29, sheet, character);
+}
+
 function applyCharacteristics (sheet : string[][], character : CharacterDetails) : void {
     character.characteristics.weaponSkill = JSON.parse(sheet[19][9]);
     character.characteristics.ballisticSkill = JSON.parse(sheet[21][9]);
@@ -147,15 +167,6 @@ function getStringArrayFromSpreadsheet (sheet : string[][],
     return strings;
 }
 
-export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = spreadsheetJsonToArray(json);
-
-    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
-    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
-
-    applyItems(sheet, character);
-}
-
 function applyItems (sheet : string[][], character : CharacterDetails) : void {
 
     for (let row : number = 43; row <= 64; row++) {
@@ -165,16 +176,18 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
         if (!!itemName) {
 
             // Building the date
-            let date : Date = new Date();
-            try {
+            let date : Date;
+            date = new Date();
+
+            if (sheet[row][17]) {
                 let dateArray : string[] = sheet[row][17].split('.');
                 date.setFullYear(parseInt(dateArray[2], 10));
                 // Months start at 0
                 date.setMonth(parseInt(dateArray[1], 10) - 1);
                 date.setDate(parseInt(dateArray[0], 10));
-            } catch (e : any) {
-                date.setFullYear(2112);
-                date.setMonth(0);
+            } else {
+                date.setFullYear(2002);
+                date.setMonth(1);
                 date.setDate(1);
             }
 
@@ -184,21 +197,10 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
                 type: sheet[row][15],
                 date: date,
                 image: sheet[row][19],
-                rarity: JSON.parse(sheet[row][20])
+                rarity: sheet[row][20] ? JSON.parse(sheet[row][20]) : 0
             });
         }
     }
-}
-
-export function applyCharacterDetailsSheetToCharacter (json : any, character : CharacterDetails) : void {
-    let sheet : string[][] = spreadsheetJsonToArray(json);
-
-    applySins(sheet, character);
-
-    // Apply personality
-    applyQuestionAndAnswers(13, sheet, character);
-    // Apply the NPC relations
-    applyQuestionAndAnswers(29, sheet, character);
 }
 
 function applySins (sheet : string[][], character : CharacterDetails) : void {
