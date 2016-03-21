@@ -1,3 +1,5 @@
+import {getDate, getNumber, spreadsheetJsonToArray} from './spreadsheet-mapper-helper';
+
 const NO_TALENT_NAME : string = 'None';
 
 export function applyFrontSheetToCharacter (json : any, character : CharacterDetails) : void {
@@ -28,9 +30,9 @@ export function applyFrontSheetToCharacter (json : any, character : CharacterDet
     applyAptitudes(sheet, character);
 
     // Bad stuff
-    character.insanity = sheet[40][16] ? JSON.parse(sheet[40][16]) : 0;
+    character.insanity = getNumber(sheet[40][16]);
     character.mentalDisorders = getStringArrayFromSpreadsheet(sheet, 42, 10, 3);
-    character.corruption = sheet[46][16] ? JSON.parse(sheet[46][16]) : 0;
+    character.corruption = getNumber(sheet[46][16]);
     character.malignancies = getStringArrayFromSpreadsheet(sheet, 48, 10, 3);
     character.mutations = getStringArrayFromSpreadsheet(sheet, 48, 19, 3);
 
@@ -68,8 +70,8 @@ export function applyCharacterDetailsSheetToCharacter (json : any, character : C
 export function applyBackSheetToCharacter (json : any, character : CharacterDetails) : void {
     let sheet : string[][] = spreadsheetJsonToArray(json);
 
-    character.fatePoints = sheet[36][16] ? JSON.parse(sheet[36][16]) : 0;
-    character.wounds = sheet[8][46] ? JSON.parse(sheet[8][46]) : 0;
+    character.fatePoints = getNumber(sheet[36][16]);
+    character.wounds = getNumber(sheet[8][46]);
 
     applyItems(sheet, character);
 }
@@ -175,29 +177,13 @@ function applyItems (sheet : string[][], character : CharacterDetails) : void {
 
         if (!!itemName) {
 
-            // Building the date
-            let date : Date;
-            date = new Date();
-
-            if (sheet[row][17]) {
-                let dateArray : string[] = sheet[row][17].split('.');
-                date.setFullYear(parseInt(dateArray[2], 10));
-                // Months start at 0
-                date.setMonth(parseInt(dateArray[1], 10) - 1);
-                date.setDate(parseInt(dateArray[0], 10));
-            } else {
-                date.setFullYear(2002);
-                date.setMonth(1);
-                date.setDate(1);
-            }
-
             character.items.push({
                 name: itemName,
                 description: sheet[row][6],
                 type: sheet[row][15],
-                date: date,
+                date: getDate(sheet[row][17]),
                 image: sheet[row][19],
-                rarity: sheet[row][20] ? JSON.parse(sheet[row][20]) : 0
+                rarity: getNumber(sheet[row][20])
             });
         }
     }
