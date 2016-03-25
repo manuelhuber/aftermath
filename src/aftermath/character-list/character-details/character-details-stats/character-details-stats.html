@@ -8,7 +8,7 @@
             <div class="character-details-stats-box-headline">Char</div>
             <div class="character-details-stats-characteristic">
                 <div class="character-details-stats-characteristic-title">
-                    <div title="Weapon Skill">Wounds:</div>
+                    <div title="Hit Points">Wounds:</div>
                     <div title="Fate Points">FP:</div>
                     <div title="Weapon Skill">WS:</div>
                     <div title="Ballistic Skill">BS:</div>
@@ -42,24 +42,26 @@
         <div class="character-details-stats-experience character-details-stats-box">
             <div class="character-details-stats-box-headline">Experience</div>
             <div class="bold">Total</div>
-            <div>{{details.experienceEarned}}</div>
+            <div class="block-5">{{details.experienceEarned}}</div>
             <div class="bold">Available</div>
-            <div>{{details.experienceAvailable}}</div>
+            <div class="block-5">{{details.experienceAvailable}}</div>
             <div class="bold">Spent on</div>
             <div>Char</div>
-            <div>{{details.characteristicExperience}}</div>
+            <div class="block-5">{{details.characteristicExperience}}</div>
             <div>Skills</div>
-            <div>{{details.skillExperience}}</div>
+            <div class="block-5">{{details.skillExperience}}</div>
             <div>Talents</div>
-            <div>{{details.talentExperience}}</div>
+            <div class="block-5">{{details.talentExperience}}</div>
             <div>Psychic</div>
-            <div>{{details.psykerExperience}}</div>
+            <div class="block-5">{{details.psykerExperience}}</div>
         </div>
 
         <!-- Aptitudes --------------------------------------------------------------------------------------------- -->
         <div class="character-details-stats-aptitudes character-details-stats-box">
             <div class="character-details-stats-box-headline">Aptitudes</div>
-            <div class="character-details-stats-aptitudes" *ngFor="#aptitude of details.aptitudes">{{aptitude}}</div>
+            <div class="character-details-stats-aptitudes block-5" *ngFor="#aptitude of details.aptitudes">
+                {{aptitude}}
+            </div>
         </div>
 
     </div>
