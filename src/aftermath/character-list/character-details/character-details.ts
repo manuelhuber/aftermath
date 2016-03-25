@@ -1,16 +1,18 @@
 // Services
-import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit }
+import {
+    Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit
+}
     from 'angular2/core';
-import { Observable } from 'rxjs/Rx';
-import { CharacterService } from '../../../service/character-service';
+import {Observable} from 'rxjs/Rx';
+import {CharacterService} from '../../../service/character-service';
 
 // Sub Components
-import { NgIf } from 'angular2/common';
-import { Icon } from '../../../components/icon/icon';
-import { CharacterDetailsItems } from './character-details-items/character-details-items';
-import { CharacterDetailsAchievements } from './character-details-achievements/character-details-achievements';
-import { CharacterDetailsStats } from './character-details-stats/character-details-stats';
-import { CharacterDetailsPersonality } from './character-details-personality/character-details-personality';
+import {NgIf} from 'angular2/common';
+import {Icon} from '../../../components/icon/icon';
+import {CharacterDetailsItems} from './character-details-items/character-details-items';
+import {CharacterDetailsAchievements} from './character-details-achievements/character-details-achievements';
+import {CharacterDetailsStats} from './character-details-stats/character-details-stats';
+import {CharacterDetailsPersonality} from './character-details-personality/character-details-personality';
 
 // Style
 import './character-details.less';
@@ -24,9 +26,12 @@ import './character-details-sortables.less';
 })
 export class CharacterDetailsComponent {
 
-    @Input() active : boolean = true;
-    @Input() selectedCharacterId : number;
-    @Input() characterIds : number[];
+    @Input()
+    active : boolean = true;
+    @Input()
+    selectedCharacterId : number;
+    @Input()
+    characterIds : number[];
     tab : string = 'items';
     character : CharacterModel = {
         'id': 0,
@@ -34,17 +39,20 @@ export class CharacterDetailsComponent {
         'image': '',
         'achievements': []
     };
-    details : CharacterDetails;
+    details : CharacterDetails | VehicleDetails;
+    isVehicle : boolean;
 
     // Needed for two way binding
-    @Output() activeChange : EventEmitter<boolean> = new EventEmitter();
+    @Output()
+    activeChange : EventEmitter<boolean> = new EventEmitter();
 
-    constructor (@Inject(CharacterService) private characterService : CharacterService) {
+    constructor (@Inject(CharacterService)
+                 private characterService : CharacterService) {
 
 
         // Close on esape keypress
         document.addEventListener('keyup', (event : KeyboardEvent) => {
-            if (event.keyCode === 27) { // escape key maps to keycode `27`
+            if (event.keyCode === 27) { // escape key
                 this.close();
             }
         });
@@ -89,7 +97,7 @@ export class CharacterDetailsComponent {
     /**
      * Will only be called when in- & output changes, for example selecting a character via character list
      */
-    ngOnChanges (changes : {[propName: string]: SimpleChange}) : void {
+    ngOnChanges (changes : {[propName : string] : SimpleChange}) : void {
         if (!!changes['selectedCharacterId']) {
             this.getNewCharacterData();
         }
@@ -112,7 +120,8 @@ export class CharacterDetailsComponent {
         });
 
         this.characterService.getCharacterDetails(this.selectedCharacterId)
-            .subscribe((details : CharacterDetails) => {
+            .subscribe((details : CharacterDetails | VehicleDetails) => {
+                this.isVehicle = details.hasOwnProperty('integrity');
                 this.details = details;
             });
     }

@@ -52,7 +52,8 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     spreadsheetKey: row.gsx$key.$t,
                     frontWorksheetKey: row.gsx$front.$t,
                     backWorksheetKey: row.gsx$back.$t,
-                    characterDetailsWorksheetKey: row.gsx$characterdetails.$t
+                    characterDetailsWorksheetKey: row.gsx$characterdetails.$t,
+                    vehicleDetailsWorksheetKey: row.gsx$vehicledetails.$t,
                 };
                 result[JSON.parse(row.gsx$id.$t)] = entry;
             });
@@ -83,7 +84,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
      * Returns all the Character details from the spreadsheet for the given ID
      * If no spreadsheet is given, it will return null
      */
-    getCharacterDetails (id : number) : Observable<CharacterDetails> {
+    getDetails (id : number) : Observable<CharacterDetails | VehicleDetails> {
 
         let keys : SpreadsheetKeys = this.characters[id];
 

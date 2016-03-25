@@ -6,7 +6,7 @@
 
             <img class="character-details-image" src="{{character.image}}" alt="">
 
-            <div class="character-details-basics">
+            <div class="character-details-basics" *ngIf="!isVehicle">
                 <div>
                     <span class="h1">{{character.name}}</span>
                     <span class="h3">{{details.age}}</span>
@@ -27,13 +27,13 @@
                     Items
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'achievements'"
-                     (click)="tab = 'achievements'" *ngIf="character.achievements.length">
+                     (click)="tab = 'achievements'" *ngIf="character.achievements.length && !isVehicle">
                     Achievements
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'stats'" (click)="tab = 'stats'">
                     Stats
                 </div>
-                <div class="character-details-flag" [class.is-active]="tab === 'personality'"
+                <div class="character-details-flag" [class.is-active]="tab === 'personality'" *ngIf="!isVehicle"
                      (click)="tab = 'personality'">
                     Story
                 </div>

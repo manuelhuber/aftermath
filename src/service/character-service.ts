@@ -35,7 +35,7 @@ export class CharacterService {
 
         // If it isn't cached yet, cache it!
         if (!this.detailsCache[id]) {
-            this.detailsCache[id] = this.connector.getCharacterDetails(id).cache();
+            this.detailsCache[id] = this.connector.getDetails(id).cache();
         }
 
         return this.detailsCache[id];
