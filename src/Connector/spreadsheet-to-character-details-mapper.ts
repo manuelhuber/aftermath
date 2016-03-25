@@ -224,29 +224,3 @@ function getQuestionAndAnswers (row : number, sheet : string[][], character : Ch
 
     return questionsAndAnswers;
 }
-
-/**
- * Transforms the json to a 2 dimensional array that corresponds to the actual google spreadsheet
- * Multi-row/column cells are addressed by the coordinates of the top left corner cell
- */
-function spreadsheetJsonToArray (json : any) : string[][] {
-    let result : string[][] = [];
-
-    // Initiliaze array with empty values
-    let colCount : number = JSON.parse(json.feed.gs$colCount.$t);
-    let rowCount : number = JSON.parse(json.feed.gs$rowCount.$t);
-    for (let i : number = 0; i < rowCount; i++) {
-        result[i] = [];
-        for (let j : number = 0; j < colCount; j++) {
-            result[i][j] = '';
-        }
-    }
-
-    // Fill in all the data
-    json.feed.entry.forEach((entry : any) => {
-        if (entry) {
-            result[JSON.parse(entry.gs$cell.row)][JSON.parse(entry.gs$cell.col)] = entry.gs$cell.$t;
-        }
-    });
-    return result;
-}

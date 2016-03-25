@@ -6,9 +6,6 @@ import { NgFor, NgIf } from 'angular2/common';
 import { SortableBoxes } from '../../../../components/sortable-boxes/sortable-boxes';
 import { SortableBox } from '../../../../components/sortable-boxes/sortable-box/sortable-box';
 
-// Style
-import './character-details-items.less';
-
 @Component({
     selector: 'character-details-items',
     directives: [SortableBoxes, SortableBox, NgFor, NgIf],
