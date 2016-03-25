@@ -39,7 +39,7 @@
         </div>
 
         <!-- Experience --------------------------------------------------------------------------------------------- -->
-        <div class="character-details-stats-box">
+        <div class="character-details-stats-experience character-details-stats-box">
             <div class="character-details-stats-box-headline">Experience</div>
             <div class="bold">Total</div>
             <div>{{details.experienceEarned}}</div>
@@ -81,9 +81,8 @@
         <div class="character-details-stats-talents character-details-stats-box">
             <div class="character-details-stats-box-headline">Talents</div>
             <div class="character-details-stats-talent block-5" *ngFor="#talent of details.talents">
-                <span class="bold">{{talent.name}}</span>
-                <span *ngIf="talent.comment">({{talent.comment}})</span>
-                <span>: {{talent.description}}</span>
+                <!--This needs to be in one line or there will be unwanted white spaces between spans-->
+                <span class="bold">{{talent.name}}</span><span *ngIf="talent.comment"> ({{talent.comment}})</span><span>: {{talent.description}}</span>
             </div>
         </div>
 

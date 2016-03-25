@@ -52,11 +52,20 @@
 .character-details-stats-characteristic-title {
     display: inline-block;
     text-align: right;
+    @media @device-mobile {
+        width: 50%;
+    }
 }
 
 .character-details-stats-characteristic-value {
     display: inline-block;
     font-weight: bold;
+}
+
+.character-details-stats-aptitudes, .character-details-stats-experience {
+    @media @device-mobile {
+        text-align: center;
+    }
 }
 
 .character-details-stats-skill {
@@ -93,3 +102,4 @@
     font-weight: bold;
     float: right;
 }
+
