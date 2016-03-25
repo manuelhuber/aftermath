@@ -56,7 +56,9 @@ export function getDate (cell : string) : Date {
         month = parseInt(dateArray[0], 10) - 1;
         day = parseInt(dateArray[1], 10);
     } else {
-        return new Date();
+        year = 2112;
+        month = 7;
+        day = 19;
     }
     let date : Date = new Date();
     date.setFullYear(year);

@@ -53,7 +53,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     frontWorksheetKey: row.gsx$front.$t,
                     backWorksheetKey: row.gsx$back.$t,
                     characterDetailsWorksheetKey: row.gsx$characterdetails.$t,
-                    vehicleDetailsWorksheetKey: row.gsx$vehicledetails.$t,
+                    vehicleDetailsWorksheetKey: row.gsx$vehicledetails.$t
                 };
                 result[JSON.parse(row.gsx$id.$t)] = entry;
             });
