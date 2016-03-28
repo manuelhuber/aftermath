@@ -23,7 +23,7 @@ export class RollSimulator {
     }
 
     get modifierPosition () : number {
-        return this.baseNumber + this.modifierNumber/2
+        return this.baseNumber + this.modifierNumber / 2;
     }
 
     get modifierHeight () : number {
@@ -39,7 +39,6 @@ export class RollSimulator {
             return this.getDegreesOfResult(this.targetNumber, this.rollNumber);
         }
     }
-
 
     rollD100 () : void {
         this.rollNumber = Math.floor(Math.random() * 100) + 1;

@@ -1,6 +1,6 @@
 import { spreadsheetJsonToArray, getNumber, getDate } from './spreadsheet-mapper-helper';
 
-export function applySheetToVehicle (json : any, vehicle : VehicleDetails) {
+export function applySheetToVehicle (json : any, vehicle : VehicleDetails) : void {
     let sheet : string[][] = spreadsheetJsonToArray(json);
 
     vehicle.name = sheet[3][2];
@@ -15,14 +15,14 @@ export function applySheetToVehicle (json : any, vehicle : VehicleDetails) {
     vehicle.integrity = getNumber(sheet[8][7]);
     vehicle.size = sheet[8][10];
 
-    let weaponRow = 15;
+    let weaponRow : number = 15;
     while (sheet[weaponRow][2]) {
         applyWeapon(weaponRow, sheet, vehicle);
         weaponRow += 10;
     }
 }
 
-function applyWeapon (baseRow : number, sheet : string[][], vehicle : VehicleDetails) {
+function applyWeapon (baseRow : number, sheet : string[][], vehicle : VehicleDetails) : void {
     vehicle.weapons.push({
         name: sheet[baseRow][2],
         type: sheet[baseRow][8],
@@ -30,5 +30,5 @@ function applyWeapon (baseRow : number, sheet : string[][], vehicle : VehicleDet
         rarity: getNumber(sheet[baseRow + 2][10]),
         description: sheet[baseRow + 2][3],
         image: sheet[baseRow + 4][10]
-    })
+    });
 }
