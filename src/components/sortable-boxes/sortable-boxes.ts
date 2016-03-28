@@ -180,7 +180,16 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
     sortByDate () : void {
         this.reverseSort = (this.lastSort === SORT.DATE) ? -this.reverseSort : 1;
         this.lastSort = SORT.DATE;
-        this.htmlEntries.sort(this.getSortingFunction('date', this.reverseSort));
+        this.htmlEntries.sort((a : HTMLElement, b : HTMLElement) => {
+            if (new Date(a.getAttribute('data-date')) < new Date(b.getAttribute('data-date'))) {
+                return -this.reverseSort;
+            } else if (new Date(a.getAttribute('data-date')) > new Date(b.getAttribute('data-date'))) {
+                return this.reverseSort;
+            } else {
+                return 0;
+            }
+        })
+        ;
         this.positionBoxes();
     }
 
@@ -193,7 +202,7 @@ export class SortableBoxes implements AfterViewInit, OnChanges {
 
     /**
      * Returns a sorting function for HTML Elements
-     * @param attribute The attribute which should be used for comparisons
+     * @param attribute The attribute which should be used for simple "<" and ">" comparisons
      * @param reverseSort
      * @returns {function(HTMLElement, HTMLElement): (number|number|number)}
      */
