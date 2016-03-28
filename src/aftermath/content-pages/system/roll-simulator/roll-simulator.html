@@ -3,28 +3,28 @@
         <div class="roll-simulator-pillar-wrapper">
             <div class="roll-simulator-pillar">
                 <div class="roll-simulator-pillar-green"
-                     style="height: {{targetNumber}}%;"></div>
+                     [ngStyle]="{'height': targetNumber+'%'}"></div>
                 <div class="roll-simulator-pillar-red" *ngIf="targetNumber < 100"
-                     style="bottom: {{targetNumber}}%;"></div>
+                     [ngStyle]="{'bottom': targetNumber+'%'}"></div>
                 <div class="roll-simulator-pillar-marker-right mod-125">125</div>
                 <div class="roll-simulator-pillar-marker-right mod-100">100</div>
                 <div class="roll-simulator-pillar-marker-right mod-75">75</div>
                 <div class="roll-simulator-pillar-marker-right mod-50">50</div>
                 <div class="roll-simulator-pillar-marker-right mod-25">25</div>
                 <div class="roll-simulator-modifier-marker" *ngIf="modifierNumber" [class.mod-red]="modifierNumber < 0"
-                     style="bottom: {{baseNumber + modifierNumber/2}}%; height: {{getModifierHeight()}}%">
+                     [ngStyle]="{'bottom': modifierPosition+'%', 'height': modifierHeight+'%'}">
                     <span class="roll-simulator-modifier-text"><b>Mod</b>:{{modifierNumber}}</span>
                 </div>
                 <div class="roll-simulator-pillar-marker-left" *ngIf="modifierNumber"
-                     style="bottom: {{baseNumber}}%;">
+                     [ngStyle]="{'bottom': baseNumber+'%'}">
                     <b>Char</b>:{{baseNumber}}
                 </div>
                 <div class="roll-simulator-pillar-marker-left"
-                     style="bottom: {{targetNumber}}%;">
+                     [ngStyle]="{'bottom': targetNumber+'%'}">
                     <b>TN</b>:{{targetNumber}}
                 </div>
                 <div class="roll-simulator-pillar-marker-right mod-roll" [class.failed]="checkFailed" *ngIf="rollNumber"
-                     style="bottom: {{rollNumber}}%">
+                     [ngStyle]="{'bottom': rollNumber+'%'}">
                     {{rollNumber}}
                 </div>
             </div>

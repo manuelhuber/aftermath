@@ -1,13 +1,13 @@
 // Serivces
 import { Component, Inject } from 'angular2/core';
-import { NgIf } from 'angular2/common';
+import { NgIf, NgStyle } from 'angular2/common';
 
 // Style
 import './roll-simulator.less';
 
 @Component({
     selector: 'roll-simulator',
-    directives: [NgIf],
+    directives: [NgIf, NgStyle],
     template: require('./roll-simulator.html')
 })
 export class RollSimulator {
@@ -22,6 +22,14 @@ export class RollSimulator {
         return this.baseNumber + this.modifierNumber;
     }
 
+    get modifierPosition () : number {
+        return this.baseNumber + this.modifierNumber/2
+    }
+
+    get modifierHeight () : number {
+        return Math.abs(this.modifierNumber) * 0.7;
+    }
+
     get result () : number {
         if (this.rollNumber > this.targetNumber) {
             this.checkFailed = true;
@@ -32,9 +40,6 @@ export class RollSimulator {
         }
     }
 
-    getModifierHeight () : number {
-        return Math.abs(this.modifierNumber) * 0.7;
-    }
 
     rollD100 () : void {
         this.rollNumber = Math.floor(Math.random() * 100) + 1;
