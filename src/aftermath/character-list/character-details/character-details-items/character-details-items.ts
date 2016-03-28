@@ -1,5 +1,6 @@
 // Services
 import { Component, Input } from 'angular2/core';
+import { dateToString } from '../../../../util/date-util.ts';
 
 // Sub components
 import { NgFor, NgIf } from 'angular2/common';
@@ -41,6 +42,10 @@ export class CharacterDetailsItems {
         setTimeout(() => {
             window.addEventListener('click', this.listener);
         }, 0);
+    }
+
+    dateToString (date : Date) : string {
+        return dateToString(date);
     }
 
 }

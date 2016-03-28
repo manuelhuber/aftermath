@@ -174,6 +174,9 @@ export class CharacterList implements OnInit {
      * If we are already scrolling it incorporates the height of the scroll bars to see if we actually need to scroll
      */
     private shouldWeScroll () : void {
+        if (!this.scrollableDiv) {
+            this.updateScrollableDiv();
+        }
         let entries : HTMLElement = <HTMLElement>document.getElementsByClassName('character-list-entries').item(0);
         let down : HTMLElement = <HTMLElement>document.getElementsByClassName('character-list-scroll-down').item(0);
 

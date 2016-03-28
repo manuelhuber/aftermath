@@ -16,8 +16,7 @@
                         <div class="character-details-sortable-card-type">{{item.type}}</div>
                         <div class="character-details-sortable-card-description">{{item.description}}</div>
                         <div class="character-details-sortable-card-date">
-                            <!--The date pipe doesn't have the german format ...-->
-                            {{item.date | date:'d'}}.{{item.date | date:'M'}}.{{item.date | date:'y'}}
+                            {{dateToString(item.date)}}
                         </div>
                     </div>
                 </div>
