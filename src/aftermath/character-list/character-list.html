@@ -3,10 +3,12 @@
 
         <div class="character-list-buttons">
             <icon id="character-list-scroll-up" class="character-list-scroll-up clickable" *ngIf="showScroll"
-                         (click)="scrollUp()"
-                         iconClass="character-list-scroll-up-icon"
-                         iconName="single-arrow-up"></icon>
-            <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">Sort by name</span>
+                  (click)="scrollUp()"
+                  iconClass="character-list-scroll-up-icon"
+                  iconName="single-arrow-up"></icon>
+            <span>Sort by</span>
+            <span class="character-list-buttons-sort clickable" (click)="sortAlphabetically()">NAME</span>
+            <span class="character-list-buttons-sort clickable" (click)="sortByAchievementScore()">SCORE</span>
         </div>
 
         <div id="character-list-entries" class="character-list-entries" [class.showScroll]="showScroll">
@@ -15,6 +17,7 @@
                      *ngFor="#character of characters; #i = index"
                      [attr.data-name]="character.name"
                      [attr.data-id]="character.id"
+                     [attr.data-score]="character.achievementScore"
                      [ngStyle]="{'top': i*85+'px'}"
                      (click)="showDetails($event)">
                     <character-list-entry [character]="character"></character-list-entry>
@@ -23,15 +26,15 @@
         </div>
 
         <icon id="character-list-scroll-down" class="character-list-scroll-down clickable" *ngIf="showScroll"
-                     (click)="scrollDown()"
-                     iconClass="character-list-scroll-down-icon"
-                     iconName="single-arrow-up"></icon>
+              (click)="scrollDown()"
+              iconClass="character-list-scroll-down-icon"
+              iconName="single-arrow-up"></icon>
 
     </div>
     <icon class="character-list-close clickable"
-                 iconClass="character-list-close-icon"
-                 iconName="double-arrow-down"
-                 (click)="toggleList()"></icon>
+          iconClass="character-list-close-icon"
+          iconName="double-arrow-down"
+          (click)="toggleList()"></icon>
     <character-details class="character-list-details" [active]="showCharacterDetails" [characterIds]="sortedIds"
                        [selectedCharacterId]="selectedCharacterId"
                        (activeChange)="showCharacterDetails=$event"></character-details>

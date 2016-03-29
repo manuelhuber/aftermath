@@ -72,7 +72,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     id: JSON.parse(row.gsx$id.$t),
                     name: row.gsx$name.$t,
                     image: row.gsx$image.$t,
-                    achievementPoints: row.gsx$achievements.$tpoints
+                    achievementScore: row.gsx$score.$t
                 };
                 result.push(char);
             });

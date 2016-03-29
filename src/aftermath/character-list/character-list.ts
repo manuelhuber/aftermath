@@ -16,7 +16,7 @@ import {VIEWMODE} from '../../service/responsiveness-service';
 
 enum SORT {
     ALPHABETICALLY,
-    EXPERIENCE
+    SCORE
 }
 
 @Component({
@@ -144,6 +144,23 @@ export class CharacterList implements OnInit {
                 return -this.reverseSort;
             } else if (a.getAttribute('data-name') > b.getAttribute('data-name')) {
                 return this.reverseSort;
+            } else {
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * Sort the characters by Achievement Score
+     */
+    sortByAchievementScore () : void {
+        this.reverseSort = (this.lastSort === SORT.SCORE) ? -this.reverseSort : 1;
+        this.lastSort = SORT.SCORE;
+        this.sortHtmlEntries((a : HTMLElement, b : HTMLElement) => {
+            if (a.getAttribute('data-score') < b.getAttribute('data-score')) {
+                return this.reverseSort;
+            } else if (a.getAttribute('data-score') > b.getAttribute('data-score')) {
+                return -this.reverseSort;
             } else {
                 return 0;
             }

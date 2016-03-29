@@ -1,18 +1,16 @@
 // Services
-import {
-    Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit
-}
+import { Component, Input, EventEmitter, Output, Inject, OnChanges, SimpleChange, AfterContentInit }
     from 'angular2/core';
-import {Observable} from 'rxjs/Rx';
-import {CharacterService} from '../../../service/character-service';
+import { Observable } from 'rxjs/Rx';
+import { CharacterService } from '../../../service/character-service';
 
 // Sub Components
-import {NgIf} from 'angular2/common';
-import {Icon} from '../../../components/icon/icon';
-import {CharacterDetailsItems} from './character-details-items/character-details-items';
-import {CharacterDetailsAchievements} from './character-details-achievements/character-details-achievements';
-import {CharacterDetailsStats} from './character-details-stats/character-details-stats';
-import {CharacterDetailsPersonality} from './character-details-personality/character-details-personality';
+import { NgIf } from 'angular2/common';
+import { Icon } from '../../../components/icon/icon';
+import { CharacterDetailsItems } from './character-details-items/character-details-items';
+import { CharacterDetailsAchievements } from './character-details-achievements/character-details-achievements';
+import { CharacterDetailsStats } from './character-details-stats/character-details-stats';
+import { CharacterDetailsPersonality } from './character-details-personality/character-details-personality';
 
 // Style
 import './character-details.less';
@@ -37,7 +35,7 @@ export class CharacterDetailsComponent {
         'id': 0,
         'name': '--',
         'image': '',
-        'achievementPoints': 0
+        'achievementScore': 0
     };
     details : CharacterDetails | VehicleDetails;
     isVehicle : boolean;
