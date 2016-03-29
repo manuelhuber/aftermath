@@ -14,7 +14,6 @@ export class CharacterService {
     constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
         this.characters = connector.getCharacters().cache();
         this.achievements = connector.getAchievements().cache();
-        this.achievements.subscribe((a : any) => console.log(a));
     }
 
     getCharacters () : Observable<CharacterModel[]> {
