@@ -29,7 +29,7 @@
                     Items
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'achievements'"
-                     (click)="tab = 'achievements'" *ngIf="character.achievements.length && !isVehicle">
+                     (click)="tab = 'achievements'" *ngIf="!isVehicle">
                     Achievements
                 </div>
                 <div class="character-details-flag" [class.is-active]="tab === 'stats'" (click)="tab = 'stats'">
@@ -44,7 +44,7 @@
             <div class="character-details-card">
                 <character-details-items *ngIf="tab === 'items'" [items]="details.items"></character-details-items>
                 <character-details-achievements *ngIf="tab === 'achievements'"
-                                                [achievementIds]="character.achievements">
+                                                [characterId]="character.id">
                 </character-details-achievements>
                 <character-details-stats *ngIf="tab === 'stats'" [details]="details"></character-details-stats>
                 <character-details-personality *ngIf="tab === 'personality'"

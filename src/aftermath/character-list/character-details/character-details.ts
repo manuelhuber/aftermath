@@ -37,7 +37,7 @@ export class CharacterDetailsComponent {
         'id': 0,
         'name': '--',
         'image': '',
-        'achievements': []
+        'achievementPoints': 0
     };
     details : CharacterDetails | VehicleDetails;
     isVehicle : boolean;

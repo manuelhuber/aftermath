@@ -20,9 +20,9 @@ import { CharacterConnector } from '../model/character-connector';
 const BASE_URL : string = 'https://spreadsheets.google.com/feeds';
 const LIST : string = 'list';
 const CELLS : string = 'cells';
+
 const SPREADSHEET_KEY : string = '1i-i4lnApPVyM84Puxb8h7JjodZqHGasAWiN1u2Lxs5g';
 const CHARACTER_WORKSHEET_ID : string = 'od6';
-const ITEM_WORKSHEET_ID : string = 'ogun2ej';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
@@ -49,6 +49,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
             response.forEach((row : any) => {
                 // Save all the keys
                 let entry : SpreadsheetKeys = {
+                    characterName: row.gsx$name.$t,
                     spreadsheetKey: row.gsx$key.$t,
                     frontWorksheetKey: row.gsx$front.$t,
                     backWorksheetKey: row.gsx$back.$t,
@@ -71,7 +72,7 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     id: JSON.parse(row.gsx$id.$t),
                     name: row.gsx$name.$t,
                     image: row.gsx$image.$t,
-                    achievements: this.parseStringToNumberArray(row.gsx$achievements.$t)
+                    achievementPoints: row.gsx$achievements.$tpoints
                 };
                 result.push(char);
             });
@@ -130,7 +131,8 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                         image: row.gsx$image.$t,
                         name: row.gsx$name.$t,
                         date: new Date(row.gsx$date.$t),
-                        rarity: JSON.parse(row.gsx$rarity.$t)
+                        rarity: JSON.parse(row.gsx$rarity.$t),
+                        earnedBy: this.checkAchievementEarned(row)
                     };
                     result.push(achievement);
                 });
@@ -150,6 +152,22 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
         } finally {
             return numberArray;
         }
+    }
+
+    private checkAchievementEarned (row : any) : number[] {
+        let ids : number[] = [];
+        for (let id in this.characters) {
+            if (this.characters.hasOwnProperty(id)
+                && row.hasOwnProperty('gsx$' + this.characters[id].characterName.toLowerCase())
+                && row['gsx$' + this.characters[id].characterName.toLowerCase()].$t !== '') {
+                try {
+                    ids.push(parseInt(id, 10));
+                } finally {
+                    // tslint is being a bitch
+                }
+            }
+        }
+        return ids;
     }
 
     private getEmptyCharacterDetails () : CharacterDetails {

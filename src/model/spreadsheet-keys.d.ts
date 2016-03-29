@@ -3,6 +3,7 @@ declare interface CharacterSpreadsheets {
 }
 
 export interface SpreadsheetKeys {
+    characterName : string;
     spreadsheetKey : string;
     frontWorksheetKey ?: string;
     backWorksheetKey ?: string;

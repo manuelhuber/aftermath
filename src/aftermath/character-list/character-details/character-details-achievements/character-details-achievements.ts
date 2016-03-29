@@ -18,7 +18,7 @@ import './character-details-achievements.less';
 })
 export class CharacterDetailsAchievements implements OnChanges {
 
-    @Input() achievementIds : number[];
+    @Input() characterId : number;
     achievements : AchievementModel[];
 
     listener : EventListener;
@@ -43,7 +43,7 @@ export class CharacterDetailsAchievements implements OnChanges {
         this.achievements = [];
 
         setTimeout(() => {
-            this.characterService.getAchievementsForCharacter(this.achievementIds)
+            this.characterService.getAchievementsForCharacter(this.characterId)
                 .subscribe((achievements : AchievementModel[]) => {
                     this.achievements = achievements;
                 });

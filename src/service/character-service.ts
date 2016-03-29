@@ -14,6 +14,7 @@ export class CharacterService {
     constructor (@Inject(CharacterConnectorGoogleSpreadsheet) private connector : CharacterConnector) {
         this.characters = connector.getCharacters().cache();
         this.achievements = connector.getAchievements().cache();
+        this.achievements.subscribe((a : any) => console.log(a));
     }
 
     getCharacters () : Observable<CharacterModel[]> {
@@ -42,10 +43,11 @@ export class CharacterService {
 
     }
 
-    getAchievementsForCharacter (ids : number[]) : Observable<AchievementModel[]> {
+    getAchievementsForCharacter (id : number) : Observable<AchievementModel[]> {
         return this.achievements.map((achievements : AchievementModel[]) => {
-            return achievements.filter((achievement : AchievementModel) =>
-                ids.some((id : number) => id === achievement.id));
+            return achievements.filter((achievement : AchievementModel) => {
+                return achievement.earnedBy.indexOf(id) !== -1;
+            });
         });
     }
 }
