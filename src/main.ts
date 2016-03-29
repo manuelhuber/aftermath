@@ -3,7 +3,7 @@
  */
 import * as ngCore from 'angular2/core';
 import * as browser from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2/router';
+import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 /*
@@ -36,7 +36,7 @@ export function main () : any {
             ...ENV_PROVIDERS,
             ...HTTP_PROVIDERS,
             ...ROUTER_PROVIDERS,
-            ngCore.provide(LocationStrategy, {useClass: PathLocationStrategy}),
+            ngCore.provide(LocationStrategy, {useClass: HashLocationStrategy}),
             CharacterConnectorGoogleSpreadsheet,
             ResponsivenessService
         ])
