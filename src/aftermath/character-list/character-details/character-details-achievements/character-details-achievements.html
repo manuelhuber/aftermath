@@ -11,7 +11,10 @@
                     <div class="character-details-sortable-card-text">
 
                         <div class="character-details-sortable-card-text-border"></div>
-                        <div class="character-details-sortable-card-name h3">{{achievement.name}}</div>
+                        <div class="character-details-sortable-card-name-wrapper">
+                            <div class="character-details-sortable-card-name h3">{{achievement.name}}</div>
+                        </div>
+                        <div class="character-details-sortable-card-subtitle">Score: {{achievement.rarity*10}}</div>
                         <div class="character-details-sortable-card-description">{{achievement.description}}</div>
                         <div class="character-details-sortable-card-date">
                             <!--The date pipe doesn't have the german format ...-->
