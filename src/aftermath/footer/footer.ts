@@ -5,8 +5,8 @@ import { Router } from 'angular2/router';
 import './footer.less';
 
 const quotes : string[] = [
-    'i live, i die, i live again',
-    'witness me',
+    'i live, i die, i live again!',
+    'witness me!',
     'my world is fire and blood',
     'hope is a mistake',
     'where must we go... we who wander this wasteland in search of better selves?',
