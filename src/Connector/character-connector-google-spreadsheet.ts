@@ -26,8 +26,8 @@ const CHARACTER_WORKSHEET_ID : string = 'od6';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
-const PUB_URL_PRE = 'https://docs.google.com/spreadsheets/d';
-const PUB_URL_POST = 'pubhtml';
+const PUB_URL_PRE : string = 'https://docs.google.com/spreadsheets/d';
+const PUB_URL_POST : string = 'pubhtml';
 
 @Injectable()
 export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
