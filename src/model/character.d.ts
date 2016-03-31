@@ -3,4 +3,5 @@ declare interface CharacterModel {
     name : string;
     image : string;
     achievementScore : number;
+    url ?: string;
 }

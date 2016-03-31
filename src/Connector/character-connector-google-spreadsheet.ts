@@ -26,6 +26,9 @@ const CHARACTER_WORKSHEET_ID : string = 'od6';
 const ACHIEVEMENT_WORKSHEET_ID : string = 'orwrc8q';
 const OPTIONS : string = 'public/values?alt=json';
 
+const PUB_URL_PRE = 'https://docs.google.com/spreadsheets/d';
+const PUB_URL_POST = 'pubhtml';
+
 @Injectable()
 export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
 
@@ -72,7 +75,8 @@ export class CharacterConnectorGoogleSpreadsheet implements CharacterConnector {
                     id: JSON.parse(row.gsx$id.$t),
                     name: row.gsx$name.$t,
                     image: row.gsx$image.$t,
-                    achievementScore: row.gsx$score.$t
+                    achievementScore: row.gsx$score.$t,
+                    url: [PUB_URL_PRE, row.gsx$key.$t, PUB_URL_POST].join('/')
                 };
                 result.push(char);
             });

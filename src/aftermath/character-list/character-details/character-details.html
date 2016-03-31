@@ -10,13 +10,14 @@
 
             <div class="character-details-basics" *ngIf="!isVehicle">
                 <div>
-                    <span class="h1">{{character.name}}</span>
+                    <a target="_blank" href="{{character.url}}" class="h1">{{character.name}}</a>
                     <span class="h3">{{details.age}}</span>
                 </div>
                 <div class="h3">{{details.role}}</div>
                 <div>{{details.about}}</div>
                 <div>{{details.build}}</div>
                 <div>{{details.complexion}}</div>
+                <div>{{details.quirks}}</div>
             </div>
 
         </div>
